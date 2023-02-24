@@ -1,0 +1,195 @@
+# Default slackware fvwm colors
+
+# Snow colors
+# Solaris blue
+SetEnv fvwmFg	black
+SetEnv fvwmBg	#AEB2C3
+SetEnv fvwmHi	#DDDEE6
+SetEnv fvwmSh	#74798E
+
+# Snow
+#SetEnv fvwmFg	black
+#SetEnv fvwmBg	gray66
+#SetEnv fvwmHi	white
+#SetEnv fvwmSh	#A85700
+
+# Snow Selection Colors
+# Blue
+#SetEnv fvwmFgA	black
+#SetEnv fvwmBgA	#60A0C0
+#SetEnv fvwmHiA	#95E1FD
+#SetEnv fvwmShA	#295D77
+# Red
+#SetEnv fvwmFgA	black
+#SetEnv fvwmBgA	#C06077
+#SetEnv fvwmHiA	#FB8AA4
+#SetEnv fvwmShA	#5C2D36
+# Same as normal colors
+SetEnv fvwmFgA	$[fvwmFg]
+SetEnv fvwmBgA	$[fvwmBg]
+SetEnv fvwmHiA	$[fvwmHi]
+SetEnv fvwmShA	$[fvwmSh]
+# Solaris purple
+#SetEnv fvwmFgA	white
+#SetEnv fvwmBgA	#B24D7A
+#SetEnv fvwmHiA	#DDAFC3
+#SetEnv fvwmShA	#58263C
+
+SetEnv fvwmCurFg	black
+SetEnv fvwmCurBg	#AEB2C3
+SetEnv fvwmXeyesBg	white
+SetEnv fvwmXeyesFg	black
+
+# Dark blue colors
+#SetEnv fvwmFg	#AAAAFF
+#SetEnv fvwmBg	#000000
+#SetEnv fvwmHi	#7777FF
+#SetEnv fvwmSh	#000099
+#SetEnv fvwmFgA	#AAAAFF
+#SetEnv fvwmBgA	#000068
+#SetEnv fvwmHiA	#7777FF
+#SetEnv fvwmShA	#000088
+#SetEnv fvwmCurFg	black
+#SetEnv fvwmCurBg	yellow
+#SetEnv fvwmXeyesBg	black
+#SetEnv fvwmXeyesFg	yellow
+
+# Purple colors
+#SetEnv fvwmFg	#FFFF88
+#SetEnv fvwmBg	#D785FF
+#SetEnv fvwmHi	white
+#SetEnv fvwmSh	#8846FF
+#SetEnv fvwmFgA	black
+#SetEnv fvwmBgA	#9ADFFF
+#SetEnv fvwmHiA	white
+#SetEnv fvwmShA	#529EBC
+#SetEnv fvwmCurFg	white
+#SetEnv fvwmCurBg	#FF00FF
+#SetEnv fvwmXeyesBg	white
+#SetEnv fvwmXeyesFg	red
+
+# Binding for opening Dark Term
+SetEnv fvwmDarktermFg	$fvwmBg
+SetEnv fvwmDarktermBg	black
+Key v	A	4	Exec xterm -bg $[fvwmDarktermBg] -fg $[fvwmDarktermFg]
+
+# 0 = Inactive Window
+# 1 = Active Window
+# 2 = Stickies (Pager, Conky, etc.)
+Colorset 0	fg $[fvwmFg], bg $[fvwmBg], hi $[fvwmHi], sh $[fvwmSh]
+Colorset 1	fg $[fvwmFgA], bg $[fvwmBgA], hi $[fvwmHiA], sh $[fvwmShA]
+
+# Misc style changings
+Style * MWMBorder
+Style * BorderWidth 5
+Style * HandleWidth 5
+Style * IconBox 5 5 90 -0, IconGrid 1 1, IconFill Right Bottom
+#Style ** IconOverride, Icon sxis.png
+Style ** IconOverride, Icon sjis.png
+Style mpv	Sticky
+
+
+# Pager settings
+*FvwmPagerFont none
+#*FvwmPagerGeometry 120x100-0+300
+*FvwmPagerGeometry 116x100-0+0
+*FvwmPagerLabel FvwmPager
+*FvwmPagerSmallFont "xft:Liberation Mono:size=8"
+*FvwmPager: LabelsAbove
+*FvwmPager: SolidSeparators
+*FvwmPagerBack $[fvwmBg]
+*FvwmPagerFore $[fvwmFg]
+*FvwmPagerHilight $[fvwmBg]
+
+# Icon Manager settings
+*FvwmIconMan: Format "%t"
+*FvwmIconMan: ManagerGeometry 100x100
+*FvwmIconMan: ButtonGeometry 22x22
+*FvwmIconMan: Background $[fvwmBg]
+*FvwmIconMan: Foreground $[fvwmFg]
+*FvwmIconMan: FocusColorset 0
+*FvwmIconMan: FocusAndSelectColorset 1
+*FvwmIconMan: SelectColorset 1
+*FvwmIconMan: IconColorset 0
+*FvwmIconMan: PlainColorset 0
+*FvwmIconMan: TipsColorset 0
+*FvwmIconMan: TitleColorset 0
+
+# Good Buttons
+*GoodButtons: Geometry 200x200+0+0
+*GoodButtons: Font $[fvwmDefFont]
+*GoodButtons: Colorset 0
+*GoodButtons: Rows 2
+*GoodButtons: Columns 2
+*GoodButtons: (1x1, Title "Kill", Action(Mouse 1) "Close")
+*GoodButtons: (1x1, Title "FvwmConsole", Action(Mouse 1) "Module FvwmConsole -terminal xterm")
+*GoodButtons: (1x1, Title "Move", Action(Mouse 1) "Move")
+*GoodButtons: (1x1, Title "Resize", Action(Mouse 1) "Resize")
+#*GoodButtons: (1x1, Title "Auda", Action(Mouse 1) "Exec audacious")
+#*GoodButtons: (1x1, Title "Bubble", Action(Mouse 1) "Exec wmbubble_fvwm")
+
+# Side Panel
+*SidePanel: Font $[fvwmDefFont]
+*SidePanel: Geometry 76x540+0+0
+*SidePanel: Colorset 0
+*SidePanel: Rows 7
+*SidePanel: Columns 1
+#*SidePanel: (1x1, Title "Yo", Icon xterm-linux.xpm, Action(Mouse 1) "Exec tuxclick")
+*SidePanel: (1x5, Title "Window List", Swallow FvwmIconMan "Module FvwmIconMan")
+*SidePanel: (1x1, Swallow GoodButtons "Module FvwmButtons GoodButtons")
+AddToFunc InitFunction I Module FvwmButtons SidePanel
+
+# Snow Panel
+*SnowPanel: Font $[fvwmDefFont]
+*SnowPanel: Geometry 969x80-0-0
+*SnowPanel: Colorset 0
+*SnowPanel: Rows 1
+*SnowPanel: Columns 13
+*SnowPanel: (2x1, Swallow FvwmPager "Module FvwmPager")
+*SnowPanel: (1x1, Swallow(Respawn) wmclock "Exec wmclock -12 -led yellow")
+*SnowPanel: (1x1, Title Terminal, Icon pc.png, Action(Mouse 1) "Exec xterm")
+*SnowPanel: (1x1, Title NeoMutt, Icon mailbox.png, Action(Mouse 1) "Exec xterm -C neomutt -T theNeoMuttMobile")
+*SnowPanel: (1x1, Title Pavucontrol, Icon cd.png, Action(Mouse 1) "Exec pavucontrol")
+*SnowPanel: (1x1, Title LibreWolf, Icon thing.png, Action(Mouse 1) "Exec librewolf")
+*SnowPanel: (1x1, Title MilkyTracker, Icon milky.png, Action(Mouse 1) "Exec milkytracker")
+*SnowPanel: (1x1, Title "Gnu imp", Icon wilber.png, Action(Mouse 1) "Exec gimp")
+*SnowPanel: (1x1, Title Galculator, Icon gentoo_peach.png, Action(Mouse 1) "Exec galculator")
+*SnowPanel: (1x1, Title "Dark Terminal", Icon sjis.png, Action(Mouse 1) "Exec xterm -bg $[fvwmDarktermBg] -fg $[fvwmDarktermFg] -T darkterm")
+*SnowPanel: (2x1, Title "System Tray", Swallow(Respawn) stalonetray "Exec stalonetray -p -i 32")
+*SnowPanel: (1x1, Swallow(Respawn) xeyes "Exec xeyes -center $[fvwmXeyesBg] -fg $[fvwmXeyesFg] -outline $[fvwmXeyesFg] +render")
+AddToFunc InitFunction I Module FvwmButtons SnowPanel
+
+# X settings
+AddToFunc InitFunction
++	I Exec xrdb -merge ~/.config/xres/snow
++	I Exec feh --no-fehbg --bg-tile ~/wallpapers/snow6.png
++	I Exec conky -c ~/.config/conky/2now.conf
+#+	I Exec feh --no-fehbg --bg-tile ~/wallpapers/fvwmsnow.png
+#+	I Exec xsetroot -solid black
+#+	I Exec killwmwins; conky -c ~/.config/conky/2now.conf
+
+# X cursors
+CursorStyle	POSITION	top_left_corner		$[fvwmCurFg]	$[fvwmCurBg]
+CursorStyle	TITLE		top_left_arrow		$[fvwmCurFg]	$[fvwmCurBg]
+CursorStyle	DEFAULT		top_left_arrow		$[fvwmCurFg]	$[fvwmCurBg]
+CursorStyle	SYS		hand2			$[fvwmCurFg]	$[fvwmCurBg]
+CursorStyle	MOVE		gumby			$[fvwmCurFg]	$[fvwmCurBg]
+CursorStyle	RESIZE		sizing			$[fvwmCurFg]	$[fvwmCurBg]
+CursorStyle	WAIT		watch			$[fvwmCurFg]	$[fvwmCurBg]
+CursorStyle	MENU		gobbler			$[fvwmCurFg]	$[fvwmCurBg]
+CursorStyle	SELECT		crosshair		$[fvwmCurFg]	$[fvwmCurBg]
+CursorStyle	DESTROY		pirate			$[fvwmCurFg]	$[fvwmCurBg]
+CursorStyle	TOP		top_side		$[fvwmCurFg]	$[fvwmCurBg]
+CursorStyle	RIGHT		right_side		$[fvwmCurFg]	$[fvwmCurBg]
+CursorStyle	BOTTOM		bottom_side		$[fvwmCurFg]	$[fvwmCurBg]
+CursorStyle	LEFT		left_side		$[fvwmCurFg]	$[fvwmCurBg]
+CursorStyle	TOP_LEFT	top_left_corner		$[fvwmCurFg]	$[fvwmCurBg]
+CursorStyle	TOP_RIGHT	top_right_corner	$[fvwmCurFg]	$[fvwmCurBg]
+CursorStyle	BOTTOM_LEFT	bottom_left_corner	$[fvwmCurFg]	$[fvwmCurBg]
+CursorStyle	BOTTOM_RIGHT	bottom_right_corner	$[fvwmCurFg]	$[fvwmCurBg]
+CursorStyle	TOP_EDGE	top_side		$[fvwmCurFg]	$[fvwmCurBg]
+CursorStyle	RIGHT_EDGE	right_side		$[fvwmCurFg]	$[fvwmCurBg]
+CursorStyle	BOTTOM_EDGE	bottom_side		$[fvwmCurFg]	$[fvwmCurBg]
+CursorStyle	LEFT_EDGE	left_side		$[fvwmCurFg]	$[fvwmCurBg]
+CursorStyle	ROOT		X_cursor		$[fvwmCurFg]	$[fvwmCurBg]
+CursorStyle	STROKE		plus			$[fvwmCurFg]	$[fvwmCurBg]

@@ -1,0 +1,106 @@
+xterm*allowBoldFonts: false
+Xft.hinting: 1
+Xft.hintstyle: hintslight
+Xft.antialias: 0
+Xft.rgba: rgb
+
+! font selection
+xterm*font: -misc-fixed-medium-r-normal--14-130-75-75-c-70-iso10646-1
+!xterm*font: xft:Terminus (TTF):size=12
+!xterm*font: xft:Terminus (TTF):size=15:style=bold
+
+! solarized colors
+
+! special
+! special
+!*.foreground:   #444747
+*.foreground:   #000000
+*.background:   #fdf6e3
+!*.cursorColor:  #444747
+*.cursorColor:  #000000
+
+! black
+!*.color0:       #444747
+!*.color8:       #444747
+*.color0:	#000000
+*.color8:	#000000
+
+! red
+*.color1:       #dc322f
+*.color9:       #dc322f
+
+! green
+*.color2:       #859900
+*.color10:      #859900
+
+! yellow
+*.color3:       #b58900
+*.color11:      #b58900
+
+! blue
+*.color4:       #268bd2
+*.color12:      #268bd2
+
+! magenta
+*.color5:       #6c71c4
+*.color13:      #6c71c4
+
+! cyan
+*.color6:       #2aa198
+*.color14:      #2aa198
+
+! white
+*.color7:       #849191
+*.color15:      #fdf6e3
+
+
+! font/styling
+URxvt.font:xft:Terminus (TTF):size=12:antialias=false
+URxvt.boldFont:xft:Terminus (TTF):size=12:antialias=false
+URxvt.scrollBar:false
+
+! true transparency
+!URxvt.depth: 32
+!URxvt.background: rgba:0000/0101/4545/7777
+
+! fake transparency
+URxvt.transparent: true
+URxvt.tintColor:#4959aa
+!URxvt.tintColor:#263699
+!URxvt.tintColor:#8086a9
+
+! extensions
+URxvt.perl-ext-common: default,tabbed,matcher,resize-font,-tabbed
+
+! keybindings
+URxvt.keysym.C-minus:     resize-font:smaller
+URxvt.keysym.C-equal:      resize-font:bigger
+!URxvt.keysym.C-equal:     resize-font:reset
+!URxvt.keysym.C-question:  resize-font:show
+URxvt.keysym.C-question:  resize-font:reset
+
+URxvt.resize-font.step: 1
+
+! special
+URxvt*foreground:   #bbc5ff
+URxvt*background:   #292d3e
+URxvt*cursorColor:  #bbc5ff
+
+! black
+!URxvt*color0:       #ff69b4
+!URxvt*color8:       #ff69b4
+URxvt*color0:	#000000
+URxvt*color8:	#000000
+
+! red
+URxvt*color1:       #f07178
+URxvt*color9:       #f07178
+
+! green
+URxvt*color2:       #c3e88d
+URxvt*color10:      #c3e88d
+
+! yellow
+URxvt*color3:       #ffcb6b
+URxvt*color11:      #ffcb6b
+

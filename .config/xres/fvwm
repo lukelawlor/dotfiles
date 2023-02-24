@@ -1,0 +1,63 @@
+! font/styling
+URxvt.font:xft:Terminus (TTF):size=12:antialias=false
+URxvt.boldFont:xft:Terminus (TTF):size=12:antialias=false
+URxvt.scrollBar:false
+
+! default window dimensions
+URxvt.geometry: 118x35
+
+! fake transparency
+URxvt.transparent: true
+URxvt.tintColor:#4959aa
+
+! true transparency
+!URxvt.depth: 32
+!URxvt.background: rgba:3399/2211/aa77/cccc
+!URxvt.background: rgba:45ab/6734/cd9a/cccc
+
+! extensions
+URxvt.perl-ext-common: default,tabbed,matcher,resize-font,-tabbed
+
+! keybindings 
+URxvt.keysym.C-minus:     resize-font:smaller
+URxvt.keysym.C-equal:      resize-font:bigger
+!URxvt.keysym.C-equal:     resize-font:reset
+!URxvt.keysym.C-question:  resize-font:show URxvt.keysym.C-question:  resize-font:reset URxvt.resize-font.step: 1
+
+! special
+*.foreground:   #aba7ff
+*.background:   #090300
+*.cursorColor:  #a6a2ff
+
+! black
+*.color0:       #000000
+*.color8:       #36368e
+
+! red
+*.color1:       #ff6288
+*.color9:       #ff6288
+
+! green
+*.color2:       #6affa8
+*.color10:      #6affa8
+
+! yellow
+*.color3:       #fff786
+*.color11:      #fff786
+
+! blue
+*.color4:       #5a71ff
+*.color12:      #5a71ff
+
+! magenta
+*.color5:       #da70d6
+*.color13:      #da70d6
+
+! cyan
+*.color6:       #98deff
+*.color14:      #98deff
+
+! white
+*.color7:       #6969c3
+*.color15:      #ffffff
+xterm*font:xft:Terminus (TTF):size=12:antialias=false

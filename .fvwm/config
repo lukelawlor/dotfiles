@@ -1,0 +1,7 @@
+# Default Slackware FVWM Configuration
+# Hacked by cata on 1.15.22 from https://datagubbe.se/fvwm/
+
+Read slackware
+
+#Read theme/slackware
+Read theme/snow
