@@ -69,9 +69,9 @@ SetEnv fvwmXeyesFg	black
 #SetEnv fvwmXeyesFg	red
 
 # Binding for opening Dark Term
-SetEnv fvwmDarktermFg	$fvwmBg
+SetEnv fvwmDarktermFg	$[fvwmBg]
 SetEnv fvwmDarktermBg	black
-Key v	A	4	Exec xterm -bg $[fvwmDarktermBg] -fg $[fvwmDarktermFg]
+#Key v	A	4	Exec xterm -bg $[fvwmDarktermBg] -fg $[fvwmDarktermFg]
 
 # 0 = Inactive Window
 # 1 = Active Window
@@ -141,29 +141,30 @@ AddToFunc InitFunction I Module FvwmButtons SidePanel
 
 # Snow Panel
 *SnowPanel: Font $[fvwmDefFont]
-*SnowPanel: Geometry 969x80-0-0
+*SnowPanel: Geometry 785x80-0-0
 *SnowPanel: Colorset 0
 *SnowPanel: Rows 1
-*SnowPanel: Columns 13
-*SnowPanel: (2x1, Swallow FvwmPager "Module FvwmPager")
+*SnowPanel: Columns 11
 *SnowPanel: (1x1, Swallow(Respawn) wmclock "Exec wmclock -12 -led yellow")
-*SnowPanel: (1x1, Title Terminal, Icon pc.png, Action(Mouse 1) "Exec xterm")
-*SnowPanel: (1x1, Title NeoMutt, Icon mailbox.png, Action(Mouse 1) "Exec xterm -C neomutt -T theNeoMuttMobile")
-*SnowPanel: (1x1, Title Pavucontrol, Icon cd.png, Action(Mouse 1) "Exec pavucontrol")
+*SnowPanel: (1x1, Title XTerm, Icon pc.png, Action(Mouse 1) "Exec xterm")
+*SnowPanel: (1x1, Title AlsaMixer, Icon cd.png, Action(Mouse 1) "Exec fvwm_alsamixer")
+*SnowPanel: (1x1, Title NeoMutt, Icon mailbox.png, Action(Mouse 1) "Exec fvwm_neomutt")
 *SnowPanel: (1x1, Title LibreWolf, Icon thing.png, Action(Mouse 1) "Exec librewolf")
 *SnowPanel: (1x1, Title MilkyTracker, Icon milky.png, Action(Mouse 1) "Exec milkytracker")
-*SnowPanel: (1x1, Title "Gnu imp", Icon wilber.png, Action(Mouse 1) "Exec gimp")
+*SnowPanel: (1x1, Title "GNU's Not Unix Image Manipulation Program", Icon wilber.png, Action(Mouse 1) "Exec gimp")
 *SnowPanel: (1x1, Title Galculator, Icon gentoo_peach.png, Action(Mouse 1) "Exec galculator")
-*SnowPanel: (1x1, Title "Dark Terminal", Icon sjis.png, Action(Mouse 1) "Exec xterm -bg $[fvwmDarktermBg] -fg $[fvwmDarktermFg] -T darkterm")
 *SnowPanel: (2x1, Title "System Tray", Swallow(Respawn) stalonetray "Exec stalonetray -p -i 32")
 *SnowPanel: (1x1, Swallow(Respawn) xeyes "Exec xeyes -center $[fvwmXeyesBg] -fg $[fvwmXeyesFg] -outline $[fvwmXeyesFg] +render")
+#*SnowPanel: (2x1, Swallow FvwmPager "Module FvwmPager")
+#*SnowPanel: (1x1, Title Pavucontrol, Icon cd.png, Action(Mouse 1) "Exec pavucontrol")
+#*SnowPanel: (1x1, Title "Dark Terminal", Icon sjis.png, Action(Mouse 1) "Exec xterm -bg \"$fvwmDarktermBg\" -fg \"$fvwmDarktermFg\" -T darkterm")
 AddToFunc InitFunction I Module FvwmButtons SnowPanel
 
 # X settings
 AddToFunc InitFunction
 +	I Exec xrdb -merge ~/.config/xres/snow
 +	I Exec feh --no-fehbg --bg-tile ~/wallpapers/snow6.png
-+	I Exec conky -c ~/.config/conky/2now.conf
++	I Exec killall conky; conky -c ~/.config/conky/2now.conf
 #+	I Exec feh --no-fehbg --bg-tile ~/wallpapers/fvwmsnow.png
 #+	I Exec xsetroot -solid black
 #+	I Exec killwmwins; conky -c ~/.config/conky/2now.conf

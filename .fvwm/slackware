@@ -95,6 +95,7 @@ Mouse 0		I       A       TileIcons
 Mouse 1		T       A       Maximize-or-Move
 
 AddToFunc DragMove
++	I	Raise
 +	I	Move
 
 AddToFunc DragResize
@@ -177,11 +178,11 @@ Key x	A	4	Close
 Key e	A	4	Maximize
 Key p	A	4	Exec dmenu_fvwm
 Key c	A	4	Exec xterm
-Key v	A	4	Exec urxvt
-Key a	A	4	Exec pavucontrol
-Key z	A	4	Exec pcmanfm
+Key a	A	4	Exec fvwm_alsamixer
 Key w	A	4	Exec librewolf
 Key q	A	4	Quit
+#Key v	A	4	Exec urxvt
+#Key z	A	4	Exec pcmanfm
 
 
 ######### Menus ########
@@ -217,15 +218,15 @@ AddToMenu	Window-Ops2	"Move"	Move
 
 ## System tools menu
 AddToMenu SysMenu
-+	"PCmanFM"		Exec pcmanfm &
-+	"Pavucontrol"		Exec pavucontrol &
-+	"System Temp"		Exec psensor &
-+	""			Nop
-+	"Start dwm"		Exec switchwm dwm
-+	"Start wmaker"		Exec switchwm wmaker
+#+	"PCmanFM"		Exec pcmanfm
+#+	"System Temp"		Exec psensor
+#+	""			Nop
+#+	"Start dwm"		Exec switchwm dwm
+#+	"Start wmaker"		Exec switchwm wmaker
+#+ 	"Sleep Mode"		Popup SuspendMenu #Suspend
++	"AlsaMixer"		Exec fvwm_alsamixer
 +	""			Nop
 +	"Restart fvwm"		Restart fvwm2
-+ 	"Sleep Mode"		Popup SuspendMenu #Suspend
 + 	"Exit X"		Popup QuitMenu #Quit
 
 ## Confirm quitting X11
@@ -243,33 +244,34 @@ AddToMenu SuspendMenu "Really?" Title
 
 ## Internet and Surf menu
 AddToMenu SurfMenu
-+	"Librewolf"	Exec librewolf &
++	"Librewolf"	Exec librewolf
++	"NeoMutt"	Exec fvwm_neomutt
 
 ## Various utilities and applications menu
 AddToMenu UtilsMenu
-+	"Calculator"	Exec galculator &
++	"Galculator"	Exec galculator
 
 ## Graphics programs menu
 AddToMenu GfxMenu
-+	"GNU Image Manipulation Program"	Exec gimp &
-+	"Kolour Paint"				Exec kolourpaint &
-+	"xeyes"					Exec xeyes -fg black &
++	"GNU Image Manipulation Program"	Exec gimp
++	"Xeyes"					Exec xeyes
+#+	"Kolour Paint"				Exec kolourpaint
 
 ## Audio/video software menu
 AddToMenu MediaMenu
-+	"Audacious"		Exec audacious &
-+	"MilkyTracker"		Exec milkytracker &
-+	"Fasttracker II"	Exec ft2 &
-+	"GoatTracker"		Exec goattracker &
++	"MilkyTracker"		Exec milkytracker
+#+	"GoatTracker"		Exec goattracker
+#+	"Audacious"		Exec audacious
+#+	"Fasttracker II"	Exec ft2
 
 ##### This is the root menu
 AddToMenu RootMenu "Root Menu"  Title
-+	"XTerm"			Exec xterm &
-+	"XTerm Terminus"	Exec xterm -fn "xft:Terminus (TTF):size=12" &
-+	"XTerm Big Font"	Exec xterm -fn "xft:Terminus (TTF):size=15:style=bold" &
++	"XTerm"			Exec xterm
++	"XTerm Terminus"	Exec xterm -fn "xft:Terminus (TTF):size=12"
++	"XTerm Big Font"	Exec xterm -fn "xft:Terminus (TTF):size=15:style=bold"
 +	""		Nop
 +	"Internet"	Popup SurfMenu
 +	"Graphics"	Popup GfxMenu
 +	"Audio/Video"	Popup MediaMenu
-+	"Applications"  Popup UtilsMenu
++	"Utilities"	Popup UtilsMenu
 +	"System"	Popup SysMenu
