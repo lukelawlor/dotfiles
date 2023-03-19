@@ -25,15 +25,15 @@ SetEnv fvwmSh	#74798E
 #SetEnv fvwmHiA	#FB8AA4
 #SetEnv fvwmShA	#5C2D36
 # Same as normal colors
-SetEnv fvwmFgA	$[fvwmFg]
-SetEnv fvwmBgA	$[fvwmBg]
-SetEnv fvwmHiA	$[fvwmHi]
-SetEnv fvwmShA	$[fvwmSh]
+#SetEnv fvwmFgA	$[fvwmFg]
+#SetEnv fvwmBgA	$[fvwmBg]
+#SetEnv fvwmHiA	$[fvwmHi]
+#SetEnv fvwmShA	$[fvwmSh]
 # Solaris purple
-#SetEnv fvwmFgA	white
-#SetEnv fvwmBgA	#B24D7A
-#SetEnv fvwmHiA	#DDAFC3
-#SetEnv fvwmShA	#58263C
+SetEnv fvwmFgA	white
+SetEnv fvwmBgA	#B24D7A
+SetEnv fvwmHiA	#DDAFC3
+SetEnv fvwmShA	#58263C
 
 SetEnv fvwmCurFg	black
 SetEnv fvwmCurBg	#AEB2C3
@@ -92,7 +92,7 @@ Style mpv	Sticky
 # Pager settings
 *FvwmPagerFont none
 #*FvwmPagerGeometry 120x100-0+300
-*FvwmPagerGeometry 116x100-0+0
+*FvwmPagerGeometry 116x100+0+0
 *FvwmPagerLabel FvwmPager
 *FvwmPagerSmallFont "xft:Liberation Mono:size=8"
 *FvwmPager: LabelsAbove
@@ -130,7 +130,7 @@ Style mpv	Sticky
 
 # Side Panel
 *SidePanel: Font $[fvwmDefFont]
-*SidePanel: Geometry 76x540+0+0
+*SidePanel: Geometry 116x552+0+518
 *SidePanel: Colorset 0
 *SidePanel: Rows 7
 *SidePanel: Columns 1
@@ -141,13 +141,13 @@ AddToFunc InitFunction I Module FvwmButtons SidePanel
 
 # Snow Panel
 *SnowPanel: Font $[fvwmDefFont]
-*SnowPanel: Geometry 785x80-0-0
+*SnowPanel: Geometry 797x80+126+0
 *SnowPanel: Colorset 0
 *SnowPanel: Rows 1
 *SnowPanel: Columns 11
 *SnowPanel: (1x1, Swallow(Respawn) wmclock "Exec wmclock -12 -led yellow")
 *SnowPanel: (1x1, Title XTerm, Icon pc.png, Action(Mouse 1) "Exec xterm")
-*SnowPanel: (1x1, Title AlsaMixer, Icon cd.png, Action(Mouse 1) "Exec fvwm_alsamixer")
+*SnowPanel: (1x1, Title Pavucontrol, Icon cd.png, Action(Mouse 1) "Exec pavucontrol")
 *SnowPanel: (1x1, Title NeoMutt, Icon mailbox.png, Action(Mouse 1) "Exec fvwm_neomutt")
 *SnowPanel: (1x1, Title LibreWolf, Icon thing.png, Action(Mouse 1) "Exec librewolf")
 *SnowPanel: (1x1, Title MilkyTracker, Icon milky.png, Action(Mouse 1) "Exec milkytracker")
@@ -155,6 +155,7 @@ AddToFunc InitFunction I Module FvwmButtons SidePanel
 *SnowPanel: (1x1, Title Galculator, Icon gentoo_peach.png, Action(Mouse 1) "Exec galculator")
 *SnowPanel: (2x1, Title "System Tray", Swallow(Respawn) stalonetray "Exec stalonetray -p -i 32")
 *SnowPanel: (1x1, Swallow(Respawn) xeyes "Exec xeyes -center $[fvwmXeyesBg] -fg $[fvwmXeyesFg] -outline $[fvwmXeyesFg] +render")
+#*SnowPanel: (1x1, Title "insert xeyes here")
 #*SnowPanel: (2x1, Swallow FvwmPager "Module FvwmPager")
 #*SnowPanel: (1x1, Title Pavucontrol, Icon cd.png, Action(Mouse 1) "Exec pavucontrol")
 #*SnowPanel: (1x1, Title "Dark Terminal", Icon sjis.png, Action(Mouse 1) "Exec xterm -bg \"$fvwmDarktermBg\" -fg \"$fvwmDarktermFg\" -T darkterm")
@@ -163,7 +164,8 @@ AddToFunc InitFunction I Module FvwmButtons SnowPanel
 # X settings
 AddToFunc InitFunction
 +	I Exec xrdb -merge ~/.config/xres/snow
-+	I Exec feh --no-fehbg --bg-tile ~/wallpapers/snow6.png
+#+	I Exec feh --no-fehbg --bg-tile ~/wallpapers/snow6.png
++	I Exec feh --no-fehbg --bg-fill ~/wallpapers/snow6.png
 +	I Exec killall conky; conky -c ~/.config/conky/2now.conf
 #+	I Exec feh --no-fehbg --bg-tile ~/wallpapers/fvwmsnow.png
 #+	I Exec xsetroot -solid black

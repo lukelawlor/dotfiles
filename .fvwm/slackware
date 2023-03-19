@@ -63,7 +63,7 @@ Style * HilightColorset 1, HilightBorderColorset 1
 
 Style * SloppyFocus
 Style * FPGrabFocus
-Style * SnapAttraction 4 Screen
+Style * SnapAttraction 16 Screen
 ClickTime 250
 OpaqueMoveSize -1
 Emulate Mwm
@@ -174,15 +174,15 @@ Key m	A	4	Menu RootMenu
 Key r	A	4	Function DragResizeKeyboard
 Key f	A	4	Function DragMove
 Key i	A	4	Iconify
+Key v	A	4	FlipFocus
 Key x	A	4	Close
 Key e	A	4	Maximize
 Key p	A	4	Exec dmenu_fvwm
 Key c	A	4	Exec xterm
-Key a	A	4	Exec fvwm_alsamixer
+Key a	A	4	Exec pavucontrol
 Key w	A	4	Exec librewolf
 Key q	A	4	Quit
-#Key v	A	4	Exec urxvt
-#Key z	A	4	Exec pcmanfm
+Key s	A	4	Stick
 
 
 ######### Menus ########
