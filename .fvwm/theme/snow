@@ -1,112 +1,114 @@
-# Default slackware fvwm colors
+# Snow Theme
 
-# Snow colors
-# Solaris blue
-SetEnv fvwmFg	black
-SetEnv fvwmBg	#AEB2C3
-SetEnv fvwmHi	#DDDEE6
-SetEnv fvwmSh	#74798E
+# Snow Colors
 
-# Snow
-#SetEnv fvwmFg	black
-#SetEnv fvwmBg	gray66
-#SetEnv fvwmHi	white
-#SetEnv fvwmSh	#A85700
+	# Solaris blue
+	InfoStoreAdd fg black
+	InfoStoreAdd bg #AEB2C3
+	InfoStoreAdd hi #DDDEE6
+	InfoStoreAdd sh #74798E
 
-# Snow Selection Colors
-# Blue
-#SetEnv fvwmFgA	black
-#SetEnv fvwmBgA	#60A0C0
-#SetEnv fvwmHiA	#95E1FD
-#SetEnv fvwmShA	#295D77
-# Red
-#SetEnv fvwmFgA	black
-#SetEnv fvwmBgA	#C06077
-#SetEnv fvwmHiA	#FB8AA4
-#SetEnv fvwmShA	#5C2D36
-# Same as normal colors
-#SetEnv fvwmFgA	$[fvwmFg]
-#SetEnv fvwmBgA	$[fvwmBg]
-#SetEnv fvwmHiA	$[fvwmHi]
-#SetEnv fvwmShA	$[fvwmSh]
-# Solaris purple
-SetEnv fvwmFgA	white
-SetEnv fvwmBgA	#B24D7A
-SetEnv fvwmHiA	#DDAFC3
-SetEnv fvwmShA	#58263C
+	# Gray snow
+	#InfoStoreAdd fg	black
+	#InfoStoreAdd bg	gray66
+	#InfoStoreAdd hi	white
+	#InfoStoreAdd sh	#A85700
 
-SetEnv fvwmCurFg	black
-SetEnv fvwmCurBg	#AEB2C3
-SetEnv fvwmXeyesBg	white
-SetEnv fvwmXeyesFg	black
+# Snow Active Colors
 
-# Dark blue colors
-#SetEnv fvwmFg	#AAAAFF
-#SetEnv fvwmBg	#000000
-#SetEnv fvwmHi	#7777FF
-#SetEnv fvwmSh	#000099
-#SetEnv fvwmFgA	#AAAAFF
-#SetEnv fvwmBgA	#000068
-#SetEnv fvwmHiA	#7777FF
-#SetEnv fvwmShA	#000088
-#SetEnv fvwmCurFg	black
-#SetEnv fvwmCurBg	yellow
-#SetEnv fvwmXeyesBg	black
-#SetEnv fvwmXeyesFg	yellow
+	# Blue
+	#InfoStoreAdd fgA	black
+	#InfoStoreAdd bgA	#60A0C0
+	#InfoStoreAdd hiA	#95E1FD
+	#InfoStoreAdd shA	#295D77
+	
+	# Red
+	#InfoStoreAdd fgA	black
+	#InfoStoreAdd bgA	#C06077
+	#InfoStoreAdd hiA	#FB8AA4
+	#InfoStoreAdd shA	#5C2D36
+	
+	# Same as normal colors
+	#InfoStoreAdd fgA	$[infostore.fg]
+	#InfoStoreAdd bgA	$[infostore.bg]
+	#InfoStoreAdd hiA	$[infostore.hi]
+	#InfoStoreAdd shA	$[infostore.sh]
+	
+	# Solaris purple
+	InfoStoreAdd fgA	white
+	InfoStoreAdd bgA	#B24D7A
+	InfoStoreAdd hiA	#DDAFC3
+	InfoStoreAdd shA	#58263C
 
-# Purple colors
-#SetEnv fvwmFg	#FFFF88
-#SetEnv fvwmBg	#D785FF
-#SetEnv fvwmHi	white
-#SetEnv fvwmSh	#8846FF
-#SetEnv fvwmFgA	black
-#SetEnv fvwmBgA	#9ADFFF
-#SetEnv fvwmHiA	white
-#SetEnv fvwmShA	#529EBC
-#SetEnv fvwmCurFg	white
-#SetEnv fvwmCurBg	#FF00FF
-#SetEnv fvwmXeyesBg	white
-#SetEnv fvwmXeyesFg	red
+# Misc Colors
 
-# Binding for opening Dark Term
-SetEnv fvwmDarktermFg	$[fvwmBg]
-SetEnv fvwmDarktermBg	black
-#Key v	A	4	Exec xterm -bg $[fvwmDarktermBg] -fg $[fvwmDarktermFg]
+	# Cursor
+	InfoStoreAdd curFg	black
+	InfoStoreAdd curBg	#AEB2C3
+	Read theme/cursors
 
-# 0 = Inactive Window
-# 1 = Active Window
-# 2 = Stickies (Pager, Conky, etc.)
-Colorset 0	fg $[fvwmFg], bg $[fvwmBg], hi $[fvwmHi], sh $[fvwmSh]
-Colorset 1	fg $[fvwmFgA], bg $[fvwmBgA], hi $[fvwmHiA], sh $[fvwmShA]
+	# Xeyes
+	InfoStoreAdd xeyesBg	white
+	InfoStoreAdd xeyesFg	black
 
-# Misc style changings
+# Window space dimensions
+InfoStoreAdd snowSpaceLeft	126
+InfoStoreAdd snowSpaceTop	90
+InfoStoreAdd snowSpaceWidth	1784
+InfoStoreAdd snowSpaceHeight	960
+
+# Styles
 Style * MWMBorder
 Style * BorderWidth 5
 Style * HandleWidth 5
-Style * IconBox 5 5 90 -0, IconGrid 1 1, IconFill Right Bottom
-#Style ** IconOverride, Icon sxis.png
+Style ** IconBox 0 0 -0 -0, IconGrid 1 1, IconFill Right Top
 Style ** IconOverride, Icon sjis.png
-Style mpv	Sticky
+Style mpv Sticky
 
+# Fonts
+InfoStoreAdd pagerFont "xft:Liberation Mono:size=8"
+
+# Colorsets
+# 0 = Inactive window
+# 1 = Active window
+Colorset 0	fg $[infostore.fg], bg $[infostore.bg], hi $[infostore.hi], sh $[infostore.sh]
+Colorset 1	fg $[infostore.fgA], bg $[infostore.bgA], hi $[infostore.hiA], sh $[infostore.shA]
+
+# Functions
+AddToFunc SnowMaximize
++	I	Raise
++	I	ThisWindow (!Maximized) ResizeMoveMaximize $[infostore.snowSpaceWidth]p $[infostore.snowSpaceHeight]p $[infostore.snowSpaceLeft]p $[infostore.snowSpaceTop]p
++	I	TestRc (NoMatch) Maximize
++	I	Function TitleWarp
+
+AddToFunc SnowPlaceTop
++	I	Stick
++	I	Raise
++	I	Move 933p 0p
++	I	Resize 977p 60p
++	I	Function SnowWarp
+
+# Key bindings
+Key e	A	4	Function SnowMaximize
+Key o	A	4	Function SnowPlaceTop
 
 # Pager settings
 *FvwmPagerFont none
-#*FvwmPagerGeometry 120x100-0+300
 *FvwmPagerGeometry 116x100+0+0
 *FvwmPagerLabel FvwmPager
-*FvwmPagerSmallFont "xft:Liberation Mono:size=8"
+*FvwmPagerSmallFont $[infostore.pagerFont]
+*FvwmPagerBack $[infostore.bg]
+*FvwmPagerFore $[infostore.fg]
+*FvwmPagerHilight $[infostore.bg]
 *FvwmPager: LabelsAbove
 *FvwmPager: SolidSeparators
-*FvwmPagerBack $[fvwmBg]
-*FvwmPagerFore $[fvwmFg]
-*FvwmPagerHilight $[fvwmBg]
 
 # Icon Manager settings
 *FvwmIconMan: Format "%t"
 *FvwmIconMan: ManagerGeometry 100x100
 *FvwmIconMan: ButtonGeometry 22x22
-*FvwmIconMan: Background $[fvwmBg]
-*FvwmIconMan: Foreground $[fvwmFg]
+*FvwmIconMan: Background $[infostore.bg]
+*FvwmIconMan: Foreground $[infostore.fg]
 *FvwmIconMan: FocusColorset 0
 *FvwmIconMan: FocusAndSelectColorset 1
 *FvwmIconMan: SelectColorset 1
@@ -117,7 +119,7 @@ Style mpv	Sticky
 
 # Good Buttons
 *GoodButtons: Geometry 200x200+0+0
-*GoodButtons: Font $[fvwmDefFont]
+*GoodButtons: Font $[infostore.font]
 *GoodButtons: Colorset 0
 *GoodButtons: Rows 2
 *GoodButtons: Columns 2
@@ -125,11 +127,9 @@ Style mpv	Sticky
 *GoodButtons: (1x1, Title "FvwmConsole", Action(Mouse 1) "Module FvwmConsole -terminal xterm")
 *GoodButtons: (1x1, Title "Move", Action(Mouse 1) "Move")
 *GoodButtons: (1x1, Title "Resize", Action(Mouse 1) "Resize")
-#*GoodButtons: (1x1, Title "Auda", Action(Mouse 1) "Exec audacious")
-#*GoodButtons: (1x1, Title "Bubble", Action(Mouse 1) "Exec wmbubble_fvwm")
 
 # Side Panel
-*SidePanel: Font $[fvwmDefFont]
+*SidePanel: Font $[infostore.font]
 *SidePanel: Geometry 116x552+0+518
 *SidePanel: Colorset 0
 *SidePanel: Rows 7
@@ -137,10 +137,9 @@ Style mpv	Sticky
 #*SidePanel: (1x1, Title "Yo", Icon xterm-linux.xpm, Action(Mouse 1) "Exec tuxclick")
 *SidePanel: (1x5, Title "Window List", Swallow FvwmIconMan "Module FvwmIconMan")
 *SidePanel: (1x1, Swallow GoodButtons "Module FvwmButtons GoodButtons")
-AddToFunc InitFunction I Module FvwmButtons SidePanel
 
 # Snow Panel
-*SnowPanel: Font $[fvwmDefFont]
+*SnowPanel: Font $[infostore.font]
 *SnowPanel: Geometry 797x80+126+0
 *SnowPanel: Colorset 0
 *SnowPanel: Rows 1
@@ -154,45 +153,20 @@ AddToFunc InitFunction I Module FvwmButtons SidePanel
 *SnowPanel: (1x1, Title "GNU's Not Unix Image Manipulation Program", Icon wilber.png, Action(Mouse 1) "Exec gimp")
 *SnowPanel: (1x1, Title Galculator, Icon gentoo_peach.png, Action(Mouse 1) "Exec galculator")
 *SnowPanel: (2x1, Title "System Tray", Swallow(Respawn) stalonetray "Exec stalonetray -p -i 32")
-*SnowPanel: (1x1, Swallow(Respawn) xeyes "Exec xeyes -center $[fvwmXeyesBg] -fg $[fvwmXeyesFg] -outline $[fvwmXeyesFg] +render")
+*SnowPanel: (1x1, Swallow xeyes "Exec xeyes -center $[infostore.xeyesBg] -fg $[infostore.xeyesFg] -outline $[infostore.xeyesFg] +render")
 #*SnowPanel: (1x1, Title "insert xeyes here")
 #*SnowPanel: (2x1, Swallow FvwmPager "Module FvwmPager")
 #*SnowPanel: (1x1, Title Pavucontrol, Icon cd.png, Action(Mouse 1) "Exec pavucontrol")
 #*SnowPanel: (1x1, Title "Dark Terminal", Icon sjis.png, Action(Mouse 1) "Exec xterm -bg \"$fvwmDarktermBg\" -fg \"$fvwmDarktermFg\" -T darkterm")
-AddToFunc InitFunction I Module FvwmButtons SnowPanel
 
-# X settings
+# Init function
 AddToFunc InitFunction
-+	I Exec xrdb -merge ~/.config/xres/snow
-#+	I Exec feh --no-fehbg --bg-tile ~/wallpapers/snow6.png
-+	I Exec feh --no-fehbg --bg-fill ~/wallpapers/snow6.png
-+	I Exec killall conky; conky -c ~/.config/conky/2now.conf
-#+	I Exec feh --no-fehbg --bg-tile ~/wallpapers/fvwmsnow.png
-#+	I Exec xsetroot -solid black
-#+	I Exec killwmwins; conky -c ~/.config/conky/2now.conf
-
-# X cursors
-CursorStyle	POSITION	top_left_corner		$[fvwmCurFg]	$[fvwmCurBg]
-CursorStyle	TITLE		top_left_arrow		$[fvwmCurFg]	$[fvwmCurBg]
-CursorStyle	DEFAULT		top_left_arrow		$[fvwmCurFg]	$[fvwmCurBg]
-CursorStyle	SYS		hand2			$[fvwmCurFg]	$[fvwmCurBg]
-CursorStyle	MOVE		gumby			$[fvwmCurFg]	$[fvwmCurBg]
-CursorStyle	RESIZE		sizing			$[fvwmCurFg]	$[fvwmCurBg]
-CursorStyle	WAIT		watch			$[fvwmCurFg]	$[fvwmCurBg]
-CursorStyle	MENU		gobbler			$[fvwmCurFg]	$[fvwmCurBg]
-CursorStyle	SELECT		crosshair		$[fvwmCurFg]	$[fvwmCurBg]
-CursorStyle	DESTROY		pirate			$[fvwmCurFg]	$[fvwmCurBg]
-CursorStyle	TOP		top_side		$[fvwmCurFg]	$[fvwmCurBg]
-CursorStyle	RIGHT		right_side		$[fvwmCurFg]	$[fvwmCurBg]
-CursorStyle	BOTTOM		bottom_side		$[fvwmCurFg]	$[fvwmCurBg]
-CursorStyle	LEFT		left_side		$[fvwmCurFg]	$[fvwmCurBg]
-CursorStyle	TOP_LEFT	top_left_corner		$[fvwmCurFg]	$[fvwmCurBg]
-CursorStyle	TOP_RIGHT	top_right_corner	$[fvwmCurFg]	$[fvwmCurBg]
-CursorStyle	BOTTOM_LEFT	bottom_left_corner	$[fvwmCurFg]	$[fvwmCurBg]
-CursorStyle	BOTTOM_RIGHT	bottom_right_corner	$[fvwmCurFg]	$[fvwmCurBg]
-CursorStyle	TOP_EDGE	top_side		$[fvwmCurFg]	$[fvwmCurBg]
-CursorStyle	RIGHT_EDGE	right_side		$[fvwmCurFg]	$[fvwmCurBg]
-CursorStyle	BOTTOM_EDGE	bottom_side		$[fvwmCurFg]	$[fvwmCurBg]
-CursorStyle	LEFT_EDGE	left_side		$[fvwmCurFg]	$[fvwmCurBg]
-CursorStyle	ROOT		X_cursor		$[fvwmCurFg]	$[fvwmCurBg]
-CursorStyle	STROKE		plus			$[fvwmCurFg]	$[fvwmCurBg]
++	I	Module FvwmButtons SnowPanel
++	I	Module FvwmButtons SidePanel
++	I	Exec xrdb -merge ~/.config/xres/snow
++	I	Exec feh --no-fehbg --bg-fill ~/wallpapers/snow6.png
++	I	Exec killall conky; conky -c ~/.config/conky/2now.conf
+#+	I	Exec feh --no-fehbg --bg-tile ~/wallpapers/snow6.png
+#+	I	Exec feh --no-fehbg --bg-tile ~/wallpapers/fvwmsnow.png
+#+	I	Exec xsetroot -solid black
+#+	I	Exec killwmwins; conky -c ~/.config/conky/2now.conf

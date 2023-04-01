@@ -1,0 +1,229 @@
+# Misc settings
+
+	# Icon path
+	ImagePath $HOME/.fvwm/icons:+
+
+	# Dimensions of virtual desktop
+	DeskTopSize 3 3
+
+	# Wait time after clicking buttons
+	ClickTime 250
+
+	# Only show window frame when moving windows of all sizes
+	OpaqueMoveSize 0
+
+	# Scroll an entire desk when the mouse hits the edge of the screen
+	EdgeScroll 100 100
+
+	# Window Placement
+	Style * TileCascadePlacement
+
+	# Focus
+	Style * SloppyFocus
+	Style * FPGrabFocus
+	Style * SnapAttraction 60 Screen
+
+# Styles
+Emulate Mwm
+Style * IconBox 0 0 -0 -0, IconGrid 1 1, IconFill Left Bottom
+Style * IconSize 50 50 -1 -1
+Style * IconBackgroundColorset 0
+Style * IconBackgroundRelief 2
+Style * IconBackgroundPadding 2
+Style * DecorateTransient
+Style * MiniIcon raincatc.png
+Style ** IconOverride, Icon sjis.png
+MenuStyle * PopupImmediately, PopdownImmediately, PopupOffset 0 100
+MenuStyle * VerticalItemSpacing 3 3, VerticalTitleSpacing 3 3
+MenuStyle * MenuColorset 0
+TitleStyle Height 20
+
+# Fonts
+InfoStoreAdd font "xft:Monospace Regular:size=9"
+DefaultFont $[infostore.font]
+MenuStyle * Font "xft:Liberation Sans:size=11"
+WindowFont "xft:System-ui:style=regular:size=11"
+IconFont "xft:System-ui:style=regular:size=9"
+
+# Colors
+Style * Colorset 0, BorderColorset 0
+Style * HilightColorset 1, HilightBorderColorset 1
+
+
+# Window decorations
+Style *			Title, Handles, !MWMFunctions, NoDecorHint
+Style *Panel		NeverFocus, NoTitle, Sticky, WindowListSkip, Handles, BorderWidth 7
+Style FvwmPager		NeverFocus, NoTitle, Sticky, WindowListSkip, Handles, BorderWidth 7
+Style FvwmIconMan	NeverFocus, NoTitle, Sticky, WindowListSkip, Handles, BorderWidth 7
+Style feh		NoTitle, Sticky
+Style conky		NoTitle, Sticky, Handles, BorderWidth 7, NeverFocus, WindowListSkip
+Style xpenguins		WindowListSkip
+
+# Functions
+AddToFunc FocusRaise
++	I	Focus
++	I	Raise
+
+AddToFunc IconifyRaise
++	I	Iconify
++	I	Raise
+
+AddToFunc TitleWarp
++	I	WarpToWindow 28p 8p
+
+AddToFunc DragMove
++	I	Raise
++	I	Move
+
+AddToFunc DragResize
++	I	Raise
++	I	WarpToWindow 100 100
++	I	Resize
+
+AddToFunc DragMoveKeyboard
++	I	WarpToWindow 50 50
++	I	Function DragMove
+
+AddToFunc DragResizeKeyboard
++	I	Function DragResize
++	I	Function TitleWarp
+
+AddToFunc Fullscreen
++	I	Raise
++	I	ThisWindow (!Maximized) Nop
++	I	TestRc (Match) WindowStyle !Title
++	I	TestRc (Match) WindowStyle !Borders
++	I	TestRc (Match) UpdateStyles
++	I	TestRc (Match) Maximize
++	I	TestRc (NoMatch) Maximize
++	I	TestRc (NoMatch) WindowStyle Title
++	I	TestRc (NoMatch) WindowStyle Borders
++	I	TestRc (NoMatch) UpdateStyles
++	I	Function TitleWarp
+
+# Mouse and key bindings
+########### https://www.fvwm.org/Wiki/Config/Bindings/
+# Contexts:
+# R = Root Window             rrrrrrrrrrrrrrrrrrrrrr
+# W = Application Window      rIrrrrFSSSSSSSSSFrrrrr
+# F = Frame Corners           rrrrrrS13TTTT642Srrrrr
+# S = Frame Sides             rIrrrrSwwwwwwwwwSrrrrr
+# T = Title Bar               rrrrrrSwwwwwwwwwSrrrrr
+# I = Icon                    rIrrrrFSSSSSSSSSFrrrrr
+#                             rrrrrrrrrrrrrrrrrrrrrr
+#
+# Numbers are buttons: [1 3 5 7 9 T T T T T 0 8 6 4 2]
+#
+# Modifiers: (A)ny, (C)ontrol, (S)hift, (M)eta, (N)othing
+#
+# Key {(window)} [key] [Context] [Modifier] [Action]
+# Mouse {(window)} [button] [Context] [Modifier] [Action]
+####################
+# Mouse buttons:
+# 0 - any
+# 1 - left
+# 2 - middle
+# 3 - right
+
+Mouse 1	R	A	Menu RootMenu
+Mouse 2	R	A	WindowList
+Mouse 3	R	A	Menu WindowOps
+Mouse 3	T	A	RaiseLower
+Mouse 0 1	A	Nop
+Mouse 0 2	A	Nop
+Mouse 1	FSTW	4	Function DragMove
+Mouse 3	FSTW	4	Function DragResize
+
+Key 7	A	4	Scroll -100 +0
+Key 8	A	4	Scroll +0 +100
+Key 9	A	4	Scroll +0 -100 
+Key 0	A	4	Scroll +100 +0
+Key n	A	4	WindowList
+Key j	A	4	Next (CurrentScreen, AcceptsFocus) Function FocusRaise
+Key k	A	4	Prev (CurrentScreen, AcceptsFocus) Function FocusRaise
+Key h	A	4	Next (AcceptsFocus) Function FocusRaise
+Key l	A	4	Prev (AcceptsFocus) Function FocusRaise
+Key m	A	4	Menu RootMenu
+Key r	A	4	Function DragResizeKeyboard
+Key f	A	4	Function DragMoveKeyboard
+Key i	A	4	Function IconifyRaise
+Key v	A	4	FlipFocus
+Key x	A	4	Close
+Key e	A	4	Maximize
+Key p	A	4	Exec dmenu_fvwm
+Key c	A	4	Exec xterm
+Key a	A	4	Exec pavucontrol
+Key w	A	4	Exec librewolf
+Key q	A	4	Quit
+Key s	A	4	Stick
+Key t	A	4	Module FvwmConsole -terminal xterm
+
+# Menus
+AddToMenu WindowOps
++	"Window Ops"	Title
++	"Move"		Move
++	"Resize"	Resize
++	"Raise"		Raise
++	"Lower"		Lower
++	"Iconify"	Iconify
++	"Stick"		Stick
++	"Maximize"	Maximize
++	""		Nop
++	"Close"		Close
++	"Destroy"	Destroy
+
+AddToMenu SysMenu
++	"Restart fvwm"		Restart fvwm2
++ 	"Exit X"		Popup QuitMenu #Quit
+
+AddToMenu QuitMenu "Srsly?" Title
++	"No. jk :)"	Nop
++	"Yes"		Quit
+
+AddToMenu NetMenu
++	"Librewolf"	Exec librewolf
+
+AddToMenu UtilMenu
++	"Galculator"	Exec galculator
+
+AddToMenu GfxMenu
++	"GNU Image Manipulation Program"	Exec gimp
+
+AddToMenu AudioMenu
++	"MilkyTracker"		Exec milkytracker
+
+AddToMenu RootMenu "Root Menu"  Title
++	"XTerm"			Exec xterm
++	"XTerm Terminus"	Exec xterm -fn "xft:Terminus (TTF):size=12"
++	"XTerm Big Font"	Exec xterm -fn "xft:Terminus (TTF):size=15:style=bold"
++	""		Nop
++	"Net"		Popup NetMenu
++	"Graphics"	Popup GfxMenu
++	"Audio"		Popup AudioMenu
++	"Utilities"	Popup UtilsMenu
++	"System"	Popup SysMenu
+
+# Icon Manager
+AddToFunc   IconManClick
++	I ThisWindow (!Raised) Raise
++	I ThisWindow (Raised) Lower
++	I ThisWindow (Iconic) Iconify
++	I ThisWindow (AcceptsFocus) Focus
+*FvwmIconMan: DrawIcons always
+*FvwmIconMan: UseWinList true
+*FvwmIconMan: Resolution global
+*FvwmIconMan: ManagerGeometry 100x100
+*FvwmIconMan: ButtonGeometry 12x12
+*FvwmIconMan: ReliefThickness 2
+*FvwmIconMan: Format "%t"
+*FvwmIconMan: Font $[fvwmDefFont]
+*FvwmIconMan: Action Mouse 0 A sendcommand Nop
+*FvwmIconMan: Action Mouse 1 A sendcommand IconManClick
+*FvwmIconMan: Action Mouse 3 A sendcommand Close
+
+# Init functions
+AddToFunc InitFunction
++	I Module FvwmPager
+
+AddToFunc RestartFunction
++	I Function InitFunction
