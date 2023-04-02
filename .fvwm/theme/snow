@@ -144,7 +144,7 @@ Key o	A	4	Function SnowPlaceTop
 *SnowPanel: Colorset 0
 *SnowPanel: Rows 1
 *SnowPanel: Columns 11
-*SnowPanel: (1x1, Swallow(Respawn) wmclock "Exec wmclock -12 -led yellow")
+*SnowPanel: (1x1, Swallow wmclock "Exec wmclock -12 -led yellow")
 *SnowPanel: (1x1, Title XTerm, Icon pc.png, Action(Mouse 1) "Exec xterm")
 *SnowPanel: (1x1, Title Pavucontrol, Icon cd.png, Action(Mouse 1) "Exec pavucontrol")
 *SnowPanel: (1x1, Title NeoMutt, Icon mailbox.png, Action(Mouse 1) "Exec fvwm_neomutt")
@@ -153,7 +153,8 @@ Key o	A	4	Function SnowPlaceTop
 *SnowPanel: (1x1, Title "GNU's Not Unix Image Manipulation Program", Icon wilber.png, Action(Mouse 1) "Exec gimp")
 *SnowPanel: (1x1, Title Galculator, Icon gentoo_peach.png, Action(Mouse 1) "Exec galculator")
 *SnowPanel: (2x1, Title "System Tray", Swallow(Respawn) stalonetray "Exec stalonetray -p -i 32")
-*SnowPanel: (1x1, Swallow xeyes "Exec xeyes -center $[infostore.xeyesBg] -fg $[infostore.xeyesFg] -outline $[infostore.xeyesFg] +render")
+*SnowPanel: (1x1, Title "SoupDL 06", Icon egg.png, Action(Mouse 1) "Exec soupdltest")
+#*SnowPanel: (1x1, Title "Spy Kids", Swallow xeyes "Exec xeyes -center $[infostore.xeyesBg] -fg $[infostore.xeyesFg] -outline $[infostore.xeyesFg] +render &")
 #*SnowPanel: (1x1, Title "insert xeyes here")
 #*SnowPanel: (2x1, Swallow FvwmPager "Module FvwmPager")
 #*SnowPanel: (1x1, Title Pavucontrol, Icon cd.png, Action(Mouse 1) "Exec pavucontrol")

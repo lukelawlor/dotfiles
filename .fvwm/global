@@ -40,7 +40,6 @@ TitleStyle Height 20
 
 # Fonts
 InfoStoreAdd font "xft:Monospace Regular:size=9"
-DefaultFont $[infostore.font]
 MenuStyle * Font "xft:Liberation Sans:size=11"
 WindowFont "xft:System-ui:style=regular:size=11"
 IconFont "xft:System-ui:style=regular:size=9"
@@ -88,6 +87,18 @@ AddToFunc DragResizeKeyboard
 +	I	Function DragResize
 +	I	Function TitleWarp
 
+AddToFunc MaxHori
++	I	Maximize grow 0
++	I	Function TitleWarp
+
+AddToFunc MaxVert
++	I	Maximize 0 grow
++	I	Function TitleWarp
+
+AddToFunc MaxFill
++	I	Maximize grow grow
++	I	Function TitleWarp
+
 AddToFunc Fullscreen
 +	I	Raise
 +	I	ThisWindow (!Maximized) Nop
@@ -129,8 +140,8 @@ Mouse 1	R	A	Menu RootMenu
 Mouse 2	R	A	WindowList
 Mouse 3	R	A	Menu WindowOps
 Mouse 3	T	A	RaiseLower
-Mouse 0 1	A	Nop
-Mouse 0 2	A	Nop
+Mouse 0 1	A	Menu WindowOps
+Mouse 0 2	A	Menu WindowOps
 Mouse 1	FSTW	4	Function DragMove
 Mouse 3	FSTW	4	Function DragResize
 
@@ -147,7 +158,7 @@ Key m	A	4	Menu RootMenu
 Key r	A	4	Function DragResizeKeyboard
 Key f	A	4	Function DragMoveKeyboard
 Key i	A	4	Function IconifyRaise
-Key v	A	4	FlipFocus
+Key u	A	4	Stick
 Key x	A	4	Close
 Key e	A	4	Maximize
 Key p	A	4	Exec dmenu_fvwm
@@ -155,7 +166,9 @@ Key c	A	4	Exec xterm
 Key a	A	4	Exec pavucontrol
 Key w	A	4	Exec librewolf
 Key q	A	4	Quit
-Key s	A	4	Stick
+Key d	A	4	Function MaxHori
+Key s	A	4	Function MaxVert
+Key v	A	4	Function MaxFill
 Key t	A	4	Module FvwmConsole -terminal xterm
 
 # Menus
