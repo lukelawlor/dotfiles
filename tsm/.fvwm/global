@@ -48,7 +48,6 @@ IconFont "xft:System-ui:style=regular:size=9"
 Style * Colorset 0, BorderColorset 0
 Style * HilightColorset 1, HilightBorderColorset 1
 
-
 # Window decorations
 Style *			Title, Handles, !MWMFunctions, NoDecorHint
 Style *Panel		NeverFocus, NoTitle, Sticky, WindowListSkip, Handles, BorderWidth 7
@@ -142,6 +141,7 @@ Mouse 3	R	A	Menu WindowOps
 Mouse 3	T	A	RaiseLower
 Mouse 0 1	A	Menu WindowOps
 Mouse 0 2	A	Menu WindowOps
+Mouse 0 4	A	Menu WindowOps
 Mouse 1	FSTW	4	Function DragMove
 Mouse 3	FSTW	4	Function DragResize
 
@@ -213,7 +213,7 @@ AddToMenu RootMenu "Root Menu"  Title
 +	"Net"		Popup NetMenu
 +	"Graphics"	Popup GfxMenu
 +	"Audio"		Popup AudioMenu
-+	"Utilities"	Popup UtilsMenu
++	"Utilities"	Popup UtilMenu
 +	"System"	Popup SysMenu
 
 # Icon Manager
@@ -229,7 +229,7 @@ AddToFunc   IconManClick
 *FvwmIconMan: ButtonGeometry 12x12
 *FvwmIconMan: ReliefThickness 2
 *FvwmIconMan: Format "%t"
-*FvwmIconMan: Font $[fvwmDefFont]
+*FvwmIconMan: Font $[infostore.font]
 *FvwmIconMan: Action Mouse 0 A sendcommand Nop
 *FvwmIconMan: Action Mouse 1 A sendcommand IconManClick
 *FvwmIconMan: Action Mouse 3 A sendcommand Close

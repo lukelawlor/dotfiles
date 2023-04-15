@@ -63,7 +63,8 @@ Style * BorderWidth 5
 Style * HandleWidth 5
 Style ** IconBox 0 0 -0 -0, IconGrid 1 1, IconFill Right Top
 Style ** IconOverride, Icon sjis.png
-Style mpv Sticky
+Style mpv Sticky, !Title
+Style sxiv Sticky, !Title, NeverFocus, WindowListSkip
 
 # Fonts
 InfoStoreAdd pagerFont "xft:Liberation Mono:size=8"
@@ -130,7 +131,7 @@ Key o	A	4	Function SnowPlaceTop
 
 # Side Panel
 *SidePanel: Font $[infostore.font]
-*SidePanel: Geometry 116x552+0+518
+*SidePanel: Geometry 116x426+0+644
 *SidePanel: Colorset 0
 *SidePanel: Rows 7
 *SidePanel: Columns 1
@@ -144,16 +145,18 @@ Key o	A	4	Function SnowPlaceTop
 *SnowPanel: Colorset 0
 *SnowPanel: Rows 1
 *SnowPanel: Columns 11
-*SnowPanel: (1x1, Swallow wmclock "Exec wmclock -12 -led yellow")
-*SnowPanel: (1x1, Title XTerm, Icon pc.png, Action(Mouse 1) "Exec xterm")
-*SnowPanel: (1x1, Title Pavucontrol, Icon cd.png, Action(Mouse 1) "Exec pavucontrol")
-*SnowPanel: (1x1, Title NeoMutt, Icon mailbox.png, Action(Mouse 1) "Exec fvwm_neomutt")
-*SnowPanel: (1x1, Title LibreWolf, Icon thing.png, Action(Mouse 1) "Exec librewolf")
-*SnowPanel: (1x1, Title MilkyTracker, Icon milky.png, Action(Mouse 1) "Exec milkytracker")
-*SnowPanel: (1x1, Title "GNU's Not Unix Image Manipulation Program", Icon wilber.png, Action(Mouse 1) "Exec gimp")
-*SnowPanel: (1x1, Title Galculator, Icon gentoo_peach.png, Action(Mouse 1) "Exec galculator")
-*SnowPanel: (2x1, Title "System Tray", Swallow(Respawn) stalonetray "Exec stalonetray -p -i 32")
-*SnowPanel: (1x1, Title "SoupDL 06", Icon egg.png, Action(Mouse 1) "Exec soupdltest")
+*SnowPanel: (1x1, Title "Clock Sick", Swallow wmclock "Exec wmclock -12 -led yellow")
+*SnowPanel: (2x1, Title "System Tray", Swallow(Respawn) stalonetray "Exec stalonetray -p -i 16")
+*SnowPanel: (1x1, Title XTerm, Icon tuxpcbig.png, Action(Mouse 1) "Exec xterm")
+*SnowPanel: (1x1, Title Pavucontrol, Icon gentoo_smooth.png, Action(Mouse 1) "Exec pavucontrol")
+*SnowPanel: (1x1, Title GoatTracker, Icon goat.png, Action(Mouse 1) "Exec /home/cata/src/goattracker2/linux/goattrk2")
+*SnowPanel: (1x1, Title MilkyTracker, Icon milky_carton.png, Action(Mouse 1) "Exec milkytracker")
+*SnowPanel: (1x1, Title "The GIMP", Icon wilber_smooth.png, Action(Mouse 1) "Exec gimp")
+*SnowPanel: (1x1, Title Galculator, Icon sjis.png, Action(Mouse 1) "Exec galculator")
+*SnowPanel: (1x1, Title "SoupDL 06", Icon eggcool.png, Action(Mouse 1) "Exec soupdltest")
+*SnowPanel: (1x1, Title "LibreWolf", Icon thing.png, Action(Mouse 1) "Exec librewolf")
+#*SnowPanel: (1x1, Title GNUBiff, Swallow gnubiff "Exec gnubiff -n")
+#*SnowPanel: (1x1, Title NeoMutt, Icon mailbox.png, Action(Mouse 1) "Exec fvwm_neomutt")
 #*SnowPanel: (1x1, Title "Spy Kids", Swallow xeyes "Exec xeyes -center $[infostore.xeyesBg] -fg $[infostore.xeyesFg] -outline $[infostore.xeyesFg] +render &")
 #*SnowPanel: (1x1, Title "insert xeyes here")
 #*SnowPanel: (2x1, Swallow FvwmPager "Module FvwmPager")
@@ -162,11 +165,13 @@ Key o	A	4	Function SnowPlaceTop
 
 # Init function
 AddToFunc InitFunction
-+	I	Module FvwmButtons SnowPanel
-+	I	Module FvwmButtons SidePanel
++	I	Exec killall sxiv conky
 +	I	Exec xrdb -merge ~/.config/xres/snow
-+	I	Exec feh --no-fehbg --bg-fill ~/wallpapers/snow6.png
-+	I	Exec killall conky; conky -c ~/.config/conky/2now.conf
++	I	Exec feh --no-fehbg --bg-tile ~/wallpapers/snow6.png
++	I	Module FvwmButtons SidePanel
++	I	Module FvwmButtons SnowPanel
++	I	Schedule 100 Exec conky -c ~/.config/conky/2now.conf
++	I	Schedule 200 Exec sxiv ~/images/fvwmpic/dcbs.png -b -g 116x116+0+108
 #+	I	Exec feh --no-fehbg --bg-tile ~/wallpapers/snow6.png
 #+	I	Exec feh --no-fehbg --bg-tile ~/wallpapers/fvwmsnow.png
 #+	I	Exec xsetroot -solid black
