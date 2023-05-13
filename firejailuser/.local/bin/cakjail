@@ -1,0 +1,27 @@
+#!/bin/bash
+# firejail stuff launcher
+# 5.7.23
+
+prof=minecraft.profile
+prog=xterm
+
+# pick profile
+case $1 in
+	def )
+		prof=default.profile
+		;;
+	mc )
+		prof=minecraft.profile
+		;;
+	steam )
+		prof=steam.profile
+		;;
+	* )
+		echo what
+		exit
+		;;
+esac
+
+# run firejail
+firejail --name=cakjail-mc --profile=~/.config/firejail/$prof $prog
+unset prof prog
