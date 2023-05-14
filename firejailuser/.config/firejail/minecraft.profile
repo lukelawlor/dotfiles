@@ -1,5 +1,7 @@
 include cakjail_head.profile
 
+# this profile currently works for mc 1.8.9, but not the latest versions
+
 # see me downloads
 noblacklist ~/Downloads
 whitelist ~/Downloads

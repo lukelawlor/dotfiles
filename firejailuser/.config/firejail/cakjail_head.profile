@@ -20,7 +20,7 @@ disable-mnt
 # drop capabilities
 caps.drop all
 
-# don't print stuff
+# don't print shit
 noprinters
 
 # other users besides me don't exist, not even root
@@ -50,7 +50,7 @@ novideo
 # report weird errors to system log
 tracelog
 
-# don't create new groups
+# don't create new namespaces
 restrict-namespaces
 
 # filter syscalls that firejail filters by default
@@ -58,8 +58,7 @@ seccomp
 
 # stop weird code exution
 nonewprivs
-#(this must be disabled for java to run)
-#memory-deny-write-execute
+#(this must be disabled for java to run) memory-deny-write-execute
 
 # some pulse audio thing that i don't know what it does
 keep-config-pulse
@@ -81,8 +80,8 @@ blacklist /etc/elogind
 blacklist /etc/eclean
 blacklist /etc/eselect
 blacklist /etc/vim
-blacklist /etc/xdg
 blacklist /etc/neomutt
+blacklist /etc/xdg
 
 # hide neovim state
 blacklist ~/.local/state/nvim
@@ -91,8 +90,10 @@ blacklist ~/.local/state/nvim
 noexec /dev/mqueue
 noexec /dev/shm
 noexec /run/shm
-noexec /tmp
 noexec /var
+
+# This needs to be commented for wine to work
+#noexec /tmp
 
 # use legacy gtk input system
 env GTK_IM_MODULE=xim

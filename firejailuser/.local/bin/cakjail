@@ -2,7 +2,10 @@
 # firejail stuff launcher
 # 5.7.23
 
+# firejail profile to use
 prof=minecraft.profile
+
+# program to launch in firejail
 prog=xterm
 
 # pick profile
@@ -23,5 +26,5 @@ case $1 in
 esac
 
 # run firejail
-firejail --name=cakjail-mc --profile=~/.config/firejail/$prof $prog
+firejail --name=cakjail --profile=~/.config/firejail/$prof $prog
 unset prof prog
