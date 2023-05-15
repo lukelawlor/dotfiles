@@ -1,0 +1,9 @@
+# Luke's FVWM config on conterm
+# Modified from https://datagubbe.se/fvwm/
+
+# Global config
+Read global
+
+# Theme-specific configs
+#Read theme/slackware
+Read theme/snow

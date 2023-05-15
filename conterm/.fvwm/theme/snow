@@ -1,0 +1,164 @@
+# Snow Theme
+
+# Snow Colors
+
+	# Solaris blue
+	InfoStoreAdd fg black
+	InfoStoreAdd bg #AEB2C3
+	InfoStoreAdd hi #DDDEE6
+	InfoStoreAdd sh #74798E
+
+	# Gray snow
+	#InfoStoreAdd fg	black
+	#InfoStoreAdd bg	gray66
+	#InfoStoreAdd hi	white
+	#InfoStoreAdd sh	#A85700
+
+# Snow Active Colors
+
+	# Blue
+	#InfoStoreAdd fgA	black
+	#InfoStoreAdd bgA	#60A0C0
+	#InfoStoreAdd hiA	#95E1FD
+	#InfoStoreAdd shA	#295D77
+	
+	# Red
+	#InfoStoreAdd fgA	black
+	#InfoStoreAdd bgA	#C06077
+	#InfoStoreAdd hiA	#FB8AA4
+	#InfoStoreAdd shA	#5C2D36
+	
+	# Same as normal colors
+	#InfoStoreAdd fgA	$[infostore.fg]
+	#InfoStoreAdd bgA	$[infostore.bg]
+	#InfoStoreAdd hiA	$[infostore.hi]
+	#InfoStoreAdd shA	$[infostore.sh]
+	
+	# Solaris purple
+	InfoStoreAdd fgA	white
+	InfoStoreAdd bgA	#B24D7A
+	InfoStoreAdd hiA	#DDAFC3
+	InfoStoreAdd shA	#58263C
+
+# Misc Colors
+
+	# Cursor
+	InfoStoreAdd curFg	black
+	InfoStoreAdd curBg	#AEB2C3
+	Read theme/cursors
+
+	# Xeyes
+	InfoStoreAdd xeyesBg	white
+	InfoStoreAdd xeyesFg	black
+
+# Window space dimensions
+InfoStoreAdd snowSpaceLeft	126
+InfoStoreAdd snowSpaceTop	90
+InfoStoreAdd snowSpaceWidth	1230
+InfoStoreAdd snowSpaceHeight	648
+
+# Styles
+Style * MWMBorder
+Style * BorderWidth 5
+Style * HandleWidth 5
+Style ** IconBox 0 0 -0 -0, IconGrid 1 1, IconFill Right Top
+Style ** IconOverride, Icon sjis.png
+Style mpv Sticky
+
+# Fonts
+InfoStoreAdd pagerFont "xft:Liberation Mono:size=8"
+
+# Colorsets
+# 0 = Inactive window
+# 1 = Active window
+Colorset 0	fg $[infostore.fg], bg $[infostore.bg], hi $[infostore.hi], sh $[infostore.sh]
+Colorset 1	fg $[infostore.fgA], bg $[infostore.bgA], hi $[infostore.hiA], sh $[infostore.shA]
+
+# Functions
+AddToFunc SnowMaximize
++	I	Raise
++	I	ThisWindow (!Maximized) ResizeMoveMaximize $[infostore.snowSpaceWidth]p $[infostore.snowSpaceHeight]p $[infostore.snowSpaceLeft]p $[infostore.snowSpaceTop]p
++	I	TestRc (NoMatch) Maximize
++	I	Function TitleWarp
+
+AddToFunc SnowPlaceTop
++	I	Stick
++	I	Raise
++	I	Move 582p 0p
++	I	Resize 774p 60p
++	I	Function TitleWarp
+
+# Key bindings
+Key e	A	4	Function SnowMaximize
+Key o	A	4	Function SnowPlaceTop
+
+# Pager settings
+*FvwmPagerFont none
+*FvwmPagerGeometry 116x100+0+0
+*FvwmPagerLabel FvwmPager
+*FvwmPagerSmallFont $[infostore.pagerFont]
+*FvwmPagerBack $[infostore.bg]
+*FvwmPagerFore $[infostore.fg]
+*FvwmPagerHilight $[infostore.bg]
+*FvwmPager: LabelsAbove
+*FvwmPager: SolidSeparators
+
+# Icon Manager settings
+*FvwmIconMan: Format "%t"
+*FvwmIconMan: ManagerGeometry 100x100
+*FvwmIconMan: ButtonGeometry 22x22
+*FvwmIconMan: Background $[infostore.bg]
+*FvwmIconMan: Foreground $[infostore.fg]
+*FvwmIconMan: FocusColorset 0
+*FvwmIconMan: FocusAndSelectColorset 1
+*FvwmIconMan: SelectColorset 1
+*FvwmIconMan: IconColorset 0
+*FvwmIconMan: PlainColorset 0
+*FvwmIconMan: TipsColorset 0
+*FvwmIconMan: TitleColorset 0
+
+# Good Buttons
+*GoodButtons: Geometry 200x200+0+0
+*GoodButtons: Font $[infostore.font]
+*GoodButtons: Colorset 0
+*GoodButtons: Rows 2
+*GoodButtons: Columns 2
+*GoodButtons: (1x1, Title "Kill", Action(Mouse 1) "Close")
+*GoodButtons: (1x1, Title "FvwmConsole", Action(Mouse 1) "Module FvwmConsole -terminal xterm")
+*GoodButtons: (1x1, Title "Move", Action(Mouse 1) "Move")
+*GoodButtons: (1x1, Title "Resize", Action(Mouse 1) "Resize")
+
+# Side Panel
+*SidePanel: Font $[infostore.font]
+*SidePanel: Geometry 116x240+0+518
+*SidePanel: Colorset 0
+*SidePanel: Rows 7
+*SidePanel: Columns 1
+#*SidePanel: (1x1, Title "Yo", Icon xterm-linux.xpm, Action(Mouse 1) "Exec tuxclick")
+*SidePanel: (1x5, Title "Window List", Swallow FvwmIconMan "Module FvwmIconMan")
+*SidePanel: (1x1, Swallow GoodButtons "Module FvwmButtons GoodButtons")
+
+# Snow Panel
+*SnowPanel: Font $[infostore.font]
+*SnowPanel: Geometry 446x80+126+0
+*SnowPanel: Colorset 0
+*SnowPanel: Rows 1
+*SnowPanel: Columns 6
+*SnowPanel: (1x1, Title XTerm, Icon tuxpcbig.png, Action(Mouse 1) "Exec xterm")
+*SnowPanel: (1x1, Title AlsaMixer, Icon cd.png, Action(Mouse 1) "Exec fvwm_alsamixer")
+*SnowPanel: (1x1, Title "GNU's Not Unix Image Manipulation Program", Icon wilber_smooth.png, Action(Mouse 1) "Exec gimp")
+*SnowPanel: (1x1, Title Galculator, Icon gentoo_smooth.png, Action(Mouse 1) "Exec galculator")
+*SnowPanel: (1x1, Title "C* Music Player", Icon sjis.png, Action(Mouse 1) "Exec fvwm_cmus")
+*SnowPanel: (1x1, Title LibreWolf, Icon eggcool.png, Action(Mouse 1) "Exec librewolf")
+
+# Init function
+AddToFunc InitFunction
++	I	Module FvwmButtons SnowPanel
++	I	Module FvwmButtons SidePanel
++	I	Exec xrdb -merge ~/.config/xres/snow
++	I	Exec feh --no-fehbg --bg-fill ~/wallpapers/snow6.png
++	I	Exec killall conky; conky -c ~/.config/conky/2now.conf
+#+	I	Exec feh --no-fehbg --bg-tile ~/wallpapers/snow6.png
+#+	I	Exec feh --no-fehbg --bg-tile ~/wallpapers/fvwmsnow.png
+#+	I	Exec xsetroot -solid black
+#+	I	Exec killwmwins; conky -c ~/.config/conky/2now.conf
