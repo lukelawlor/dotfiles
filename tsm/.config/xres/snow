@@ -104,3 +104,16 @@ URxvt*color10:      #c3e88d
 URxvt*color3:       #ffcb6b
 URxvt*color11:      #ffcb6b
 
+! emacs snow menu colors
+Emacs.pane.menubar.*.foreground: #000000
+Emacs.pane.menubar.*.background: #aeb2c3
+Emacs.pane.menubar.*.topShadowColor: #dddee6
+Emacs.pane.menubar.*.bottomShadowColor: #74798e
+Emacs.menu*.*.foreground: #000000
+Emacs.menu*.*.background: #aeb2c3
+Emacs.menu*.*.topShadowColor: #dddee6
+Emacs.menu*.*.bottomShadowColor: #74798e
+Emacs.dialog.*.foreground: #000000
+Emacs.dialog.*.background: #aeb2c3
+Emacs.dialog.*.topShadowColor: #dddee6
+Emacs.dialog.*.bottomShadowColor: #74798e
