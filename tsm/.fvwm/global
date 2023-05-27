@@ -56,6 +56,7 @@ Style FvwmIconMan	NeverFocus, NoTitle, Sticky, WindowListSkip, Handles, BorderWi
 Style feh		NoTitle, Sticky
 Style conky		NoTitle, Sticky, Handles, BorderWidth 7, NeverFocus, WindowListSkip
 Style xpenguins		WindowListSkip
+Style emacs		MiniIcon emacs.xpm
 
 # Functions
 AddToFunc FocusRaise

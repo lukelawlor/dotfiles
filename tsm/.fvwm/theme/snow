@@ -51,20 +51,15 @@
 	InfoStoreAdd xeyesBg	white
 	InfoStoreAdd xeyesFg	black
 
-# Window space dimensions
-InfoStoreAdd snowSpaceLeft	126
-InfoStoreAdd snowSpaceTop	90
-InfoStoreAdd snowSpaceWidth	1784
-InfoStoreAdd snowSpaceHeight	960
+# Style & window space dimensions
+PipeRead "tcc -run $HOME/.fvwm/scripts/set_snow_dimens.c"
 
 # Styles
 Style * MWMBorder
-Style * BorderWidth 5
-Style * HandleWidth 5
 Style ** IconBox 0 0 -0 -0, IconGrid 1 1, IconFill Right Top
 Style ** IconOverride, Icon sjis.png
 Style mpv Sticky, !Title
-Style sxiv Sticky, !Title, NeverFocus, WindowListSkip
+Style feh Sticky, !Title, NeverFocus, WindowListSkip
 
 # Fonts
 InfoStoreAdd pagerFont "xft:Liberation Mono:size=8"
@@ -85,8 +80,10 @@ AddToFunc SnowMaximize
 AddToFunc SnowPlaceTop
 +	I	Stick
 +	I	Raise
-+	I	Move 933p 0p
-+	I	Resize 977p 60p
++	I	Move $[infostore.snowTopSpaceX]p 0p
++	I	Resize $[infostore.snowTopSpaceWidth]p $[infostore.snowTopSpaceHeight]p
+#+	I	Move 933p 0p
+#+	I	Resize 977p 60p
 +	I	Function SnowWarp
 
 # Key bindings
@@ -131,7 +128,7 @@ Key o	A	4	Function SnowPlaceTop
 
 # Side Panel
 *SidePanel: Font $[infostore.font]
-*SidePanel: Geometry 116x426+0+644
+*SidePanel: Geometry 116x$[infostore.snowSidePanelHeight]+0+644
 *SidePanel: Colorset 0
 *SidePanel: Rows 7
 *SidePanel: Columns 1
@@ -141,7 +138,7 @@ Key o	A	4	Function SnowPlaceTop
 
 # Snow Panel
 *SnowPanel: Font $[infostore.font]
-*SnowPanel: Geometry 797x80+126+0
+*SnowPanel: Geometry $[infostore.snowSnowPanelWidth]x80+126+0
 *SnowPanel: Colorset 0
 *SnowPanel: Rows 1
 *SnowPanel: Columns 11
@@ -154,8 +151,8 @@ Key o	A	4	Function SnowPlaceTop
 *SnowPanel: (1x1, Title "The GIMP", Icon wilber_smooth.png, Action(Mouse 1) "Exec gimp")
 *SnowPanel: (1x1, Title Galculator, Icon sjis.png, Action(Mouse 1) "Exec galculator")
 *SnowPanel: (1x1, Title "SoupDL 06", Icon eggcool.png, Action(Mouse 1) "Exec soupdltest")
-*SnowPanel: (1x1, Title "LibreWolf", Icon thing.png, Action(Mouse 1) "Exec librewolf")
-#*SnowPanel: (1x1, Title GNUBiff, Swallow gnubiff "Exec gnubiff -n")
+*SnowPanel: (1x1, Title "LibreWolf", Icon librewolf.png, Action(Mouse 1) "Exec librewolf")
+#*SnowPanel: (1x1, Title Mailz, Swallow gnubiff "Exec gnubiff -n")
 #*SnowPanel: (1x1, Title NeoMutt, Icon mailbox.png, Action(Mouse 1) "Exec fvwm_neomutt")
 #*SnowPanel: (1x1, Title "Spy Kids", Swallow xeyes "Exec xeyes -center $[infostore.xeyesBg] -fg $[infostore.xeyesFg] -outline $[infostore.xeyesFg] +render &")
 #*SnowPanel: (1x1, Title "insert xeyes here")
@@ -165,13 +162,13 @@ Key o	A	4	Function SnowPlaceTop
 
 # Init function
 AddToFunc InitFunction
-+	I	Exec killall sxiv conky
++	I	Exec killall feh conky
 +	I	Exec xrdb -merge ~/.config/xres/snow
-+	I	Exec feh --no-fehbg --bg-tile ~/wallpapers/snow6.png
 +	I	Module FvwmButtons SidePanel
 +	I	Module FvwmButtons SnowPanel
-+	I	Schedule 100 Exec conky -c ~/.config/conky/2now.conf
-+	I	Schedule 200 Exec sxiv ~/images/fvwmpic/dcbs.png -b -g 116x116+0+108
++	I	Schedule 100 Exec feh --no-fehbg --bg-tile ~/wallpapers/snow6.png
++	I	Schedule 200 Exec conky -c ~/.config/conky/2now.conf
++	I	Schedule 300 Exec feh ~/images/fvwmpic/t.png -g 116x116+0+108
 #+	I	Exec feh --no-fehbg --bg-tile ~/wallpapers/snow6.png
 #+	I	Exec feh --no-fehbg --bg-tile ~/wallpapers/fvwmsnow.png
 #+	I	Exec xsetroot -solid black
