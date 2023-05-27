@@ -143,8 +143,9 @@ Key o	A	4	Function SnowPlaceTop
 *SnowPanel: Rows 1
 *SnowPanel: Columns 11
 *SnowPanel: (1x1, Title "Clock Sick", Swallow wmclock "Exec wmclock -12 -led yellow")
-*SnowPanel: (2x1, Title "System Tray", Swallow(Respawn) stalonetray "Exec stalonetray -p -i 16")
+*SnowPanel: (1x1, Title "System Tray", Swallow(Respawn) stalonetray "Exec stalonetray -p -i 16")
 *SnowPanel: (1x1, Title XTerm, Icon tuxpcbig.png, Action(Mouse 1) "Exec xterm")
+*SnowPanel: (1x1, Title Emacs, Icon gnupc.png, Action(Mouse 1) "Exec emacs")
 *SnowPanel: (1x1, Title Pavucontrol, Icon gentoo_smooth.png, Action(Mouse 1) "Exec pavucontrol")
 *SnowPanel: (1x1, Title GoatTracker, Icon goat.png, Action(Mouse 1) "Exec /home/cata/src/goattracker2/linux/goattrk2")
 *SnowPanel: (1x1, Title MilkyTracker, Icon milky_carton.png, Action(Mouse 1) "Exec milkytracker")

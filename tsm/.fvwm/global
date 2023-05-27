@@ -150,27 +150,28 @@ Key 7	A	4	Scroll -100 +0
 Key 8	A	4	Scroll +0 +100
 Key 9	A	4	Scroll +0 -100 
 Key 0	A	4	Scroll +100 +0
-Key n	A	4	WindowList
+Key a	A	4	Exec pavucontrol
+Key c	A	4	Exec xterm
+Key d	A	4	Function MaxHori
+Key e	A	4	Maximize
+Key f	A	4	Function DragMoveKeyboard
+Key h	A	4	Next (AcceptsFocus) Function FocusRaise
+Key i	A	4	Function IconifyRaise
 Key j	A	4	Next (CurrentScreen, AcceptsFocus) Function FocusRaise
 Key k	A	4	Prev (CurrentScreen, AcceptsFocus) Function FocusRaise
-Key h	A	4	Next (AcceptsFocus) Function FocusRaise
 Key l	A	4	Prev (AcceptsFocus) Function FocusRaise
 Key m	A	4	Menu RootMenu
-Key r	A	4	Function DragResizeKeyboard
-Key f	A	4	Function DragMoveKeyboard
-Key i	A	4	Function IconifyRaise
-Key u	A	4	Stick
-Key x	A	4	Close
-Key e	A	4	Maximize
+Key n	A	4	WindowList
 Key p	A	4	Exec dmenu_fvwm
-Key c	A	4	Exec xterm
-Key a	A	4	Exec pavucontrol
-Key w	A	4	Exec librewolf
 Key q	A	4	Quit
-Key d	A	4	Function MaxHori
+Key r	A	4	Function DragResizeKeyboard
 Key s	A	4	Function MaxVert
-Key v	A	4	Function MaxFill
 Key t	A	4	Module FvwmConsole -terminal xterm
+Key u	A	4	Stick
+Key v	A	4	Function MaxFill
+Key w	A	4	Exec librewolf
+Key x	A	4	Close
+Key z	A	4	Exec emacs
 
 # Menus
 AddToMenu WindowOps
