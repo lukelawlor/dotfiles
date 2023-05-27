@@ -69,7 +69,7 @@ int main(void)
 	int snowSpaceLeft = iLeftClusterWidth + iBorderSize;
 	int snowSpaceTop = iTopClusterHeight + iBorderSize;
 	int snowSpaceWidth = iScreenWidth - iBorderSize - snowSpaceLeft;
-	int snowSpaceHeight = iScreenHeight - iBorderSize - snowSpaceTop;
+	int snowSpaceHeight = iScreenHeight - iBorderSize - iTitleHeight - snowSpaceTop;
 
 	int snowSidePanelHeight = iScreenHeight - iSidePanelY - iBorderSize;
 
