@@ -1,7 +1,7 @@
 # Misc settings
 
 	# Icon path
-	ImagePath $HOME/projects/dotfiles/tsm/.fvwm/icons:+
+	ImagePath $HOME/.fvwm/icons:+
 
 	# Dimensions of virtual desktop
 	DeskTopSize 3 3
@@ -48,7 +48,6 @@ IconFont "xft:System-ui:style=regular:size=9"
 Style * Colorset 0, BorderColorset 0
 Style * HilightColorset 1, HilightBorderColorset 1
 
-
 # Window decorations
 Style *			Title, Handles, !MWMFunctions, NoDecorHint
 Style *Panel		NeverFocus, NoTitle, Sticky, WindowListSkip, Handles, BorderWidth 7
@@ -57,6 +56,7 @@ Style FvwmIconMan	NeverFocus, NoTitle, Sticky, WindowListSkip, Handles, BorderWi
 Style feh		NoTitle, Sticky
 Style conky		NoTitle, Sticky, Handles, BorderWidth 7, NeverFocus, WindowListSkip
 Style xpenguins		WindowListSkip
+Style emacs		MiniIcon emacs.xpm
 
 # Functions
 AddToFunc FocusRaise
@@ -142,6 +142,7 @@ Mouse 3	R	A	Menu WindowOps
 Mouse 3	T	A	RaiseLower
 Mouse 0 1	A	Menu WindowOps
 Mouse 0 2	A	Menu WindowOps
+Mouse 0 4	A	Menu WindowOps
 Mouse 1	FSTW	4	Function DragMove
 Mouse 3	FSTW	4	Function DragResize
 
@@ -149,27 +150,28 @@ Key 7	A	4	Scroll -100 +0
 Key 8	A	4	Scroll +0 +100
 Key 9	A	4	Scroll +0 -100 
 Key 0	A	4	Scroll +100 +0
-Key n	A	4	WindowList
+Key a	A	4	Exec pavucontrol
+Key c	A	4	Exec xterm
+Key d	A	4	Function MaxHori
+Key e	A	4	Maximize
+Key f	A	4	Function DragMoveKeyboard
+Key h	A	4	Next (AcceptsFocus) Function FocusRaise
+Key i	A	4	Function IconifyRaise
 Key j	A	4	Next (CurrentScreen, AcceptsFocus) Function FocusRaise
 Key k	A	4	Prev (CurrentScreen, AcceptsFocus) Function FocusRaise
-Key h	A	4	Next (AcceptsFocus) Function FocusRaise
 Key l	A	4	Prev (AcceptsFocus) Function FocusRaise
 Key m	A	4	Menu RootMenu
-Key r	A	4	Function DragResizeKeyboard
-Key f	A	4	Function DragMoveKeyboard
-Key i	A	4	Function IconifyRaise
-Key u	A	4	Stick
-Key x	A	4	Close
-Key e	A	4	Maximize
+Key n	A	4	WindowList
 Key p	A	4	Exec fvwm_dmenu
-Key c	A	4	Exec xterm
-Key a	A	4	Exec fvwm_alsamixer
-Key w	A	4	Exec librewolf
 Key q	A	4	Quit
-Key d	A	4	Function MaxHori
+Key r	A	4	Function DragResizeKeyboard
 Key s	A	4	Function MaxVert
-Key v	A	4	Function MaxFill
 Key t	A	4	Module FvwmConsole -terminal xterm
+Key u	A	4	Stick
+Key v	A	4	Function MaxFill
+Key w	A	4	Exec librewolf
+Key x	A	4	Close
+Key z	A	4	Exec emacs
 
 # Menus
 AddToMenu WindowOps
@@ -213,7 +215,7 @@ AddToMenu RootMenu "Root Menu"  Title
 +	"Net"		Popup NetMenu
 +	"Graphics"	Popup GfxMenu
 +	"Audio"		Popup AudioMenu
-+	"Utilities"	Popup UtilsMenu
++	"Utilities"	Popup UtilMenu
 +	"System"	Popup SysMenu
 
 # Icon Manager

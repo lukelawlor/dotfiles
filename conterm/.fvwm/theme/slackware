@@ -1,0 +1,37 @@
+# Default slackware fvwm colors
+
+# 0 = Inactive Window
+# 1 = Active Window
+# 2 = Stickies (Pager, Conky, etc.)
+Colorset 0	fg black, bg #60A0C0, hi #95E1FD, sh #295D77
+Colorset 1	fg black, bg #C06077, hi #FB8AA4, sh #5C2D36
+Colorset 2	fg black, bg SlateBlue, hi Orchid
+
+# Pager settings
+*FvwmPagerFont none
+*FvwmPagerGeometry 124x106-0+0
+*FvwmPagerLabel FvwmPager
+*FvwmPagerSmallFont xft:Arial:Regular:size=7
+*FvwmPager: LabelsAbove
+*FvwmPager: SolidSeparators
+*FvwmPagerBack SlateBlue
+*FvwmPagerFore black
+*FvwmPagerHilight Orchid
+
+# SUDEPANEL
+*SudePanel: Font "xft:Arial:size=9"
+*SudePanel: Geometry 192x64-0-0
+*SudePanel: Colorset 0
+*SudePanel: Rows 1
+*SudePanel: Columns 3
+*SudePanel: (1x1, Icon /home/cata/.fvwm/icons/sjis.png, Action(Mouse 1) "Exec urxvt")
+*SudePanel: (1x1, Icon /home/cata/.fvwm/icons/sjis.png, Action(Mouse 1) "Exec urxvt")
+*SudePanel: (1x1, Title "Spy Kids", Swallow xeyes "Exec xeyes -geometry -100-100 -fg black &")
+Style SudePanel		NeverFocus, NoTitle, Sticky, WindowListSkip, Handles, BorderWidth 7
+AddToFunc InitFunction I Module FvwmButtons SudePanel
+
+# X settings
+AddToFunc InitFunction
++	I Exec xsetroot -solid SteelBlue &
++	I Exec xrdb ~/.config/xres/fvwm &
++	I Exec killwmwins; conky -c $HOME/.config/conky/slackware.conf &

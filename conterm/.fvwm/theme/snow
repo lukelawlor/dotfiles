@@ -29,16 +29,16 @@
 	#InfoStoreAdd shA	#5C2D36
 	
 	# Same as normal colors
-	#InfoStoreAdd fgA	$[infostore.fg]
-	#InfoStoreAdd bgA	$[infostore.bg]
-	#InfoStoreAdd hiA	$[infostore.hi]
-	#InfoStoreAdd shA	$[infostore.sh]
+	InfoStoreAdd fgA	$[infostore.fg]
+	InfoStoreAdd bgA	$[infostore.bg]
+	InfoStoreAdd hiA	$[infostore.hi]
+	InfoStoreAdd shA	$[infostore.sh]
 	
 	# Solaris purple
-	InfoStoreAdd fgA	white
-	InfoStoreAdd bgA	#B24D7A
-	InfoStoreAdd hiA	#DDAFC3
-	InfoStoreAdd shA	#58263C
+	#InfoStoreAdd fgA	white
+	#InfoStoreAdd bgA	#B24D7A
+	#InfoStoreAdd hiA	#DDAFC3
+	#InfoStoreAdd shA	#58263C
 
 # Misc Colors
 
@@ -51,19 +51,15 @@
 	InfoStoreAdd xeyesBg	white
 	InfoStoreAdd xeyesFg	black
 
-# Window space dimensions
-InfoStoreAdd snowSpaceLeft	126
-InfoStoreAdd snowSpaceTop	90
-InfoStoreAdd snowSpaceWidth	1230
-InfoStoreAdd snowSpaceHeight	648
+# Style & window space dimensions
+PipeRead "$HOME/.fvwm/scripts/set_snow_dimens"
 
 # Styles
 Style * MWMBorder
-Style * BorderWidth 5
-Style * HandleWidth 5
 Style ** IconBox 0 0 -0 -0, IconGrid 1 1, IconFill Right Top
 Style ** IconOverride, Icon sjis.png
-Style mpv Sticky
+Style mpv Sticky, !Title
+Style feh Sticky, !Title, NeverFocus, WindowListSkip
 
 # Fonts
 InfoStoreAdd pagerFont "xft:Liberation Mono:size=8"
@@ -84,9 +80,11 @@ AddToFunc SnowMaximize
 AddToFunc SnowPlaceTop
 +	I	Stick
 +	I	Raise
-+	I	Move 582p 0p
-+	I	Resize 774p 60p
-+	I	Function TitleWarp
++	I	Move $[infostore.snowTopSpaceX]p 0p
++	I	Resize $[infostore.snowTopSpaceWidth]p $[infostore.snowTopSpaceHeight]p
+#+	I	Move 933p 0p
+#+	I	Resize 977p 60p
++	I	Function SnowWarp
 
 # Key bindings
 Key e	A	4	Function SnowMaximize
@@ -101,7 +99,7 @@ Key o	A	4	Function SnowPlaceTop
 *FvwmPagerFore $[infostore.fg]
 *FvwmPagerHilight $[infostore.bg]
 *FvwmPager: LabelsAbove
-*FvwmPager: SolidSeparators
+#*FvwmPager: SolidSeparators
 
 # Icon Manager settings
 *FvwmIconMan: Format "%t"
@@ -130,7 +128,7 @@ Key o	A	4	Function SnowPlaceTop
 
 # Side Panel
 *SidePanel: Font $[infostore.font]
-*SidePanel: Geometry 116x240+0+518
+*SidePanel: Geometry 116x$[infostore.snowSidePanelHeight]+0+$[infostore.snowSidePanelY]
 *SidePanel: Colorset 0
 *SidePanel: Rows 7
 *SidePanel: Columns 1
@@ -140,24 +138,36 @@ Key o	A	4	Function SnowPlaceTop
 
 # Snow Panel
 *SnowPanel: Font $[infostore.font]
-*SnowPanel: Geometry 446x80+126+0
+*SnowPanel: Geometry $[infostore.snowSnowPanelWidth]x75+126+0
 *SnowPanel: Colorset 0
 *SnowPanel: Rows 1
-*SnowPanel: Columns 6
+*SnowPanel: Columns 9
 *SnowPanel: (1x1, Title XTerm, Icon tuxpcbig.png, Action(Mouse 1) "Exec xterm")
-*SnowPanel: (1x1, Title AlsaMixer, Icon cd.png, Action(Mouse 1) "Exec fvwm_alsamixer")
-*SnowPanel: (1x1, Title "GNU's Not Unix Image Manipulation Program", Icon wilber_smooth.png, Action(Mouse 1) "Exec gimp")
-*SnowPanel: (1x1, Title Galculator, Icon gentoo_smooth.png, Action(Mouse 1) "Exec galculator")
-*SnowPanel: (1x1, Title "C* Music Player", Icon sjis.png, Action(Mouse 1) "Exec fvwm_cmus")
-*SnowPanel: (1x1, Title LibreWolf, Icon eggcool.png, Action(Mouse 1) "Exec librewolf")
+*SnowPanel: (1x1, Title Emacs, Icon gnupc.png, Action(Mouse 1) "Exec emacs")
+*SnowPanel: (1x1, Title Pavucontrol, Icon gentoo_smooth.png, Action(Mouse 1) "Exec pavucontrol")
+*SnowPanel: (1x1, Title GoatTracker, Icon goat.png, Action(Mouse 1) "Exec /home/cata/src/goattracker2/linux/goattrk2")
+*SnowPanel: (1x1, Title MilkyTracker, Icon milky_carton.png, Action(Mouse 1) "Exec milkytracker")
+*SnowPanel: (1x1, Title "The GIMP", Icon wilber_smooth.png, Action(Mouse 1) "Exec gimp")
+*SnowPanel: (1x1, Title Galculator, Icon sjis.png, Action(Mouse 1) "Exec galculator")
+*SnowPanel: (1x1, Title "SoupDL 06", Icon eggcool.png, Action(Mouse 1) "Exec soupdltest")
+*SnowPanel: (1x1, Title "LibreWolf", Icon librewolf.png, Action(Mouse 1) "Exec librewolf")
+#*SnowPanel: (1x1, Title Mailz, Swallow gnubiff "Exec gnubiff -n")
+#*SnowPanel: (1x1, Title NeoMutt, Icon mailbox.png, Action(Mouse 1) "Exec fvwm_neomutt")
+#*SnowPanel: (1x1, Title "Spy Kids", Swallow xeyes "Exec xeyes -center $[infostore.xeyesBg] -fg $[infostore.xeyesFg] -outline $[infostore.xeyesFg] +render &")
+#*SnowPanel: (1x1, Title "insert xeyes here")
+#*SnowPanel: (2x1, Swallow FvwmPager "Module FvwmPager")
+#*SnowPanel: (1x1, Title Pavucontrol, Icon cd.png, Action(Mouse 1) "Exec pavucontrol")
+#*SnowPanel: (1x1, Title "Dark Terminal", Icon sjis.png, Action(Mouse 1) "Exec xterm -bg \"$fvwmDarktermBg\" -fg \"$fvwmDarktermFg\" -T darkterm")
 
 # Init function
 AddToFunc InitFunction
-+	I	Module FvwmButtons SnowPanel
-+	I	Module FvwmButtons SidePanel
++	I	Exec killall feh conky
 +	I	Exec xrdb -merge ~/.config/xres/snow
-+	I	Exec feh --no-fehbg --bg-fill ~/wallpapers/snow6.png
-+	I	Exec killall conky; conky -c ~/.config/conky/2now.conf
++	I	Module FvwmButtons SidePanel
++	I	Module FvwmButtons SnowPanel
++	I	Schedule 100 Exec feh --no-fehbg --bg-tile ~/wallpapers/snow6.png
++	I	Schedule 200 Exec conky -c ~/.config/conky/2now.conf
++	I	Schedule 300 Exec feh ~/images/fvwmpic/t.png -g 116x116+0+108
 #+	I	Exec feh --no-fehbg --bg-tile ~/wallpapers/snow6.png
 #+	I	Exec feh --no-fehbg --bg-tile ~/wallpapers/fvwmsnow.png
 #+	I	Exec xsetroot -solid black
