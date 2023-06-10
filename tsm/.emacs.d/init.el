@@ -31,6 +31,9 @@
 (use-package autothemer
   :ensure t)
 
+;; use my theme
+(load-theme 'caksoul t)
+
 ;; bindings
 (global-set-key (kbd "M-j") (lambda nil (interactive) (other-window 1)))
 (global-set-key (kbd "M-k") (lambda nil (interactive) (other-window -1)))
@@ -68,6 +71,13 @@
 ;; make emacs actually usable
 (repeat-mode t)
 
+;; ido-mode
+(setq ido-enable-flex-matching nil)
+(setq ido-enable-prefix t)
+(setq ido-create-new-buffer 'always)
+(setq ido-everywhere t)
+(ido-mode 1)
+
 ;; org-mode
 (setq org-hide-emphasis-markers t)
 
@@ -77,6 +87,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode nil)
+ '(custom-safe-themes
+   '("ac68145d839a4fdc56864646bdc7649db5c9b866b28abfe215bfe40eaf59646a" "fe174a7286efdf504ab6ef570eecc880a9933c9e3d170e6a62477be478ebc785" "3ab82a0848c0e65c52d474e43e08bdb2a9b80a334ed6d3f89454cdb1f9a26ce9" "a1b705b22e9777b87385b44f8fdebeab1f9099e72515684ea43905f4872eba25" "0690fbab6a52f88125e30c38deec60789658ea95486bcf003a9fdbb1f12fd6ff" "916d32fb9039a3cf50274efb3ad9e07d9d9d0f5e2e2231736b595ce32c4413cf" default))
  '(evil-undo-system 'undo-redo)
  '(org-display-custom-times t)
  '(org-format-latex-options
