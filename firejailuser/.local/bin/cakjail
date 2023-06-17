@@ -16,6 +16,9 @@ case $1 in
 	mc )
 		prof=minecraft.profile
 		;;
+	mcserver )
+		prof=mcserver.profile
+		;;
 	steam )
 		prof=steam.profile
 		;;

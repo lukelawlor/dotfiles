@@ -5,6 +5,11 @@ ignore nogroups
 # seccomp breaks some steam stuff unfortunately
 ignore seccomp
 
+# needed for bubblewrap suid permission
+#ignore caps.drop
+#ignore nonewprivs
+#ignore restrict-namespaces
+
 include cakjail_head.profile
 
 include allow_wine.profile
@@ -45,8 +50,8 @@ noblacklist /sbin
 noblacklist /usr/sbin
 
 # allow access to pressure-vessel disabler script
-noblacklist ~/pressure-vent
-whitelist ~/pressure-vent
-read-only ~/pressure-vent
+#noblacklist ~/pressure-vent
+#whitelist ~/pressure-vent
+#read-only ~/pressure-vent
 
 include cakjail_tail.profile

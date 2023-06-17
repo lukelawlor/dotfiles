@@ -20,7 +20,7 @@ disable-mnt
 # drop capabilities
 caps.drop all
 
-# don't print shit
+# don't print stuff
 noprinters
 
 # other users besides me don't exist, not even root
@@ -58,7 +58,8 @@ seccomp
 
 # stop weird code exution
 nonewprivs
-#(this must be disabled for java to run) memory-deny-write-execute
+#(this must be disabled for java to run)
+#memory-deny-write-execute
 
 # some pulse audio thing that i don't know what it does
 keep-config-pulse
