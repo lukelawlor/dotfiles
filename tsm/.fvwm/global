@@ -62,11 +62,15 @@ Style emacs		MiniIcon emacs.xpm
 AddToFunc FocusRaise
 +	I	Focus
 +	I	Raise
++	I	TitleWarp
 
 AddToFunc IconifyRaise
 +	I	Iconify
 +	I	Raise
++	I	TitleWarp
 
+# Warps the pointer to the title bar
+# This is used to either to keep focus on a window and/or to show which window focus is switched to
 AddToFunc TitleWarp
 +	I	WarpToWindow 28p 8p
 
@@ -136,6 +140,8 @@ AddToFunc Fullscreen
 # 2 - middle
 # 3 - right
 
+Mouse 0 I	N	Iconify
+Mouse 3 I	N	Close
 Mouse 1	R	A	Menu RootMenu
 Mouse 2	R	A	WindowList
 Mouse 3	R	A	Menu WindowOps

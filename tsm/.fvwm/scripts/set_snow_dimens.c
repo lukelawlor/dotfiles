@@ -20,15 +20,15 @@ int main(void)
 
 	// Constant snow theme dimensions
 	const int iLeftClusterWidth = 116;
-	const int iTopClusterHeight = 80;
+	const int iTopClusterHeight = 75;
 	const int iSidePanelY = 644;
 	const int iDefaultSnowPanelWidth = 787;
 
 	// Terminal emulator dimensions
 	const int iTermBorderWidth = 2;
 	const int iTermBorderSize = iTermBorderWidth * 2;
-	const int iTermCharWidth = 7;
-	const int iTermCharHeight = 14;
+	const int iTermCharWidth = 8;
+	const int iTermCharHeight = 17;
 
 	// Double the size of the border width
 	int iBorderSize = iBorderWidth * 2;
@@ -71,9 +71,13 @@ int main(void)
 	int snowSpaceWidth = iScreenWidth - iBorderSize - snowSpaceLeft;
 	int snowSpaceHeight = iScreenHeight - iBorderSize - iTitleHeight - snowSpaceTop;
 
+
+
+	int snowSidePanelY = iSidePanelY;
 	int snowSidePanelHeight = iScreenHeight - iSidePanelY - iBorderSize;
 
 	int snowSnowPanelWidth = iDefaultSnowPanelWidth;
+	int snowSnowPanelHeight = iTopClusterHeight;
 
 	int snowTopSpaceWidth = iScreenWidth - snowSpaceLeft - snowSnowPanelWidth - iBorderSize * 2;
 	int snowTopSpaceHeight = iTopClusterHeight - iTitleHeight;
@@ -94,8 +98,10 @@ int main(void)
 	INFOSTORE_ADD(snowSpaceTop);
 	INFOSTORE_ADD(snowSpaceWidth);
 	INFOSTORE_ADD(snowSpaceHeight);
+	INFOSTORE_ADD(snowSidePanelY);
 	INFOSTORE_ADD(snowSidePanelHeight);
 	INFOSTORE_ADD(snowSnowPanelWidth);
+	INFOSTORE_ADD(snowSnowPanelHeight);
 	INFOSTORE_ADD(snowTopSpaceWidth);
 	INFOSTORE_ADD(snowTopSpaceHeight);
 	INFOSTORE_ADD(snowTopSpaceX);

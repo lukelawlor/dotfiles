@@ -1,29 +1,40 @@
 xterm*allowBoldFonts: false
+Xft.dpi: 96
 Xft.hinting: 1
 Xft.hintstyle: hintslight
 Xft.antialias: 0
 Xft.rgba: rgb
 
-! font selection
-xterm*font: -misc-fixed-medium-r-normal--14-130-75-75-c-70-iso10646-1
-!xterm*font: xft:Terminus (TTF):size=12
+! xterm
+xterm*font: xft:Terminus (TTF):size=12
+!xterm*font: -misc-fixed-medium-r-normal--14-130-75-75-c-70-iso10646-1
 !xterm*font: xft:Terminus (TTF):size=15:style=bold
+xterm*geometry: 70x25
 
 ! solarized colors
 
 ! special
-! special
-!*.foreground:   #444747
-*.foreground:   #000000
+!*.foreground:	#444747
+!*.cursorColor:	#444747
+*.foreground:	#586e75
+*.cursorColor:  #586e76
+
 *.background:   #fdf6e3
-!*.cursorColor:  #444747
-*.cursorColor:  #000000
+!*.foreground:   #000000
+!*.cursorColor:  #000000
+
+! dark
+!*.foreground:	#aeb2c3
+!*.background:	#000000
+!*.cursorColor:	#aeb2c3
 
 ! black
 !*.color0:       #444747
 !*.color8:       #444747
-*.color0:	#000000
-*.color8:	#000000
+!*.color0:	#000000
+!*.color8:	#000000
+*.color0:	#002b36
+*.color8:	#657b83
 
 ! red
 *.color1:       #dc322f
@@ -89,8 +100,8 @@ URxvt*cursorColor:  #bbc5ff
 ! black
 !URxvt*color0:       #ff69b4
 !URxvt*color8:       #ff69b4
-URxvt*color0:	#000000
-URxvt*color8:	#000000
+!URxvt*color0:	#000000
+!URxvt*color8:	#000000
 
 ! red
 URxvt*color1:       #f07178
@@ -104,11 +115,12 @@ URxvt*color10:      #c3e88d
 URxvt*color3:       #ffcb6b
 URxvt*color11:      #ffcb6b
 
-! emacs snow menu colors
+! emacs
 Emacs.pane.menubar.*.foreground: #000000
 Emacs.pane.menubar.*.background: #aeb2c3
 Emacs.pane.menubar.*.topShadowColor: #dddee6
 Emacs.pane.menubar.*.bottomShadowColor: #74798e
+Emacs.pane.menubar.*.shadowThickness: 1
 Emacs.menu*.*.foreground: #000000
 Emacs.menu*.*.background: #aeb2c3
 Emacs.menu*.*.topShadowColor: #dddee6
@@ -117,3 +129,4 @@ Emacs.dialog.*.foreground: #000000
 Emacs.dialog.*.background: #aeb2c3
 Emacs.dialog.*.topShadowColor: #dddee6
 Emacs.dialog.*.bottomShadowColor: #74798e
+Emacs.geometry: +126+85

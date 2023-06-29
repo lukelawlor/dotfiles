@@ -29,16 +29,16 @@
 	#InfoStoreAdd shA	#5C2D36
 	
 	# Same as normal colors
-	#InfoStoreAdd fgA	$[infostore.fg]
-	#InfoStoreAdd bgA	$[infostore.bg]
-	#InfoStoreAdd hiA	$[infostore.hi]
-	#InfoStoreAdd shA	$[infostore.sh]
+	InfoStoreAdd fgA	$[infostore.fg]
+	InfoStoreAdd bgA	$[infostore.bg]
+	InfoStoreAdd hiA	$[infostore.hi]
+	InfoStoreAdd shA	$[infostore.sh]
 	
 	# Solaris purple
-	InfoStoreAdd fgA	white
-	InfoStoreAdd bgA	#B24D7A
-	InfoStoreAdd hiA	#DDAFC3
-	InfoStoreAdd shA	#58263C
+	#InfoStoreAdd fgA	white
+	#InfoStoreAdd bgA	#B24D7A
+	#InfoStoreAdd hiA	#DDAFC3
+	#InfoStoreAdd shA	#58263C
 
 # Misc Colors
 
@@ -99,7 +99,7 @@ Key o	A	4	Function SnowPlaceTop
 *FvwmPagerFore $[infostore.fg]
 *FvwmPagerHilight $[infostore.bg]
 *FvwmPager: LabelsAbove
-*FvwmPager: SolidSeparators
+#*FvwmPager: SolidSeparators
 
 # Icon Manager settings
 *FvwmIconMan: Format "%t"
@@ -128,7 +128,7 @@ Key o	A	4	Function SnowPlaceTop
 
 # Side Panel
 *SidePanel: Font $[infostore.font]
-*SidePanel: Geometry 116x$[infostore.snowSidePanelHeight]+0+644
+*SidePanel: Geometry 116x$[infostore.snowSidePanelHeight]+0+$[infostore.snowSidePanelY]
 *SidePanel: Colorset 0
 *SidePanel: Rows 7
 *SidePanel: Columns 1
@@ -138,7 +138,7 @@ Key o	A	4	Function SnowPlaceTop
 
 # Snow Panel
 *SnowPanel: Font $[infostore.font]
-*SnowPanel: Geometry $[infostore.snowSnowPanelWidth]x80+126+0
+*SnowPanel: Geometry $[infostore.snowSnowPanelWidth]x$[infostore.snowSnowPanelHeight]+126+0
 *SnowPanel: Colorset 0
 *SnowPanel: Rows 1
 *SnowPanel: Columns 11
@@ -146,7 +146,7 @@ Key o	A	4	Function SnowPlaceTop
 *SnowPanel: (1x1, Title "System Tray", Swallow(Respawn) stalonetray "Exec stalonetray -p -i 16")
 *SnowPanel: (1x1, Title XTerm, Icon tuxpcbig.png, Action(Mouse 1) "Exec xterm")
 *SnowPanel: (1x1, Title Emacs, Icon gnupc.png, Action(Mouse 1) "Exec emacs")
-*SnowPanel: (1x1, Title Pavucontrol, Icon gentoo_smooth.png, Action(Mouse 1) "Exec pavucontrol")
+*SnowPanel: (1x1, Title Pulsemixer, Icon gentoo_smooth.png, Action(Mouse 1) "Exec termwin pulsemixer")
 *SnowPanel: (1x1, Title GoatTracker, Icon goat.png, Action(Mouse 1) "Exec /home/cata/src/goattracker2/linux/goattrk2")
 *SnowPanel: (1x1, Title MilkyTracker, Icon milky_carton.png, Action(Mouse 1) "Exec milkytracker")
 *SnowPanel: (1x1, Title "The GIMP", Icon wilber_smooth.png, Action(Mouse 1) "Exec gimp")
@@ -169,7 +169,7 @@ AddToFunc InitFunction
 +	I	Module FvwmButtons SnowPanel
 +	I	Schedule 100 Exec feh --no-fehbg --bg-tile ~/wallpapers/snow6.png
 +	I	Schedule 200 Exec conky -c ~/.config/conky/2now.conf
-+	I	Schedule 300 Exec feh ~/images/fvwmpic/t.png -g 116x116+0+108
++	I	Schedule 300 Exec feh ~/images/fvwmpic/ametl.png -g 116x116+0+108
 #+	I	Exec feh --no-fehbg --bg-tile ~/wallpapers/snow6.png
 #+	I	Exec feh --no-fehbg --bg-tile ~/wallpapers/fvwmsnow.png
 #+	I	Exec xsetroot -solid black
