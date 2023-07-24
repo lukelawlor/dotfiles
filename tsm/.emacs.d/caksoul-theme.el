@@ -114,11 +114,13 @@
 		      (outline-6 (:foreground caksoul-cyan))
 		      (outline-7 (:foreground caksoul-green))
 		      (outline-8 (:foreground caksoul-yellow))
+		      (help-key-binding (:foreground caksoul-fvwm-fg :background caksoul-fvwm-bg))
+		      (secondary-selection (:background caksoul-hl))
 		      
 		      ;; font lock
 		      (font-lock-comment-face              (:foreground caksoul-blue))
 		      (font-lock-comment-delimiter-face    (:inherit 'font-lock-comment-face))
-		      (font-lock-constant-face             (:foreground caksoul-red))
+		      (font-lock-constant-face             (:foreground caksoul-green))
 		      (font-lock-string-face               (:foreground caksoul-red))
 		      (font-lock-doc-face                  (:inherit 'font-lock-string-face))
 		      (font-lock-doc-markup-face           (:inherit 'font-lock-constant-face))
@@ -241,6 +243,12 @@
 
 		      ;; dired
 		      (dired-broken-symlink (:weight 'bold :foreground caksoul-bg :background caksoul-red))
+
+		      ;; avy
+		      (avy-lead-face (:foreground caksoul-bg :background caksoul-red))
+		      (avy-lead-face-0 (:foreground caksoul-bg :background caksoul-blue))
+		      (avy-lead-face-1 (:foreground caksoul-bg :background caksoul-gray))
+		      (avy-lead-face-2 (:foreground caksoul-bg :background caksoul-magenta))
 		      ))
 
 (provide-theme 'caksoul)
