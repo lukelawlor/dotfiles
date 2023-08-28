@@ -116,6 +116,7 @@
 		      (outline-8 (:foreground caksoul-yellow))
 		      (help-key-binding (:foreground caksoul-fvwm-fg :background caksoul-fvwm-bg))
 		      (secondary-selection (:background caksoul-hl))
+                      (cursor (:background caksoul-blue))
 		      
 		      ;; font lock
 		      (font-lock-comment-face              (:foreground caksoul-blue))
@@ -249,6 +250,11 @@
 		      (avy-lead-face-0 (:foreground caksoul-bg :background caksoul-blue))
 		      (avy-lead-face-1 (:foreground caksoul-bg :background caksoul-gray))
 		      (avy-lead-face-2 (:foreground caksoul-bg :background caksoul-magenta))
-		      ))
+		      )
+
+                     ;; set the fringe size to 9 pixels
+		     ;; this makes emacs the same width as xterm for my setup
+                     (fringe-mode 9)
+		     )
 
 (provide-theme 'caksoul)

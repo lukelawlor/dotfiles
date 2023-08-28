@@ -1,3 +1,6 @@
+;; set startup file
+(setq initial-buffer-choice "~/notes/journal/todo.org")
+
 ;; setup packages
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -19,20 +22,27 @@
 (global-set-key (kbd "C-x C-0") #'delete-window)
 (define-key god-local-mode-map (kbd ".") #'repeat)
 (define-key god-local-mode-map (kbd "i") #'god-local-mode)
+
+;; functions for when god mode is enabled & disabled
+(defun my-god-cursor-enable ()
+  (setq cursor-type t)
+  (blink-cursor-mode 0)
+  )
+(defun my-god-cursor-disable ()
+  (setq cursor-type 'hbar)
+  (blink-cursor-mode t)
+  )
+(add-hook 'god-mode-enabled-hook #'my-god-cursor-enable)
+(add-hook 'god-mode-disabled-hook #'my-god-cursor-disable)
+
 (setq god-exempt-major-modes nil)
 (setq god-exempt-predicates nil)
-(god-mode)
+(god-mode-all)
 
-;; whick-key
+;; which-key
 (use-package which-key
   :ensure t)
 (which-key-mode 1)
-
-;; evil
-;;(use-package evil
-;;  :ensure t)
-;;(evil-define-key 'normal org-mode-map "<tab>" 'org-cycle)
-;;(evil-mode 1)
 
 ;; key-chord
 (use-package key-chord
@@ -45,7 +55,7 @@
 (use-package autothemer
   :ensure t)
 
-;; use my theme
+;; use my autothemer theme
 (load-theme 'caksoul t)
 
 ;; bindings
@@ -76,7 +86,7 @@
 (when window-system (global-prettify-symbols-mode t))
 
 ;; highlight the line that the cursor is on
-;;(when window-system (global-hl-line-mode t))
+(when window-system (global-hl-line-mode t))
 (setq hl-line-overlay-priority -9999)
 
 ;; don't use scroll bar
@@ -93,8 +103,8 @@
 (ido-mode 1)
 
 ;; swap C-x b and C-x C-b and use ibuffer because
-(global-set-key (kbd "C-x C-b") 'ido-switch-buffer)
-(global-set-key (kbd "C-x b") 'ibuffer)
+(global-set-key (kbd "C-x b") 'ido-switch-buffer)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;; don't ask for confirmation when doing things in ibuffer
 ;;(setq ibuffer-expert t)
@@ -130,6 +140,12 @@
  '((C . t)
    (python . t)))
 
+;; convert tabs to spaces
+(setq-default indent-tabs-mode nil)
+
+;; don't indent code blocks
+(setq org-edit-src-content-indentation 0)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -137,16 +153,18 @@
  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode nil)
  '(bookmark-set-fringe-mark nil)
+ '(custom-safe-themes
+   '("aa4f8043763bb56da8cf0d128a93ab891a97a1365395240af0819f44f718071d" default))
  '(evil-undo-system 'undo-redo)
  '(org-display-custom-times t)
  '(org-format-latex-options
    '(:foreground default :background default :scale 1.2 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
-		 ("begin" "$1" "$" "$$" "\\(" "\\[")))
+                 ("begin" "$1" "$" "$$" "\\(" "\\[")))
  '(org-preview-latex-image-directory "/tmp/ltximg/")
  '(org-startup-folded t)
  '(org-startup-truncated nil)
  '(org-startup-with-inline-images t)
- '(org-time-stamp-custom-formats '("<%a %-m.%-d.%y>" . "<%a %-I:%M %p>"))
+ '(org-time-stamp-custom-formats '("<%a %-m.%-d.%y>" . "<%-m.%-d %a %-I:%M %p>"))
  '(package-selected-packages
    '(god-mode rainbow-mode rainbow avy smex ido-vertical-mode autothemer use-package which-key key-chord evil))
  '(tool-bar-mode nil))
