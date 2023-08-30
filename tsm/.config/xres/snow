@@ -14,14 +14,15 @@ xterm*geometry: 70x25
 ! solarized colors
 
 ! special
+
+! darker foreground?
 !*.foreground:	#444747
 !*.cursorColor:	#444747
+
+! solarized light
 *.foreground:	#586e75
 *.cursorColor:  #586e76
-
 *.background:   #fdf6e3
-!*.foreground:   #000000
-!*.cursorColor:  #000000
 
 ! dark
 !*.foreground:	#aeb2c3

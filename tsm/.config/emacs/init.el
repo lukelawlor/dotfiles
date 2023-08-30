@@ -51,6 +51,16 @@
 (setq key-chord-two-keys-delay 0.5)
 (key-chord-define global-map "jj" #'god-local-mode)
 
+;; avy
+(use-package avy
+  :ensure t
+  :bind ("M-s" . avy-goto-char))
+
+;; rainbow-mode (show colors of hex values)
+(use-package rainbow-mode
+  :ensure t
+  :init (rainbow-mode 1))
+
 ;; autothemer
 (use-package autothemer
   :ensure t)
@@ -74,10 +84,13 @@
 
 ;; use relative line numbers
 (setq display-line-numbers-type 'relative)
-(setq-default frame-title-format '("emacs@tsm -> %b"))
+(setq-default frame-title-format '("emacs@tsm:%b"))
 
 ;; don't reset view to center of screen when the bottom of the view is hit
 (setq scroll-conservatively 101)
+
+;; resize by pixel on all frames
+(setq frame-resize-pixelwise t)
 
 ;; disable menu bar on terminal
 (unless window-system (menu-bar-mode -1))
@@ -87,7 +100,6 @@
 
 ;; highlight the line that the cursor is on
 (when window-system (global-hl-line-mode t))
-(setq hl-line-overlay-priority -9999)
 
 ;; don't use scroll bar
 (scroll-bar-mode -1)
@@ -110,26 +122,16 @@
 ;;(setq ibuffer-expert t)
 
 ;; ido-vertical
-;;(use-package ido-vertical-mode
-;;  :ensure t
-;;  :init (ido-vertical-mode 1))
-;;(setq ido-vertical-define-keys 'C-n-and-C-p-only)
+(use-package ido-vertical-mode
+  :ensure t
+  :init (ido-vertical-mode 1))
+(setq ido-vertical-define-keys 'C-n-and-C-p-only)
 
 ;; smex
-;;(use-package smex
-;;  :ensure t
-;;  :init (smex-initialize)
-;;  :bind ("M-x" . smex))
-
-;; avy
-(use-package avy
+(use-package smex
   :ensure t
-  :bind ("M-s" . avy-goto-char))
-
-;; rainbow-mode (show colors of hex values)
-(use-package rainbow-mode
-  :ensure t
-  :init (rainbow-mode 1))
+  :init (smex-initialize)
+  :bind ("M-x" . smex))
 
 ;; org-mode
 ;;(setq org-hide-emphasis-markers t)
@@ -140,11 +142,21 @@
  '((C . t)
    (python . t)))
 
-;; convert tabs to spaces
+;; indenting
+
+;; allow automatic indentation to insert tabs
 (setq-default indent-tabs-mode nil)
 
 ;; don't indent code blocks
 (setq org-edit-src-content-indentation 0)
+
+;; CC mode
+
+;; indent style
+(setq c-default-style "linux")
+
+;; display line numbers
+(add-hook 'c-mode-common-hook (lambda () (display-line-numbers-mode t)))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -153,13 +165,13 @@
  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode nil)
  '(bookmark-set-fringe-mark nil)
- '(custom-safe-themes
-   '("aa4f8043763bb56da8cf0d128a93ab891a97a1365395240af0819f44f718071d" default))
  '(evil-undo-system 'undo-redo)
+ '(indent-tabs-mode t)
+ '(max-mini-window-height 12)
  '(org-display-custom-times t)
  '(org-format-latex-options
    '(:foreground default :background default :scale 1.2 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
-                 ("begin" "$1" "$" "$$" "\\(" "\\[")))
+		 ("begin" "$1" "$" "$$" "\\(" "\\[")))
  '(org-preview-latex-image-directory "/tmp/ltximg/")
  '(org-startup-folded t)
  '(org-startup-truncated nil)

@@ -5,9 +5,6 @@
 		     ((((class color) (min-colors #xFFFFFF)))
 
 		      ;; Specify the color palette, color columsn correspond to each of the classes above
-		      (caksoul-fg      "#586E75")
-		      (caksoul-bg      "#FDF6E3")
-		      (caksoul-hl      "#EEE8D5")
 		      (caksoul-red     "#DC322F")
 		      (caksoul-green   "#859900")
 		      (caksoul-blue    "#268BD2")
@@ -19,7 +16,16 @@
 		      (caksoul-fvwm-fg "#000000")
 		      (caksoul-fvwm-bg "#AEB2C3")
 		      (caksoul-fvwm-hi "#EDEEF3")
-		      (caksoul-fvwm-sh "#74798E"))
+		      (caksoul-fvwm-sh "#74798E")
+		      ;; light
+		      (caksoul-fg      "#586E75")
+		      (caksoul-bg      "#FDF6E3")
+		      (caksoul-hl      "#EEE8D5")
+		      ;; dark
+		      ;;(caksoul-fg      caksoul-fvwm-bg)
+		      ;;(caksoul-bg      caksoul-fvwm-fg)
+		      ;;(caksoul-hl      "#34394C")
+                      )
 
 		      ;; Specifications for Emacs faces.
 		      ;; Simpler than deftheme, just specify a face name and
@@ -116,7 +122,6 @@
 		      (outline-8 (:foreground caksoul-yellow))
 		      (help-key-binding (:foreground caksoul-fvwm-fg :background caksoul-fvwm-bg))
 		      (secondary-selection (:background caksoul-hl))
-                      (cursor (:background caksoul-blue))
 		      
 		      ;; font lock
 		      (font-lock-comment-face              (:foreground caksoul-blue))
@@ -180,8 +185,8 @@
 		      (org-default (:inherit 'default))
 		      (org-hide (:foreground caksoul-gray))
 		      (org-dispatcher-highlight (:weight 'bold :inherit 'highlight))
-		      (org-level-1 (:inherit 'outline-1))
-		      (org-level-2 (:inherit 'outline-2))
+		      (org-level-1 (:inherit 'outline-1 :height 1.25))
+		      (org-level-2 (:inherit 'outline-2 :height 1.1))
 		      (org-level-3 (:inherit 'outline-3))
 		      (org-level-4 (:inherit 'outline-4))
 		      (org-level-5 (:inherit 'outline-5))
@@ -255,6 +260,12 @@
                      ;; set the fringe size to 9 pixels
 		     ;; this makes emacs the same width as xterm for my setup
                      (fringe-mode 9)
+
+		     ;; set the cursor color and have it work in new frames using emacsclient
+		     ;; light
+		     (setq default-frame-alist '((cursor-color . "#268BD2")))
+		     ;; dark
+		     ;;(setq default-frame-alist '((cursor-color . "#AEB2C3")))
 		     )
 
 (provide-theme 'caksoul)

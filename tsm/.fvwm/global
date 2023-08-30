@@ -1,3 +1,6 @@
+# Infostore
+	InfoStoreAdd emacsCmd "Exec emacsclient -c -s /tmp/emacs1000/server -e \"(set-frame-position nil 126 85)\""
+	
 # Misc settings
 
 	# Icon path
@@ -21,7 +24,7 @@
 	# Focus
 	Style * SloppyFocus
 	Style * FPGrabFocus
-	Style * SnapAttraction 60 Screen
+	Style * SnapAttraction 10 Screen
 
 # Styles
 Emulate Mwm
@@ -177,7 +180,7 @@ Key u	A	4	Stick
 Key v	A	4	Function MaxFill
 Key w	A	4	Exec librewolf
 Key x	A	4	Close
-Key z	A	4	Exec emacs
+Key z	A	4	$[infostore.emacsCmd]
 
 # Menus
 AddToMenu WindowOps
