@@ -142,18 +142,22 @@
  '((C . t)
    (python . t)))
 
-;; indenting
+;; indentation
 
 ;; allow automatic indentation to insert tabs
 (setq-default indent-tabs-mode nil)
 
-;; don't indent code blocks
-(setq org-edit-src-content-indentation 0)
+;; Org mode
+(setq org-edit-src-content-indentation 8)
 
 ;; CC mode
+(require 'cc-mode)
 
 ;; indent style
 (setq c-default-style "linux")
+
+;; style additions
+(c-set-offset 'inline-open 0)
 
 ;; display line numbers
 (add-hook 'c-mode-common-hook (lambda () (display-line-numbers-mode t)))
@@ -168,11 +172,12 @@
  '(evil-undo-system 'undo-redo)
  '(indent-tabs-mode t)
  '(max-mini-window-height 12)
+ '(org-babel-remote-temporary-directory "/tmp/org/babeltmp/")
  '(org-display-custom-times t)
  '(org-format-latex-options
    '(:foreground default :background default :scale 1.2 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
 		 ("begin" "$1" "$" "$$" "\\(" "\\[")))
- '(org-preview-latex-image-directory "/tmp/ltximg/")
+ '(org-preview-latex-image-directory "/tmp/org/ltximg/")
  '(org-startup-folded t)
  '(org-startup-truncated nil)
  '(org-startup-with-inline-images t)
