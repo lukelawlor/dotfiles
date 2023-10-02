@@ -1,0 +1,22 @@
+# my sick crontab to help you all
+# good notes:
+# me use dcron
+# user running cron is cata
+# min (0-59), hour (0-23), day of month (1-31), month (1-12), day of week (0-7 or 3 day abbreviation, 0 is sun)
+
+#*	*	*	*	*	DISPLAY=:0 $HOME/.local/bin/msg heyworld; DISPLAY=:0 $HOME/.local/bin/setlumr 1 5000
+
+# Messages
+0	6	*	*	*	DISPLAY=:0 $HOME/.local/bin/msg good morning.
+0	16	*	*	1-5	DISPLAY=:0 $HOME/.local/bin/msg the homeworkening. 
+
+# Day dimming
+0	17	*	*	*	DISPLAY=:0 $HOME/.local/bin/setlumr 1 5000
+0	18	*	*	*	DISPLAY=:0 $HOME/.local/bin/setlumr 1 4000
+0	19	*	*	*	DISPLAY=:0 $HOME/.local/bin/setlumr 1 3000
+0	20	*	*	*	DISPLAY=:0 $HOME/.local/bin/setlumr 1 2500
+
+# Night night
+45	20	*	*	*	DISPLAY=:0 $HOME/.local/bin/setlumr 0.8 2000; DISPLAY=:0 $HOME/.local/bin/msg go to sleep pls.
+0	21	*	*	*	DISPLAY=:0 $HOME/.local/bin/setlumr 0.5 1500; DISPLAY=:0 $HOME/.local/bin/msg im sleeping soon bro. 10 mins.
+10	21	*	*	*	loginctl poweroff

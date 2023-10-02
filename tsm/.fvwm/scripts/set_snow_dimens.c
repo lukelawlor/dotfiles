@@ -22,7 +22,7 @@ int main(void)
 	const int iLeftClusterWidth = 116;
 	const int iTopClusterHeight = 75;
 	const int iSidePanelY = 644;
-	const int iDefaultSnowPanelWidth = 787;
+	const int iDefaultSnowPanelWidth = 1378;
 
 	// Terminal emulator dimensions
 	const int iTermBorderWidth = 2;

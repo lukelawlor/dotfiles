@@ -1,0 +1,6 @@
+# my sick crontab to help you all
+# good notes:
+# user running cron is cata
+# min (0-59), hour (0-23), day of month (1-31), month (1-12), day of week (0-7 or 3 day abbreviation, 0 is sun)
+
+*	*	*	*	*	DISPLAY=:0 $HOME/.local/bin/setlumr 0.8 2000; DISPLAY=:0 $HOME/.local/bin/msg heyworld

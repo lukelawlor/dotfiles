@@ -1,5 +1,5 @@
 # Infostore
-	InfoStoreAdd emacsCmd "Exec emacsclient -c -s /tmp/emacs1000/server -e \"(set-frame-position nil 126 85)\""
+	InfoStoreAdd emacsCmd "Exec emacsclient -c -a \"emacs\" -s /tmp/emacs1000/server -e \"(set-frame-position nil 126 85)\""
 	
 # Misc settings
 
