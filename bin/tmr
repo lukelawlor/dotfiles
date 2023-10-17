@@ -1,0 +1,11 @@
+#!/bin/sh
+#AUTHOR lukelawlor
+#DATE i forgot
+#PURPOSE set a timer and alert when its over
+#USAGE tmr <args passed to sleep>
+date +"time now: %l:%M"
+echo sleeping for $@
+sleep $@
+echo done
+aplay ~/misc/snd/snare.wav --quiet &
+echo "timer for $@ over" | ~/.config/pomocom/msg_dzen.sh &>/dev/null &

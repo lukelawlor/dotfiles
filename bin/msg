@@ -1,0 +1,4 @@
+#!/bin/sh
+#msg: message
+#dependencies: pomocom
+echo $@ | /home/cata/.config/pomocom/msg_dzen.sh

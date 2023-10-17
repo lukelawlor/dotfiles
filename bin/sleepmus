@@ -1,0 +1,43 @@
+#!/bin/sh
+# luke lawlor
+# 6.27.23
+# play music for when I go to sleep
+
+# starting volume
+volstart=100
+
+# ending volume
+volend=0
+
+# minutes until music stops
+mums=7
+
+# minutes to wait between volume decrements
+mwvd=1
+
+# don't edit variables past this point
+
+# sets pulseaudio volume
+setvol(){
+	pactl -- set-sink-volume @DEFAULT_SINK@ "$1"%
+}
+
+#mpv ~/misc/snd/rain.ogg &
+
+# volume to decrement by
+voldec=$[$[$[$volstart - $volend] / $mums] * $mwvd]
+
+# current volume
+vol=$volstart
+
+setvol $vol
+
+while [[ $vol -gt $volend ]]; do
+	sleep "$mwvd"m
+	vol=$[$vol - $voldec]
+	setvol $vol
+done
+
+killall mpv
+
+loginctl poweroff

@@ -1,0 +1,4 @@
+#!/bin/sh
+# copies x screen contents to the clipboard
+scrot -o /tmp/scrot.png
+xclip -selection clipboard -target image/png -i /tmp/scrot.png

@@ -1,0 +1,8 @@
+#!/bin/bash
+#setlumr: SET Lumination with Redshift
+#usage: setlumr <0-1 for screen brightness> <redshift temperature value, 5000 = somewhat normal, lower becomes more yellow/red>
+#dependencies: xrandr, redshift
+#assumptions: DP-1 is your display
+redshift -P
+xrandr --output DP-1 --brightness $1
+redshift -O $2
