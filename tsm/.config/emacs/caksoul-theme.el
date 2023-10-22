@@ -5,6 +5,8 @@
 		     ((((class color) (min-colors #xFFFFFF)))
 
 		      ;; Specify the color palette, color columsn correspond to each of the classes above
+
+		      ;; caksoul
 		      (caksoul-red     "#DC322F")
 		      (caksoul-green   "#859900")
 		      (caksoul-blue    "#268BD2")
@@ -47,18 +49,18 @@
 		      (highlight (:background caksoul-hl))
 		      (region (:extend t :background caksoul-blue :foreground caksoul-bg))
 		      (mode-line
-		       (:box
-			(:line-width -1 :style 'released-button)
-			:foreground caksoul-fvwm-fg :background caksoul-fvwm-bg :weight 'normal))
+			(:box
+			 (:line-width -1 :style 'released-button)
+			 :foreground caksoul-fvwm-fg :background caksoul-fvwm-bg :weight 'normal))
 		      (mode-line-inactive
-		       (:box
-			(:line-width -1 :style 'released-button)
-			:foreground caksoul-fvwm-fg :background caksoul-fvwm-bg :weight 'normal))
+			(:box
+			 (:line-width -1 :style 'released-button)
+			 :foreground caksoul-fvwm-fg :background caksoul-fvwm-bg :weight 'normal))
 		      (window-divider (:foreground caksoul-fvwm-bg))
 		      (window-divider-first-pixel (:foreground caksoul-fvwm-hi))
 		      (window-divider-last-pixel (:foreground caksoul-fvwm-sh))
 		      (minibuffer-prompt (:foreground caksoul-blue))
-		      (fringe (:background caksoul-hl))
+		      (fringe (:background caksoul-bg))
 		      (mouse-drag-and-drop-region (:inherit 'region))
 		      (isearch (:foreground caksoul-bg :background caksoul-fg))
 		      (isearch-fail (:foreground caksoul-bg :background caksoul-red))
@@ -185,8 +187,10 @@
 		      (org-default (:inherit 'default))
 		      (org-hide (:foreground caksoul-gray))
 		      (org-dispatcher-highlight (:weight 'bold :inherit 'highlight))
-		      (org-level-1 (:inherit 'outline-1 :height 1.25))
-		      (org-level-2 (:inherit 'outline-2 :height 1.1))
+		      ;;(org-level-1 (:inherit 'outline-1 :height 1.25))
+		      ;;(org-level-2 (:inherit 'outline-2 :height 1.1))
+		      (org-level-1 (:inherit 'outline-1))
+		      (org-level-2 (:inherit 'outline-2))
 		      (org-level-3 (:inherit 'outline-3))
 		      (org-level-4 (:inherit 'outline-4))
 		      (org-level-5 (:inherit 'outline-5))
@@ -258,15 +262,15 @@
 		      )
 
                      ;; set the fringe size to 9 pixels
-		     ;; this makes emacs the same width as xterm for my setup
+		     ;; this is the border size for my terminals
                      (fringe-mode 9)
+
+                     ;; resize by pixel on all frames
+                     (setq frame-resize-pixelwise t)
 
 		     ;; set the cursor color and have it work in new frames using emacsclient
 		     ;; light
 		     (setq default-frame-alist '((cursor-color . "#268BD2")))
-
-		     ;; dark
-		     ;;(setq default-frame-alist '((cursor-color . "#AEB2C3")))
 		     )
 
 (provide-theme 'caksoul)
