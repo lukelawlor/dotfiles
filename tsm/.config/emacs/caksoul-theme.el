@@ -264,6 +264,7 @@
 		     ;; set the cursor color and have it work in new frames using emacsclient
 		     ;; light
 		     (setq default-frame-alist '((cursor-color . "#268BD2")))
+
 		     ;; dark
 		     ;;(setq default-frame-alist '((cursor-color . "#AEB2C3")))
 		     )

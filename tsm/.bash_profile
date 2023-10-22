@@ -12,13 +12,10 @@ pulseaudio -D
 # Set pulseaudio volume to low so I don't hurt my ears
 pactl -- set-sink-volume @DEFAULT_SINK@ 18%
 
-# Create my weird runtime variables directory
-mkdir -p /tmp/cv
+# Create cata variables directory
+mkdir -p /tmp/cv /tmp/lwd
 
-# Create librewolf downloads directory
-mkdir -p /tmp/lwd
-
-# Initialize some variables
+# Initialize cata variables
 echo dwm >/tmp/cv/wm
 
 # dcron setup

@@ -20,7 +20,7 @@ xrdb ~/.Xresources
 
 killwmwins(){
 	# Kill window manager specific windows (i.e. those used as a decoration in specific window managers)
-	killall wmclock wmsystemtray wmauda wmbubble wmwork wmtop conky xsnow stalonetray slstatus picom
+	killall wmclock wmsystemtray wmauda wmbubble wmwork wmtop conky xsnow stalonetray slstatus picom feh
 }
 
 # Discount display manager
@@ -40,9 +40,6 @@ while true; do
 			$xlaunch fvwm
 			;;
 		dwm )
-			xrdb ~/.config/xres/dwm
-			feh --no-fehbg --bg-tile /home/cata/wallpapers/sea2.png
-			/home/cata/src/slstatus/slstatus &
 			$xlaunch /home/cata/src/dwm/dwm
 			;;
 		* )
