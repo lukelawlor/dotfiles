@@ -1,0 +1,45 @@
+! font/styling
+*font:xft:Terminus (TTF):size=12:antialias=false
+
+! emacs
+emacs.font: Terminus (TTF):size=16:antialias=false
+
+! colors (gruvbox dark)
+! note: dark colors have lower numbers (ex. color0 is dark black, color8 is gray)
+
+! special
+*.foreground:   #ebdbb2
+*.background:   #282828
+*.cursorColor:  #ebdbb2
+
+! black
+*.color0:	#000000
+*.color8:	#928374
+
+! red
+*.color9:       #fb4934
+*.color1:       #cc241d
+
+! green
+*.color2:       #98971a
+*.color10:      #b8bb26
+
+! yellow
+*.color3:       #d79921
+*.color11:      #fabd2f
+
+! blue
+*.color4:       #458588
+*.color12:      #83a598
+
+! magenta
+*.color5:       #b16286
+*.color13:      #d3869b
+
+! cyan
+*.color6:       #689d6a
+*.color14:      #8ec07c
+
+! white
+*.color7:       #a89984
+*.color15:      #ebdbb2
