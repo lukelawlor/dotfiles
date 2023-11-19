@@ -13,6 +13,12 @@
 	#InfoStoreAdd bg	gray66
 	#InfoStoreAdd hi	white
 	#InfoStoreAdd sh	#A85700
+	
+	# CDE brown
+	#InfoStoreAdd fg black
+	#InfoStoreAdd bg #C6B2A8
+	#InfoStoreAdd hi #E7DEDA
+	#InfoStoreAdd sh #675D58
 
 # Snow Active Colors
 
@@ -84,11 +90,69 @@ AddToFunc SnowPlaceTop
 +	I	Resize $[infostore.snowTopSpaceWidth]p $[infostore.snowTopSpaceHeight]p
 #+	I	Move 933p 0p
 #+	I	Resize 977p 60p
-+	I	Function SnowWarp
++	I	Function TitleWarp
+
+AddToFunc SnowTileLeft
++	I	Move $[infostore.snowSpaceLeft]p $[infostore.snowSpaceTop]p
++	I	Resize $[infostore.snowSpaceWidthHalf]p $[infostore.snowSpaceHeight]p
++	I	Function TitleWarp
+
+AddToFunc SnowTileRight
++	I	Move $[infostore.snowSpaceCenterX]p $[infostore.snowSpaceTop]p
++	I	Resize $[infostore.snowSpaceWidthHalf]p $[infostore.snowSpaceHeight]p
++	I	Function TitleWarp
+
+AddToFunc SnowTileTop
++	I	Move $[infostore.snowSpaceLeft]p $[infostore.snowSpaceTop]p
++	I	Resize $[infostore.snowSpaceWidth]p $[infostore.snowSpaceHeightHalf]p
++	I	Function TitleWarp
+
+AddToFunc SnowTileBottom
++	I	Move $[infostore.snowSpaceLeft]p $[infostore.snowSpaceCenterY]p
++	I	Resize $[infostore.snowSpaceWidth]p $[infostore.snowSpaceHeightHalf]p
++	I	Function TitleWarp
+
+# To be called at the end of every SnowTileQuad* function
+AddToFunc SnowQuadTail
++	I	Resize $[infostore.snowSpaceWidthHalf]p $[infostore.snowSpaceHeightHalf]p
++	I	Function TitleWarp
+
+AddToFunc SnowTileQuad1
++	I	Move $[infostore.snowSpaceCenterX]p $[infostore.snowSpaceTop]p
++	I	Function SnowQuadTail
+
+AddToFunc SnowTileQuad2
++	I	Move $[infostore.snowSpaceLeft]p $[infostore.snowSpaceTop]p
++	I	Function SnowQuadTail
+
+AddToFunc SnowTileQuad3
++	I	Move $[infostore.snowSpaceLeft]p $[infostore.snowSpaceCenterY]p
++	I	Function SnowQuadTail
+
+AddToFunc SnowTileQuad4
++	I	Move $[infostore.snowSpaceCenterX]p $[infostore.snowSpaceCenterY]p
++	I	Function SnowQuadTail
+
+AddToFunc SnowPenguinsOn
++	I	Exec killall xpenguins
++	I	Exec aplay ~/misc/snd/lorapcow.wav
++	I	Schedule 100 Exec xpenguins --nomenu -q
+
+AddToFunc SnowPenguinsOff
++	I	Exec killall xpenguins
++	I	Exec mpv ~/misc/snd/NOOOO.mp3
 
 # Key bindings
-Key e	A	4	Function SnowMaximize
-Key o	A	4	Function SnowPlaceTop
+Key e			A	4	Function SnowMaximize
+Key z			A	4	Function SnowPlaceTop
+Key Left		A	4	Function SnowTileLeft
+Key Right		A	4	Function SnowTileRight
+Key Up			A	4	Function SnowTileTop
+Key Down		A	4	Function SnowTileBottom
+Key bracketleft		A	4	Function SnowTileQuad2
+Key bracketright	A	4	Function SnowTileQuad1
+Key apostrophe		A	4	Function SnowTileQuad4
+Key semicolon		A	4	Function SnowTileQuad3
 
 # Pager settings
 *FvwmPagerFont none
@@ -119,12 +183,14 @@ Key o	A	4	Function SnowPlaceTop
 *GoodButtons: Geometry 200x200+0+0
 *GoodButtons: Font $[infostore.font]
 *GoodButtons: Colorset 0
-*GoodButtons: Rows 2
+*GoodButtons: Rows 3
 *GoodButtons: Columns 2
 *GoodButtons: (1x1, Title "Kill", Action(Mouse 1) "Close")
 *GoodButtons: (1x1, Title "FvwmConsole", Action(Mouse 1) "Module FvwmConsole -terminal xterm")
-*GoodButtons: (1x1, Title "Move", Action(Mouse 1) "Move")
-*GoodButtons: (1x1, Title "Resize", Action(Mouse 1) "Resize")
+*GoodButtons: (1x1, Title "Calendar", Action(Mouse 1) "Exec gimp ~/projects/gimp/cal.xcf")
+*GoodButtons: (1x1, Title "WinList", Action(Mouse 1) "WindowList")
+*GoodButtons: (1x1, Title "XPenguins", Action(Mouse 1) "Function SnowPenguinsOn")
+*GoodButtons: (1x1, Title "NoPenguins", Action(Mouse 1) "Function SnowPenguinsOff")
 
 # Side Panel
 *SidePanel: Font $[infostore.font]
@@ -132,31 +198,31 @@ Key o	A	4	Function SnowPlaceTop
 *SidePanel: Colorset 0
 *SidePanel: Rows 6
 *SidePanel: Columns 1
-*SidePanel: (1x6, Swallow FvwmIconMan "Module FvwmIconMan")
-#*SidePanel: (1x1, Title "Yo", Icon xterm-linux.xpm, Action(Mouse 1) "Exec tuxclick")
-#*SidePanel: (1x1, Swallow GoodButtons "Module FvwmButtons GoodButtons")
+*SidePanel: (1x4, Swallow FvwmIconMan "Module FvwmIconMan")
+*SidePanel: (1x1, Title "Yo", Icon wayne.png, Action(Mouse 1) "Exec guyclick")
+*SidePanel: (1x1, Swallow GoodButtons "Module FvwmButtons GoodButtons")
 
 # Snow Panel
 *SnowPanel: Font $[infostore.font]
 *SnowPanel: Geometry $[infostore.snowSnowPanelWidth]x$[infostore.snowSnowPanelHeight]+126+0
 *SnowPanel: Colorset 0
 *SnowPanel: Rows 1
-*SnowPanel: Columns 12
-*SnowPanel: (1x1, Swallow wmclock "Exec wmclock -12 -led yellow")
+*SnowPanel: Columns 14
 #*SnowPanel: (1x1, Title "Clock Sick", Swallow wmclock "Exec wmclock -12 -led yellow")
+*SnowPanel: (1x1, Swallow wmclock "Exec wmclock -12 -led yellow")
+*SnowPanel: (1x1, Title NeoMutt, Icon mailbox.png, Action(Mouse 1) "Exec termwin theMuttMobile neomuttgt")
 *SnowPanel: (1x1, Title XTerm, Icon tuxpcbig.png, Action(Mouse 1) "Exec xterm")
-*SnowPanel: (1x1, Title Emacs, Icon gnupc.png, Action(Mouse 1) $[infostore.emacsCmd])
-*SnowPanel: (1x1, Title Pulsemixer, Icon gentoo_smooth.png, Action(Mouse 1) "Exec termwin pulsemixer")
+*SnowPanel: (1x1, Title Emacs, Icon gnuprofile.png, Action(Mouse 1) $[infostore.emacsCmd])
+*SnowPanel: (1x1, Title Pavucontrol, Icon gentoo_peach.png, Action(Mouse 1) "Exec pavucontrol -t 3")
 *SnowPanel: (1x1, Title GoatTracker, Icon goat.png, Action(Mouse 1) "Exec /home/cata/src/goattracker2/linux/goattrk2")
 *SnowPanel: (1x1, Title MilkyTracker, Icon milky_carton.png, Action(Mouse 1) "Exec milkytracker")
 *SnowPanel: (1x1, Title "The GIMP", Icon wilber_smooth.png, Action(Mouse 1) "Exec gimp")
 *SnowPanel: (1x1, Title Galculator, Icon sjis.png, Action(Mouse 1) "Exec galculator")
 *SnowPanel: (1x1, Title "SoupDL 06", Icon eggcool.png, Action(Mouse 1) "Exec soupdltest")
-*SnowPanel: (1x1, Title "LibreWolf", Icon librewolf.png, Action(Mouse 1) "Exec librewolf")
+*SnowPanel: (1x1, Title "LibreWolf", Icon thing.png, Action(Mouse 1) "Exec librewolf")
+*SnowPanel: (1x1, Title "Spy Kidz", Swallow xeyes "Exec xeyes -center $[infostore.xeyesBg] -fg $[infostore.xeyesFg] -outline $[infostore.xeyesFg] +render")
 *SnowPanel: (2x1, Title "System Tray", Swallow(Respawn) stalonetray "Exec stalonetray -p -i 16")
 #*SnowPanel: (1x1, Title Mailz, Swallow gnubiff "Exec gnubiff -n")
-#*SnowPanel: (1x1, Title NeoMutt, Icon mailbox.png, Action(Mouse 1) "Exec fvwm_neomutt")
-#*SnowPanel: (1x1, Title "Spy Kids", Swallow xeyes "Exec xeyes -center $[infostore.xeyesBg] -fg $[infostore.xeyesFg] -outline $[infostore.xeyesFg] +render &")
 #*SnowPanel: (1x1, Title "insert xeyes here")
 #*SnowPanel: (2x1, Swallow FvwmPager "Module FvwmPager")
 #*SnowPanel: (1x1, Title Pavucontrol, Icon cd.png, Action(Mouse 1) "Exec pavucontrol")
@@ -169,6 +235,7 @@ AddToFunc InitFunction
 +	I	Module FvwmButtons SidePanel
 +	I	Module FvwmButtons SnowPanel
 +	I	Schedule 100 Exec feh --no-fehbg --bg-tile ~/wallpapers/snow6.png
+#+	I	Schedule 100 Exec feh --no-fehbg --bg-scale ~/wallpapers/weirdfield.jpg
 +	I	Schedule 200 Exec conky -c ~/.config/conky/2now.conf
 +	I	Schedule 300 Exec feh ~/images/fvwmpic/ametl.png -g 116x116+0+108
 #+	I	Exec feh --no-fehbg --bg-tile ~/wallpapers/snow6.png

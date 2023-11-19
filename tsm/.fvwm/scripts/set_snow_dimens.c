@@ -71,7 +71,10 @@ int main(void)
 	int snowSpaceWidth = iScreenWidth - iBorderSize - snowSpaceLeft;
 	int snowSpaceHeight = iScreenHeight - iBorderSize - iTitleHeight - snowSpaceTop;
 
-
+	int snowSpaceWidthHalf = (iScreenWidth - snowSpaceLeft) / 2 - iBorderSize;
+	int snowSpaceHeightHalf = (iScreenHeight - snowSpaceTop) / 2 - iBorderSize - iTitleHeight;
+	int snowSpaceCenterX = snowSpaceLeft + (iScreenWidth - snowSpaceLeft) / 2;
+	int snowSpaceCenterY = snowSpaceTop + (iScreenHeight - snowSpaceTop) / 2;
 
 	int snowSidePanelY = iSidePanelY;
 	int snowSidePanelHeight = iScreenHeight - iSidePanelY - iBorderSize;
@@ -98,6 +101,10 @@ int main(void)
 	INFOSTORE_ADD(snowSpaceTop);
 	INFOSTORE_ADD(snowSpaceWidth);
 	INFOSTORE_ADD(snowSpaceHeight);
+	INFOSTORE_ADD(snowSpaceWidthHalf);
+	INFOSTORE_ADD(snowSpaceHeightHalf);
+	INFOSTORE_ADD(snowSpaceCenterX);
+	INFOSTORE_ADD(snowSpaceCenterY);
 	INFOSTORE_ADD(snowSidePanelY);
 	INFOSTORE_ADD(snowSidePanelHeight);
 	INFOSTORE_ADD(snowSnowPanelWidth);

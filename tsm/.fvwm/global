@@ -1,5 +1,5 @@
 # Infostore
-	InfoStoreAdd emacsCmd "Exec emacsclient -c -a \"emacs\" -s /tmp/emacs1000/server -e \"(set-frame-position nil 126 85)\""
+	InfoStoreAdd emacsCmd "Exec emacsclient -c -s /tmp/emacs1000/server -e \"(set-frame-position nil 126 85)\""
 	
 # Misc settings
 
@@ -35,7 +35,7 @@ Style * IconBackgroundRelief 2
 Style * IconBackgroundPadding 2
 Style * DecorateTransient
 Style * MiniIcon raincatc.png
-Style ** IconOverride, Icon sjis.png
+Style ** IconOverride, Icon sxis.png
 MenuStyle * PopupImmediately, PopdownImmediately, PopupOffset 0 100
 MenuStyle * VerticalItemSpacing 3 3, VerticalTitleSpacing 3 3
 MenuStyle * MenuColorset 0
@@ -59,7 +59,7 @@ Style FvwmIconMan	NeverFocus, NoTitle, Sticky, WindowListSkip, Handles, BorderWi
 Style feh		NoTitle, Sticky
 Style conky		NoTitle, Sticky, Handles, BorderWidth 7, NeverFocus, WindowListSkip
 Style xpenguins		WindowListSkip
-Style emacs		MiniIcon emacs.xpm
+Style emacs		EWMHMiniIconOverride, MiniIcon emacs.xpm
 
 # Functions
 AddToFunc FocusRaise
@@ -143,6 +143,7 @@ AddToFunc Fullscreen
 # 2 - middle
 # 3 - right
 
+# My mouse bindings
 Mouse 0 I	N	Iconify
 Mouse 3 I	N	Close
 Mouse 1	R	A	Menu RootMenu
@@ -155,11 +156,14 @@ Mouse 0 4	A	Menu WindowOps
 Mouse 1	FSTW	4	Function DragMove
 Mouse 3	FSTW	4	Function DragResize
 
+# My key bindings
+# On Gentoo, key symbol names are available at /usr/include/X11/keysymdef.h
+# Just use them without the XK_ prefix
 Key 7	A	4	Scroll -100 +0
 Key 8	A	4	Scroll +0 +100
 Key 9	A	4	Scroll +0 -100 
 Key 0	A	4	Scroll +100 +0
-Key a	A	4	Exec pavucontrol
+Key a	A	4	Exec termwin null pulsemixer
 Key c	A	4	Exec xterm
 Key d	A	4	Function MaxHori
 Key e	A	4	Maximize
@@ -176,11 +180,15 @@ Key q	A	4	Quit
 Key r	A	4	Function DragResizeKeyboard
 Key s	A	4	Function MaxVert
 Key t	A	4	Module FvwmConsole -terminal xterm
-Key u	A	4	Stick
+Key y	A	4	Stick
+Key u	A	4	Exec slock
 Key v	A	4	Function MaxFill
 Key w	A	4	Exec librewolf
 Key x	A	4	Close
-Key z	A	4	$[infostore.emacsCmd]
+Key o	A	4	$[infostore.emacsCmd]
+
+# Disabling built-in key bindings
+Key Tab A M -
 
 # Menus
 AddToMenu WindowOps
@@ -248,6 +256,7 @@ AddToFunc   IconManClick
 # Init functions
 AddToFunc InitFunction
 +	I Module FvwmPager
++	I Exec echo xterm >/tmp/cv/term
 
 AddToFunc RestartFunction
 +	I Function InitFunction

@@ -6,4 +6,5 @@ Read global
 
 # Theme-specific configs
 #Read theme/slackware
+#Read theme/oldsnow
 Read theme/snow
