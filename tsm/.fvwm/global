@@ -1,5 +1,6 @@
 # Infostore
 	InfoStoreAdd emacsCmd "Exec emacsclient -c -s /tmp/emacs1000/server -e \"(set-frame-position nil 126 85)\""
+	InfoStoreAdd calendarCmd "Exec gimp ~/projects/gimp/cal.xcf"
 	
 # Misc settings
 
@@ -205,7 +206,7 @@ AddToMenu WindowOps
 +	"Destroy"	Destroy
 
 AddToMenu SysMenu
-+	"Restart fvwm"		Restart fvwm2
++	"Restart Fvwm"		Restart fvwm2
 + 	"Exit X"		Popup QuitMenu #Quit
 
 AddToMenu QuitMenu "Srsly?" Title
@@ -213,26 +214,45 @@ AddToMenu QuitMenu "Srsly?" Title
 +	"Yes"		Quit
 
 AddToMenu NetMenu
++	"NeoMutt"	Exec termwin theMuttMobile neomuttgt
 +	"Librewolf"	Exec librewolf
 
 AddToMenu UtilMenu
++	"Copyscr"	Exec copyscr
 +	"Galculator"	Exec galculator
++	"Genius"	Exec termwin theGeniusMobile genius
++	"GNU Emacs"	$[infostore.emacsCmd]
++	"PCManFM"	Exec pcmanfm-qt
 
 AddToMenu GfxMenu
++	"Calendar"				$[infostore.calendarCmd]
 +	"GNU Image Manipulation Program"	Exec gimp
 
 AddToMenu AudioMenu
++	"Pavucontrol"		Exec pavucontrol
++	"Pulsemixer"		Exec termwin null pulsemixer
++	""			Nop
++	"C* Music Player"	Exec termwin theCmusMobile cmus
++	""			Nop
 +	"MilkyTracker"		Exec milkytracker
++	"GoatTracker"		Exec /home/cata/src/goattracker2/linux/goattrk2
++	""			Nop
++	"Audacity"		Exec audacity
+
+# Defines GameMenu
+Read gamemenu
 
 AddToMenu RootMenu "Root Menu"  Title
 +	"XTerm"			Exec xterm
 +	"XTerm Terminus"	Exec xterm -fn "xft:Terminus (TTF):size=12"
 +	"XTerm Big Font"	Exec xterm -fn "xft:Terminus (TTF):size=15:style=bold"
 +	""		Nop
-+	"Net"		Popup NetMenu
++	"Utilities"	Popup UtilMenu
 +	"Graphics"	Popup GfxMenu
 +	"Audio"		Popup AudioMenu
-+	"Utilities"	Popup UtilMenu
++	"Net"		Popup NetMenu
++	"Games"		Popup GameMenu
++	""		Nop
 +	"System"	Popup SysMenu
 
 # Icon Manager

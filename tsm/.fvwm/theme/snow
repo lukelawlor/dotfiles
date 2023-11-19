@@ -154,6 +154,42 @@ Key bracketright	A	4	Function SnowTileQuad1
 Key apostrophe		A	4	Function SnowTileQuad4
 Key semicolon		A	4	Function SnowTileQuad3
 
+# Menus
+DestroyMenu WindowOps
+AddToMenu WindowOps
++	"Window Ops"	Title
++	"Move"		Move
++	"Resize"	Resize
++	"Raise"		Raise
++	"Lower"		Lower
++	"Iconify"	Iconify
++	"Stick"		Stick
++	"Maximize"	Maximize
++	""		Nop
++	"Snow Maximize"		Function SnowMaximize
++	"Snow Place Top"	Function SnowPlaceTop
++	"Snow Tile Left"	Function SnowTileLeft
++	"Snow Tile Right"	Function SnowTileRight
++	"Snow Tile Top"		Function SnowTileTop
++	"Snow Tile Bottom"	Function SnowTileBottom
++	"Snow Tile Q1"		Function SnowTileQuad1
++	"Snow Tile Q2"		Function SnowTileQuad2
++	"Snow Tile Q3"		Function SnowTileQuad3
++	"Snow Tile Q4"		Function SnowTileQuad4
++	""		Nop
++	"Close"		Close
++	"Destroy"	Destroy
+
+# Defines FvwmpicMenu
+Read theme/snowpic
+
+DestroyMenu SysMenu
+AddToMenu SysMenu
++	"Fvwmpic"		Popup FvwmpicMenu
++	""			Nop
++	"Restart Fvwm"		Restart fvwm2
++ 	"Exit X"		Popup QuitMenu #Quit
+
 # Pager settings
 *FvwmPagerFont none
 *FvwmPagerLabel FvwmPager
@@ -187,8 +223,8 @@ Key semicolon		A	4	Function SnowTileQuad3
 *GoodButtons: Columns 2
 *GoodButtons: (1x1, Title "Kill", Action(Mouse 1) "Close")
 *GoodButtons: (1x1, Title "FvwmConsole", Action(Mouse 1) "Module FvwmConsole -terminal xterm")
-*GoodButtons: (1x1, Title "Calendar", Action(Mouse 1) "Exec gimp ~/projects/gimp/cal.xcf")
-*GoodButtons: (1x1, Title "WinList", Action(Mouse 1) "WindowList")
+*GoodButtons: (1x1, Title "Calendar", Action(Mouse 1) $[infostore.calendarCmd])
+*GoodButtons: (1x1, Title "RootMenu", Action(Mouse 1) "Menu RootMenu")
 *GoodButtons: (1x1, Title "XPenguins", Action(Mouse 1) "Function SnowPenguinsOn")
 *GoodButtons: (1x1, Title "NoPenguins", Action(Mouse 1) "Function SnowPenguinsOff")
 
