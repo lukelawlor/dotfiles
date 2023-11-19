@@ -1,0 +1,4 @@
+#!/bin/bash
+#opens a terminal emulator and runs a command in it
+#usage: termwin terminal_title terminal_command
+$(cat /tmp/cv/term) -T $1 -e bash --rcfile <(echo "${@:2}") &

@@ -1,0 +1,4 @@
+#!/bin/bash
+#runs neomutt with GPG_TTY set beforehand
+export GPG_TTY=$(tty)
+neomutt

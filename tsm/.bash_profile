@@ -16,7 +16,10 @@ pactl -- set-sink-volume @DEFAULT_SINK@ 18%
 mkdir -p /tmp/cv /tmp/lwd
 
 # Initialize cata variables
-echo dwm >/tmp/cv/wm
+cd /tmp/cv
+echo fvwm >wm
+echo $HOME/src/st/st >term
+cd
 
 # dcron setup
 crontab ~/.config/cron/crontab.lighting
