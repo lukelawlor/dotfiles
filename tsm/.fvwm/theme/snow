@@ -181,7 +181,7 @@ AddToMenu WindowOps
 +	"Destroy"	Destroy
 
 # Defines FvwmpicMenu
-Read theme/snowpic
+Read theme/picmenu
 
 DestroyMenu SysMenu
 AddToMenu SysMenu
@@ -223,8 +223,8 @@ AddToMenu SysMenu
 *GoodButtons: Columns 2
 *GoodButtons: (1x1, Title "Kill", Action(Mouse 1) "Close")
 *GoodButtons: (1x1, Title "FvwmConsole", Action(Mouse 1) "Module FvwmConsole -terminal xterm")
+*GoodButtons: (1x1, Title "Menu", Action(Mouse 1) "Menu RootMenu")
 *GoodButtons: (1x1, Title "Calendar", Action(Mouse 1) $[infostore.calendarCmd])
-*GoodButtons: (1x1, Title "RootMenu", Action(Mouse 1) "Menu RootMenu")
 *GoodButtons: (1x1, Title "XPenguins", Action(Mouse 1) "Function SnowPenguinsOn")
 *GoodButtons: (1x1, Title "NoPenguins", Action(Mouse 1) "Function SnowPenguinsOff")
 
