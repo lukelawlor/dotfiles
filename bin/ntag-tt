@@ -1,0 +1,57 @@
+#!/bin/bash
+
+# ntag-tt: Neo TAG: Track and Title
+# This will tag the track and title of all audio files in the working directory
+# Written by Luke Lawlor on 2.13.24
+
+# usage: ntag-tt 'audio_file_extension'
+
+# edit as you wish:
+skip_confirm=0
+assume_opus=1
+
+# dependencies: kid3-cli
+. confirm.sh
+
+# get audio file extension
+audio_file_extension=$1
+if [[ -z $audio_file_extension ]]; then
+	if (( $assume_opus )); then
+		audio_file_extension=opus
+	else
+		echo "$0: please provide an audio file extension"
+		exit 1
+	fi
+fi
+
+# exit if no files are found
+if [[ -z $(find -name "*.$audio_file_extension") ]]; then
+	echo "$0: come on bruh no .$audio_file_extension files exist here"
+	exit 1
+fi
+
+# loop through tracks
+for f in *.$audio_file_extension; do
+	# get the track number
+	# assumes:
+	# 	the track number is in the range [1, 100)
+	# 	the track number is in 2 characters at the start of the filename
+	# 	the track number starts with 0 if it's less than 10 (e.g. 01 02 03)
+	track=$[1${f:0:2}-100]
+
+	# get title
+	# assumes:
+	# 	the title begins after the first 4 characters of the filename
+	# 	the first 4 characters are the track number
+	title_with_extension=${f:4:${#f}}
+	title=${title_with_extension%.*}
+
+	# tagging
+	confirm "Is track $track called \"$title\"?"
+	if (( $? )); then
+		kid3-cli -c "set track $track" -c "set title '$title'" "$f"
+		echo "Tagged!"
+	else
+		echo "Moving on..."
+	fi
+done

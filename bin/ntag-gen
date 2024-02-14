@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# ntag-gen: Neo TAG: General Metadata
+# This will tag the general metadata of all audio files in the working directory
+# Written by Luke Lawlor on 2.13.24
+
+# usage: ntag-gen 'Album Name' 'Artist' 'Genre' 'Year Released' 'Album Art Path' 'Audio File Extension'
+
+# edit as you wish:
+assume_opus=1
+
+# dependencies: kid3-cli
+
+album=$1
+artist=$2
+genre=$3
+date=$4
+art=$5
+audio_file_extension=$6
+
+# ensure $audio_file_extension is set
+if [[ -z $audio_file_extension ]]; then
+	if (( $assume_opus )); then
+		audio_file_extension=opus
+	else
+		echo "$0: please provide an audio file extension"
+		exit 1
+	fi
+fi
+
+# show what files will be altered
+echo "Going to alter the following files:"
+ls -l *.$audio_file_extension
+
+# get metadata values if they weren't passed as arguments
+if [[ -z $album ]];  then read -p "Album:  " album  ; fi
+if [[ -z $artist ]]; then read -p "Artist: " artist ; fi
+if [[ -z $genre ]];  then read -p "Genre:  " genre  ; fi
+if [[ -z $date ]];   then read -p "Year:   " date   ; fi
+if [[ -z $art ]]; then
+	# list the potential album art files
+	ls -a {.,}*art*
+
+	read -p "Album Art: " art
+fi
+
+# tagging
+kid3-cli -c "set album '$album'" \
+	 -c "set artist '$artist'" \
+	 -c "set genre '$genre'" \
+	 -c "set date '$date'" \
+	 -c "set picture:'$art' a" \
+	 *.$audio_file_extension
