@@ -6,27 +6,17 @@
 
 # usage: ntag-gen 'Album Name' 'Artist' 'Genre' 'Year Released' 'Album Art Path' 'Audio File Extension'
 
-# edit as you wish:
-assume_opus=1
-
 # dependencies: kid3-cli
+. ntag-common.sh
 
 album=$1
 artist=$2
 genre=$3
 date=$4
 art=$5
-audio_file_extension=$6
+set_audio_file_extension $6
 
-# ensure $audio_file_extension is set
-if [[ -z $audio_file_extension ]]; then
-	if (( $assume_opus )); then
-		audio_file_extension=opus
-	else
-		echo "$0: please provide an audio file extension"
-		exit 1
-	fi
-fi
+exit_if_no_files_found
 
 # show what files will be altered
 echo "Going to alter the following files:"

@@ -8,27 +8,13 @@
 
 # edit as you wish:
 skip_confirm=0
-assume_opus=1
 
 # dependencies: kid3-cli
 . confirm.sh
+. ntag-common.sh
 
-# get audio file extension
-audio_file_extension=$1
-if [[ -z $audio_file_extension ]]; then
-	if (( $assume_opus )); then
-		audio_file_extension=opus
-	else
-		echo "$0: please provide an audio file extension"
-		exit 1
-	fi
-fi
-
-# exit if no files are found
-if [[ -z $(find -name "*.$audio_file_extension") ]]; then
-	echo "$0: come on bruh no .$audio_file_extension files exist here"
-	exit 1
-fi
+set_audio_file_extension $1
+exit_if_no_files_found
 
 # loop through tracks
 for f in *.$audio_file_extension; do

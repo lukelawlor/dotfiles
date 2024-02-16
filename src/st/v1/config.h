@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Terminus (TTF):size=12:antialias=false";
+static char *font = "Terminus (TTF):size=15:antialias=false";
 static int borderpx = 2;
 
 /* disable bold, italic and roman fonts globally */
@@ -179,7 +179,7 @@ static const ColorScheme schemes[] = {
 };
 
 static const char * const * colorname;
-int colorscheme = 6;
+int colorscheme = 5;
 
 /*
  * Default colors (colorname index)
