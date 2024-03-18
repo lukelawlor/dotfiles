@@ -1,0 +1,5 @@
+#!/bin/bash
+#usage: ntag YT_PLAYLIST_ID
+yt-dlp -x --audio-format best --audio-quality best -o "%(playlist_index)s. %(title)s.%(ext)s" $1
+ntag-gen
+ntag-tt
