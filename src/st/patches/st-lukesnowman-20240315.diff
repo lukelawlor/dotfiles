@@ -1,0 +1,102 @@
+--- x.c.orig	2024-03-15 21:53:12.936711863 -0400
++++ x.c	2024-03-15 21:53:33.100493585 -0400
+@@ -1557,10 +1557,99 @@
+ 
+ 	/* draw the new one */
+ 	if (IS_SET(MODE_FOCUSED)) {
++
++		/* proper snowman bitmap definition with dimensions */
++		struct snowmap{
++			/* width and height of the bitmap of the snowman */
++			int width;
++			int height;
++
++			/* array of chars containing snowmap bitmap data */
++			/* 1 pixel is stored in each index */
++			/* pixels are stored in row major order */
++			/* a 0 at an index indicates no pixel */
++			/* a 1 at an index indicates a pixel */
++			char *pixel;
++		};
++
++		/* raw snowman bitmaps */
++		static char snowman_8x17[] = {
++			0,1,0,0,0,0,0,0,
++			0,0,0,1,1,0,0,1,
++			0,0,0,1,1,0,0,0,
++			0,1,1,1,1,1,1,0,
++			0,0,1,1,1,1,0,0,
++			0,1,0,0,0,0,1,0,
++			0,1,0,1,0,1,1,0,
++			0,1,0,0,0,0,1,0,
++			0,0,1,0,1,0,1,0,
++			1,0,1,1,1,1,0,1,
++			0,1,0,0,0,0,1,0,
++			0,1,0,0,1,0,1,0,
++			0,1,0,0,0,0,1,0,
++			0,1,0,0,1,0,1,0,
++			0,1,0,0,0,0,1,0,
++			0,0,1,1,1,1,0,0,
++			0,0,0,0,0,0,0,1
++		};
++
++		/* array of snowman definitions */
++		/* snowman definitions should be stored in order from lowest to highest resolution */
++		static struct snowmap snowmen[] = {
++			{8, 17, snowman_8x17}
++		};
++
++		/* length of snowmen array */
++		static const int snowmen_len = sizeof(snowmen) / sizeof(snowmen[0]);
++
++		/* index of the snowman in snowmen[] to draw */
++		static const int snowman_id = 0;
++
++		/* current snowman we will draw */
++		struct snowmap *s = snowmen + snowman_id;
++
+ 		switch (win.cursor) {
+ 		case 7: /* st extension */
++#if 0
++			/* original snowman drawing code */
+ 			g.u = 0x2603; /* snowman (U+2603) */
+ 			/* FALLTHROUGH */
++#endif
++			/* draw my snowmen */
++
++			/* draw a single pixel... by drawing a 1x1 rectangle */
++#define	DRAWPIX(x, y)	XftDrawRect(xw.draw, &drawcol, \
++					borderpx + cx * win.cw + x, \
++					borderpx + cy * win.ch + y, \
++					1, 1)
++
++			/* only draw the snowman if the dimensions of the lowest resolution snowman is larger than or equal to the dimensions of a character in the terminal display */
++			if (win.cw >= s->width && win.ch >= s->height)
++			{
++				/* draw solid block cursor */
++				XftDrawRect(xw.draw, &drawcol,
++						borderpx + cx * win.cw,
++						borderpx + cy * win.ch,
++						win.cw, win.ch);
++
++				/* set color to draw snowman in */
++				drawcol = dc.col[defaultbg];
++
++				/* current pixel in snowmap being accessed */
++				char *p = s->pixel;
++
++				/* draw the snowman */
++				for (int y = 0; y < s->height; ++y)
++				{
++					for (int x = 0; x < s->width; ++x)
++					{
++						if (*p == 1)
++							DRAWPIX(x, y);
++						++p;
++					}
++				}
++				break;
++			}
+ 		case 0: /* Blinking Block */
+ 		case 1: /* Blinking Block (Default) */
+ 		case 2: /* Steady Block */

@@ -44,7 +44,7 @@ noremap <C-k> 40k
 noremap <C-l> 40l
 
 "Neovim block cursor in insert mode
-set guicursor=i:block
+set guicursor=a:block
 
 "Colors
 set bg=light
@@ -73,3 +73,11 @@ noremap <silent> <S-L> :update<CR>:!cg % >/tmp/g.pdf<CR><enter>
 "OpenGL test compilation
 noremap <M-c> :!cd ..;make<enter>
 noremap <M-r> :!cd ..;./the<enter>
+
+"Set cursor shape to snowman on exit (snowman is an st extension)
+"Cursor reset method 1: using an escape sequence (fails on tmux for some
+"reason)
+"autocmd VimLeave * set guicursor= | call chansend(v:stderr, "\x1b[7 q")
+"Cursor reset method 2: using nvim's guicursor option (I modded st to replace
+"the vertical bar cursor with the snowman)
+autocmd VimLeave * set guicursor=a:ver100

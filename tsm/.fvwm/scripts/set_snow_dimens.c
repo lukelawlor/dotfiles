@@ -33,6 +33,13 @@ int main(void)
 	// Double the size of the border width
 	int iBorderSize = iBorderWidth * 2;
 
+	// Pixels available for XPenguins to walk around in at the top of the snow space
+#if 0
+	int iPenguinSpace = 34;
+#else
+	int iPenguinSpace = 0;
+#endif
+
 	// Get the X screen dimensions by reading xrandr's output
 	int iScreenWidth, iScreenHeight;
 
@@ -67,7 +74,7 @@ int main(void)
 
 	// Snow theme variables
 	int snowSpaceLeft = iLeftClusterWidth + iBorderSize;
-	int snowSpaceTop = iTopClusterHeight + iBorderSize;
+	int snowSpaceTop = iTopClusterHeight + iBorderSize + iPenguinSpace;
 	int snowSpaceWidth = iScreenWidth - iBorderSize - snowSpaceLeft;
 	int snowSpaceHeight = iScreenHeight - iBorderSize - iTitleHeight - snowSpaceTop;
 

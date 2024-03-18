@@ -61,6 +61,7 @@ Style feh		NoTitle, Sticky
 Style conky		NoTitle, Sticky, Handles, BorderWidth 7, NeverFocus, WindowListSkip
 Style xpenguins		WindowListSkip
 Style emacs		EWMHMiniIconOverride, MiniIcon emacs.xpm
+Style theTmuxMobile	MiniIcon wayne_icon.png 
 
 # Functions
 AddToFunc FocusRaise
@@ -160,33 +161,36 @@ Mouse 3	FSTW	4	Function DragResize
 # My key bindings
 # On Gentoo, key symbol names are available at /usr/include/X11/keysymdef.h
 # Just use them without the XK_ prefix
-Key 7	A	4	Scroll -100 +0
-Key 8	A	4	Scroll +0 +100
-Key 9	A	4	Scroll +0 -100 
-Key 0	A	4	Scroll +100 +0
-Key a	A	4	Exec termwin null pulsemixer
-Key c	A	4	Exec xterm
-Key d	A	4	Function MaxHori
-Key e	A	4	Maximize
-Key f	A	4	Function DragMoveKeyboard
-Key h	A	4	Next (AcceptsFocus) Function FocusRaise
-Key i	A	4	Function IconifyRaise
-Key j	A	4	Next (CurrentScreen, AcceptsFocus) Function FocusRaise
-Key k	A	4	Prev (CurrentScreen, AcceptsFocus) Function FocusRaise
-Key l	A	4	Prev (AcceptsFocus) Function FocusRaise
-Key m	A	4	Menu RootMenu
-Key n	A	4	WindowList
-Key p	A	4	Exec dmenu_fvwm
-Key q	A	4	Quit
-Key r	A	4	Function DragResizeKeyboard
-Key s	A	4	Function MaxVert
-Key t	A	4	Module FvwmConsole -terminal xterm
-Key y	A	4	Stick
-Key u	A	4	Exec slock
-Key v	A	4	Function MaxFill
-Key w	A	4	Exec librewolf
-Key x	A	4	Close
-Key o	A	4	$[infostore.emacsCmd]
+Key 7		A	4	Scroll -100 +0
+Key 8		A	4	Scroll +0 +100
+Key 9		A	4	Scroll +0 -100 
+Key 0		A	4	Scroll +100 +0
+Key a		A	4	Exec termwin null pulsemixer
+Key c		A	4	Exec st
+Key d		A	4	Function MaxHori
+Key e		A	4	Maximize
+Key f		A	4	Function DragMoveKeyboard
+Key h		A	4	Next (AcceptsFocus) Function FocusRaise
+Key i		A	4	Function IconifyRaise
+Key j		A	4	Next (CurrentScreen, AcceptsFocus) Function FocusRaise
+Key k		A	4	Prev (CurrentScreen, AcceptsFocus) Function FocusRaise
+Key l		A	4	Prev (AcceptsFocus) Function FocusRaise
+Key m		A	4	Menu RootMenu
+Key n		A	4	WindowList
+Key p		A	4	Exec dmenu_fvwm
+Key q		A	4	Quit
+Key r		A	4	Function DragResizeKeyboard
+Key s		A	4	Function MaxVert
+Key t		A	4	Module FvwmConsole -terminal xterm
+Key y		A	4	Stick
+Key u		A	4	Exec slock
+Key v		A	4	Function MaxFill
+Key w		A	4	Exec librewolf
+Key x		A	4	Close
+Key o		A	4	$[infostore.emacsCmd]
+Key b		A	4	$[infostore.emacsCmd] "(find-file \"~/cport/journal/bookmarks.org\")"
+Key comma	A	4	$[infostore.emacsCmd] "(find-file \"~/notes/journal/lessons.org\")"
+Key period	A	4	Exec termwin theTmuxMobile tmux
 
 # Disabling built-in key bindings
 Key Tab A M -
@@ -204,6 +208,10 @@ AddToMenu WindowOps
 +	""		Nop
 +	"Close"		Close
 +	"Destroy"	Destroy
++	""		Nop
++	"Max Hori"	Function MaxHori
++	"Max Vert"	Function MaxVert
++	"Max Fill"	Function MaxFill
 
 AddToMenu SysMenu
 +	"Restart Fvwm"		Restart fvwm2
@@ -218,7 +226,6 @@ AddToMenu NetMenu
 +	"Librewolf"	Exec librewolf
 
 AddToMenu UtilMenu
-+	"Copyscr"	Exec copyscr
 +	"Galculator"	Exec galculator
 +	"Genius"	Exec termwin theGeniusMobile genius
 +	"GNU Emacs"	$[infostore.emacsCmd]
@@ -243,6 +250,10 @@ AddToMenu AudioMenu
 Read gamemenu
 
 AddToMenu RootMenu "Root Menu"  Title
++	"Copyscr"	Exec copyscr
++	"Slock"		Exec slock
++	"Sleep"		Exec slp
++	""		Nop
 +	"XTerm"			Exec xterm
 +	"XTerm Terminus"	Exec xterm -fn "xft:Terminus (TTF):size=12"
 +	"XTerm Big Font"	Exec xterm -fn "xft:Terminus (TTF):size=15:style=bold"
@@ -276,7 +287,7 @@ AddToFunc   IconManClick
 # Init functions
 AddToFunc InitFunction
 +	I Module FvwmPager
-+	I Exec echo xterm >/tmp/cv/term
++	I Exec echo $HOME/src/st/st >/tmp/cv/term
 
 AddToFunc RestartFunction
 +	I Function InitFunction

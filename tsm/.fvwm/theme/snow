@@ -49,13 +49,19 @@
 # Misc Colors
 
 	# Cursor
-	InfoStoreAdd curFg	black
-	InfoStoreAdd curBg	#AEB2C3
+	#InfoStoreAdd curFg	black
+	#InfoStoreAdd curBg	#AEB2C3
+	#InfoStoreAdd curBg	#B7D300
+
+	InfoStoreAdd curFg	#FDF6E3
+	#InfoStoreAdd curBg	#AEB2C3
+	InfoStoreAdd curBg	#268BD2
 	Read theme/cursors
 
 	# Xeyes
 	InfoStoreAdd xeyesBg	white
 	InfoStoreAdd xeyesFg	black
+	# TODO get xeyesFg working with hex colors
 
 # Style & window space dimensions
 PipeRead "tcc -run $HOME/.fvwm/scripts/set_snow_dimens.c"
@@ -143,6 +149,7 @@ AddToFunc SnowPenguinsOff
 +	I	Exec mpv ~/misc/snd/NOOOO.mp3
 
 # Key bindings
+Key g			A	4	Exec killall feh
 Key e			A	4	Function SnowMaximize
 Key z			A	4	Function SnowPlaceTop
 Key Left		A	4	Function SnowTileLeft
@@ -155,16 +162,7 @@ Key apostrophe		A	4	Function SnowTileQuad4
 Key semicolon		A	4	Function SnowTileQuad3
 
 # Menus
-DestroyMenu WindowOps
 AddToMenu WindowOps
-+	"Window Ops"	Title
-+	"Move"		Move
-+	"Resize"	Resize
-+	"Raise"		Raise
-+	"Lower"		Lower
-+	"Iconify"	Iconify
-+	"Stick"		Stick
-+	"Maximize"	Maximize
 +	""		Nop
 +	"Snow Maximize"		Function SnowMaximize
 +	"Snow Place Top"	Function SnowPlaceTop
@@ -176,9 +174,6 @@ AddToMenu WindowOps
 +	"Snow Tile Q2"		Function SnowTileQuad2
 +	"Snow Tile Q3"		Function SnowTileQuad3
 +	"Snow Tile Q4"		Function SnowTileQuad4
-+	""		Nop
-+	"Close"		Close
-+	"Destroy"	Destroy
 
 # Defines FvwmpicMenu
 Read theme/picmenu
@@ -219,12 +214,14 @@ AddToMenu SysMenu
 *GoodButtons: Geometry 200x200+0+0
 *GoodButtons: Font $[infostore.font]
 *GoodButtons: Colorset 0
-*GoodButtons: Rows 3
+*GoodButtons: Rows 4
 *GoodButtons: Columns 2
 *GoodButtons: (1x1, Title "Kill", Action(Mouse 1) "Close")
 *GoodButtons: (1x1, Title "FvwmConsole", Action(Mouse 1) "Module FvwmConsole -terminal xterm")
 *GoodButtons: (1x1, Title "Menu", Action(Mouse 1) "Menu RootMenu")
 *GoodButtons: (1x1, Title "Calendar", Action(Mouse 1) $[infostore.calendarCmd])
+*GoodButtons: (1x1, Title "Bookmarks", Action(Mouse 1) $[infostore.emacsCmd] "(find-file \"~/cport/journal/bookmarks.org\")")
+*GoodButtons: (1x1, Title "StopWeb", Action(Mouse 1) "Exec killall librewolf")
 *GoodButtons: (1x1, Title "XPenguins", Action(Mouse 1) "Function SnowPenguinsOn")
 *GoodButtons: (1x1, Title "NoPenguins", Action(Mouse 1) "Function SnowPenguinsOff")
 
@@ -234,9 +231,10 @@ AddToMenu SysMenu
 *SidePanel: Colorset 0
 *SidePanel: Rows 6
 *SidePanel: Columns 1
-*SidePanel: (1x4, Swallow FvwmIconMan "Module FvwmIconMan")
-*SidePanel: (1x1, Title "Yo", Icon wayne.png, Action(Mouse 1) "Exec guyclick")
-*SidePanel: (1x1, Swallow GoodButtons "Module FvwmButtons GoodButtons")
+*SidePanel: (1x3, Swallow FvwmIconMan "Module FvwmIconMan")
+*SidePanel: (1x1, Title "Be Ergonomic", Icon wayne.png, Action(Mouse 1) "Exec guyclick")
+#*SidePanel: (1x1, Title "putt", Icon puttputt.png, Action(Mouse 1) "Exec guyclick")
+*SidePanel: (1x2, Swallow GoodButtons "Module FvwmButtons GoodButtons")
 
 # Snow Panel
 *SnowPanel: Font $[infostore.font]
@@ -256,8 +254,9 @@ AddToMenu SysMenu
 *SnowPanel: (1x1, Title Galculator, Icon sjis.png, Action(Mouse 1) "Exec galculator")
 *SnowPanel: (1x1, Title "SoupDL 06", Icon eggcool.png, Action(Mouse 1) "Exec soupdltest")
 *SnowPanel: (1x1, Title "LibreWolf", Icon thing.png, Action(Mouse 1) "Exec librewolf")
-*SnowPanel: (1x1, Title "Spy Kidz", Swallow xeyes "Exec xeyes -center $[infostore.xeyesBg] -fg $[infostore.xeyesFg] -outline $[infostore.xeyesFg] +render")
-*SnowPanel: (2x1, Title "System Tray", Swallow(Respawn) stalonetray "Exec stalonetray -p -i 16")
+*SnowPanel: (2x1, Title "Stalonetray", Swallow(Respawn) stalonetray "Exec stalonetray -p -i 16")
+*SnowPanel: (1x1, Title "", Swallow xeyes "Exec xeyes -center $[infostore.xeyesBg] -fg $[infostore.xeyesFg] -outline $[infostore.xeyesFg] +render")
+#*SnowPanel: (1x1, Title "", Swallow xeyes "Exec xeyes -center $[infostore.xeyesBg] -fg $[infostore.xeyesFg] -outline $[infostore.xeyesFg] +render", Action(Mouse 1) "Exec aplay ~/misc/snd/lorapcow.wav")
 #*SnowPanel: (1x1, Title Mailz, Swallow gnubiff "Exec gnubiff -n")
 #*SnowPanel: (1x1, Title "insert xeyes here")
 #*SnowPanel: (2x1, Swallow FvwmPager "Module FvwmPager")
