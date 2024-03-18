@@ -22,6 +22,16 @@ alias vim="nvim"
 alias shut="su - -c 'poweroff'"
 alias reeb="su - -c 'reboot'"
 alias l="ls -l"
+alias cm="cmus"
+alias pm="pulsemixer"
+alias mt="neomutt"
+
+# change cursor shape to block
+alias cb="echo -ne '\x1b[2 q'"
+
+# change cursor shape to snowman
+alias cs="echo -ne '\x1b[6 q'"
+
 export EDITOR=nvim
 export BROWSER=librewolf
 export GTK_OVERLAY_SCROLLING=0
@@ -32,4 +42,6 @@ export GPG_TTY=$(tty)
 export HRED="\m/d(._.)b\m/"
 
 # COW SAY!
-#fortune | cowsay
+if [[ -z $TMUX ]]; then
+	fortune | cowsay -f moose
+fi

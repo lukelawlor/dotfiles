@@ -6,20 +6,26 @@ if [[ -f ~/.bashrc ]] ; then
 	. ~/.bashrc
 fi
 
-# Start pulseaudio daemon
-pulseaudio -D
+# Don't run the remaining lines in tmux
+# I only want the below lines to run at login, not when tmux is run
+if [[ -z $TMUX ]]; then
+	# Start pulseaudio daemon
+	pulseaudio -D
 
-# Set pulseaudio volume to low so I don't hurt my ears
-pactl -- set-sink-volume @DEFAULT_SINK@ 18%
+	# Set pulseaudio volume to low so I don't hurt my ears
+	pactl -- set-sink-volume @DEFAULT_SINK@ 18%
 
-# Create cata variables directory
-mkdir -p /tmp/cv /tmp/lwd
+	# Create cata variables directory
+	mkdir -p /tmp/cv /tmp/lwd /tmp/lwd/yv
 
-# Initialize cata variables
-cd /tmp/cv
-echo fvwm >wm
-echo $HOME/src/st/st >term
-cd
+	# Initialize cata variables
+	cd /tmp/cv
+	echo fvwm >wm
+	echo xterm >term
+	echo 1 >lum
+	echo 5000 >red
+	cd
 
-# dcron setup
-crontab ~/.config/cron/crontab.lighting
+	# dcron setup
+	crontab ~/.config/cron/crontab.lighting
+fi
