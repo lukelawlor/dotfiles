@@ -1,7 +1,7 @@
 #!/bin/bash
-#lr: launch repeatedly
+#lr: Launch Repeatedly
+#usage: lr <number_of_repetitions> cmd ...
 #used for easily running a command in the background repeatedly from dmenu
-#usage: lr <repeats> cmd ...
 for ((i=0; i<$1; ++i)); do
 	"${@:2}" &
 done

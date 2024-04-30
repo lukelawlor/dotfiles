@@ -1,0 +1,5 @@
+#!/bin/sh
+#k: Key copy
+#usage: k (string at the end of the key filename)
+#Copies github keys to clipboard
+xsel -p <~/projects/key$1

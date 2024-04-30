@@ -1,0 +1,14 @@
+#!/bin/sh
+#art: show album ART with feh and place it in a specific spot on my desktop to match with my fvwm snow setup
+killall feh
+if [[ $2 == a ]]; then
+	fehopts=""
+else
+	fehopts="--force-aliasing"
+fi
+if [[ $# -eq 3 ]]; then
+	fehopts="$fehopts --zoom $3"
+else
+	fehopts="$fehopts --scale-down"
+fi
+feh ~/music/*/*$1*/.art* $fehopts -g 116x116+0+108 -B "#aeb2c3" &

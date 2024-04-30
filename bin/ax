@@ -1,0 +1,3 @@
+#!/bin/sh
+#ax: show album Art with sXiv
+sxiv ~/music/*/*$1*/.art* -b

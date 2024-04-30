@@ -1,28 +1,30 @@
 #!/bin/bash
-# ws: window setup
+# ws: Window Setup
+# dependencies: termwin (another script I made), misc programs this script launches (emacs, gimp, etc.)
 # This spawns and sets up a bunch of predetermined windows. It's meant to be used with dwm or some kind of tiling window manager.
-
-term=~/src/st/st
-
-term_win_sh(){
-	$term -e bash --rcfile <(echo "$1") &
+emacscmd(){
+	emacsclient -s /tmp/emacs1000/server -c $1 &
 }
+
 short_sleep(){
 	sleep 0.1s
 }
 
 case $1 in
 	p )
-		term_win_sh "cd ~/projects/$2"
+		termwin $2 cd ~/projects/$2
 		short_sleep
-		term_win_sh "cd ~/projects/$2"
+		emacscmd "~/projects/$2/TODO.org"
 		short_sleep
-		term_win_sh "cd ~/projects/$2/src"
+		termwin "$2 src" cd ~/projects/$2/src
 		;;
 	mu )
-		term_win_sh "pulsemixer"
+		termwin thePulseMixerMobile pulsemixer
 		short_sleep
-		term_win_sh "cmus"
+		termwin theCmusMobile cmus
+		;;
+	ca )
+		gimp ~/projects/gimp/cal.xcf
 		;;
 	* )
 		echo no such setup
