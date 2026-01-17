@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# getmuslen: output the lengths/durations of music in my music library
+# You can pipe this script's output into 'sort' from the GNU coreutils
+# to sort tracks from shortest to longest.
+# Author: Luke Lawlor
+# Date:   2026.01.17
+for f in */*.{mp3,ogg}; do
+    len=$(ffprobe -loglevel quiet -show_streams -select_streams a -of default -pretty "$f" | grep duration= | tail -c +10 | head -c +7)
+    echo "$len $f"
+done

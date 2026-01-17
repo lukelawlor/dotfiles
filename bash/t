@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# t: print thermal information
+cat /sys/class/thermal/thermal_zone*/temp

@@ -1,0 +1,8 @@
+Here are my dotfiles (configuration files) & miscellaneous bash
+scripts for GNU/Linux.
+
+The 'bash' directory contains my bash scripts.
+
+2026.01.17 note: I haven't updated this repository with my most recent
+dotfiles for a while, so I'll be restructuring it in the near
+future. For now, my old dotfiles are in the 'old' directory.

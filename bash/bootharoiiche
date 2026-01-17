@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+# бохарихе: делать забавные вещи ночью
+# Наш цель: менять между музыками, книгами и видео.
+# Автор: Лук Лолр
+# Дата:  2026.01.14
+## Постоянные
+linenobgn=17
+linenoend=3805
+linenoinc=70
+linenomax=$[linenoend-linenoinc]
+bookspeedwpm=80
+bookwordgap=8
+minsleepbook=5
+minsleepmus=20
+minsleepvid=5
+doinctime=1
+minsleepmusmax=10
+minsleepvidmax=10
+## Переменные
+booklineno=$linenobgn
+# Начало программы
+## Функции
+setxbetween(){ # set variable 'x' to a random value between arguments 1 & 2
+    x=$(echo "scale=1;${1}+(${RANDOM}/32767)*(${2}-${1})"|bc)
+}
+## Главный цикл
+while true; do
+    # Музыка
+    ## Отбирать плейлист
+    x=$[RANDOM%2]
+    case $x in
+        0)y=ambient;;
+        1)y=adlib;;
+    esac
+    mpv --playlist=$HOME/pl/$y --loop-playlist --shuffle &
+    if [[ $doinctime ]]; then
+        setxbetween $minsleepmus $minsleepmusmax
+    else
+        x=$minsleepmus
+    fi
+    sleep ${x}m; kill $!
+    # Книга
+    tail -n +$booklineno ~/book/book | espeak-ng --stdin -v zle/ru -a 200 -s ${bookspeedwpm} -g ${bookwordgap} -p 20 &
+    sleep ${minsleepbook}m; kill $!
+    # Видео
+    mpv ~/vid/{vid}/* --loop-playlist --shuffle &
+    if [[ $doinctime ]]; then
+        setxbetween $minsleepvid $minsleepvidmax
+    else
+        x=$minsleepvid
+    fi
+    sleep ${x}m; kill $!
+    # Менять номер линии книги
+    booklineno=$[booklineno+linenoinc]
+    if [[ $booklineno > $linenomax ]]; then
+        booklineno=$linenobgn
+    fi
+done
