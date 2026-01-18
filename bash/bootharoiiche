@@ -33,7 +33,7 @@ while true; do
         1)y=adlib;;
     esac
     mpv --playlist=$HOME/pl/$y --loop-playlist --shuffle &
-    if [[ $doinctime ]]; then
+    if (($doinctime)); then
         setxbetween $minsleepmus $minsleepmusmax
     else
         x=$minsleepmus
@@ -44,7 +44,7 @@ while true; do
     sleep ${minsleepbook}m; kill $!
     # Видео
     mpv ~/vid/{vid}/* --loop-playlist --shuffle &
-    if [[ $doinctime ]]; then
+    if (($doinctime)); then
         setxbetween $minsleepvid $minsleepvidmax
     else
         x=$minsleepvid
@@ -52,7 +52,7 @@ while true; do
     sleep ${x}m; kill $!
     # Менять номер линии книги
     booklineno=$[booklineno+linenoinc]
-    if [[ $booklineno > $linenomax ]]; then
+    if (($booklineno > $linenomax)); then
         booklineno=$linenobgn
     fi
 done
