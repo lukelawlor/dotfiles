@@ -1,0 +1,9 @@
+Here are my dotfiles (configuration files) & miscellaneous bash
+scripts for GNU/Linux that I've acquired over the years.
+
+* Directory descriptions
++ .config :: Configuration files to put in =$HOME/.config=
++ bin     :: Shell scripts to put in =$HOME/bin= or =/usr/local/bin=
++ etc     :: Configuration files to put in =/etc=
++ img     :: Images
++ old     :: Old configuration files

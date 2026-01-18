@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# copyscr: copies X screen contents to the clipboard
+scrot -o /tmp/scrot.png
+xclip -selection clipboard -target image/png -i /tmp/scrot.png
