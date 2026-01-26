@@ -1,6 +1,6 @@
 ;; This is Luke Lawlor's GNU Emacs configuration, hosted at
 ;; <https://codeberg.org/lukelawlor/dotfiles>.
-;; Last modified: 2026.01.21
+;; Last modified: 2026.01.26
 					; variables
 (setq-default
  auto-save-default nil
@@ -52,10 +52,70 @@
   (move-beginning-of-line nil)
   (insert (concat "(" my-dt ") "))
   (move-beginning-of-line nil))
+(defun ding-much (number seconds)
+  "Call 'ding' NUMBER times with SECONDS seconds between each ding"
+  (ding)
+  (setq ding-timer (run-at-time seconds seconds 'ding)
+	ding-timer-stop (run-at-time
+			 (* seconds (- number 1))
+			 nil
+			 'cancel-timer ding-timer)))
+(defun ding-stop nil
+  "Stop the dinging started by function 'ding-much'"
+  (interactive)
+  (cancel-timer ding-timer)
+  (cancel-timer ding-timer-stop))
+(defun my-msg (msg)
+  "Display the message MSG to the user in a way that should catch
+their attention"
+  (ding-much 40 0.15)
+  (message "Sending the following attention-catching message: %s" msg)
+  (read-from-minibuffer (concat msg "! (press enter to continue) "))
+  (ding-stop))
+(defun my-timer nil
+  "Create a simple timer to ding later"
+  (interactive)
+  (setq my-timer-purpose (read-string "To do: ")
+	my-timer-seconds (* 60 (read-number "Minutes until ding: "))
+	my-timer-object (run-at-time
+			 my-timer-seconds
+			 nil
+			 'my-msg
+			 (concat
+                          "Timer for "
+                          my-timer-purpose
+                          " is over"))
+        my-timer-start (time-convert (current-time) 'integer))
+  (message "You have %d minutes to %s"
+	   (/ my-timer-seconds 60)
+	   my-timer-purpose))
+(defun my-timer-info nil
+  "Output info about the current timer created with 'my-timer'"
+  (interactive)
+  (unless my-timer-object (error "No timer exists"))
+  (setq my-time-left-sec (- my-timer-seconds (-
+                                              (time-convert
+                                               (current-time)
+                                               'integer)
+                                              my-timer-start))
+        my-time-left-min (/ my-time-left-sec 60))
+  (message "The time left to %s is %d minutes, or %d seconds"
+           my-timer-purpose
+           my-time-left-min
+           my-time-left-sec))
+(defun my-timer-stop nil
+  "Cancel the latest timer created with 'my-timer'"
+  (interactive)
+  (unless my-timer-object (error "No timer exists"))
+  (cancel-timer my-timer-object)
+  (setq my-timer-object nil)
+  (message "The time to %s has been canceled" my-timer-purpose))
 (defun tetris nil
   "Экономь время"
   (interactive)
   (message "Нет"))
+                                        ; functions from other files
+(load-file "~/.config/emacs/pomo.el")
 					; aliases
 (defalias 'd 'desktop-read)
 (defalias 'dc 'describe-char)
@@ -66,6 +126,13 @@
 (defalias 'md 'my-done)
 (defalias 'mf 'my-font-size)
 (defalias 's 'my-scratch)
+;;; pomo
+(defalias 'pm 'pomo)
+(defalias 'pm-d 'pomo-start-default)
+(defalias 'pm-n 'pomo-skip) ;; n for next pomodoro timer section
+(defalias 'pm-s 'pomo-stop)
+(defalias 'pm-i 'pomo-info)
+(defalias 'p 'pomo-start-default)
 ;; modes
 (defalias 'f 'auto-fill-mode)
 (defalias 'g 'gnus)
@@ -74,10 +141,22 @@
 (defalias 'r 'repeat-mode)
 (defalias 'v 'view-mode)
 					; keys
-(global-set-key (kbd "M-/") 'my-done)
 ;; custom prefix commands
 (define-prefix-command 'my-ext-map)
 (global-set-key (kbd "M-o") 'my-ext-map)
+;; basic functions
+(global-set-key (kbd "M-/") 'my-done)
+;; timer
+(global-set-key (kbd "M-o t") 'my-timer)
+(global-set-key (kbd "M-o i") 'my-timer-info)
+(global-set-key (kbd "M-o s") 'my-timer-stop)
+;; pomo
+(global-set-key (kbd "M-o p") 'pomo)
+(global-set-key (kbd "M-o d") 'pomo-start-default)
+(global-set-key (kbd "M-i") 'pomo-info)
+(global-set-key (kbd "M-o x") 'pomo-stop)
+(global-set-key (kbd "M-o n") 'pomo-skip) ;; n for next pomodoro timer
+                                          ;; section
 ;; input methods
 (global-set-key (kbd "M-n") #'(lambda nil (interactive)
                                 (set-input-method
