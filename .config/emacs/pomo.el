@@ -95,3 +95,4 @@ iteration value to a time:
   "Run 'pomo-start' with default arguments"
   (interactive)
   (pomo-start (* 60 25) (* 60 5) (* 60 5)))
+;;; pomo.el ends here
