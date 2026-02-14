@@ -124,6 +124,50 @@ their attention"
   (cancel-timer my-timer-object)
   (setq my-timer-object nil)
   (message "The time to %s has been canceled" my-timer-purpose))
+(defun my-find-zi (arg)
+  "Find 1 or more Chinese characters (han zi) in a dictionary,
+specifically CC-CEDICT
+<https://www.mdbg.net/chinese/dictionary?page=cc-cedict>.  With a
+prefix argument, search for simplified characters; else, search
+for traditional characters. The characters to search for are
+assumed to be stored as the most recent kill in the kill ring."
+  (interactive "P")
+  (beginning-of-buffer)
+  (setq my-zi (current-kill 0 t)) ;; zi to search for
+  (condition-case nil
+      (if arg
+          (search-forward-regexp
+           (concat "^" (make-string (length my-zi) ?.) " " my-zi))
+        (search-forward-regexp (concat "^" my-zi " ")))
+    (error nil))
+  (recenter-top-bottom 0))
+(defun my-find-zi-from-text (arg)
+  "Run 'my-find-zi' on the character(s) from point to point + the
+magnitude of ARG. If ARG is positive, then traditional
+character(s) are sought; else, simplified character(s) are
+sought. This assumes that only 2 windows are open: one with
+Chinese text (the current window) & one with the Chinese
+dictionary."
+  (interactive "p")
+  (setq my-find-zi-arg nil)
+  (if (< arg 0) (progn (setq arg (- arg) my-find-zi-arg t)))
+  (kill-ring-save (point) (+ arg (point)))
+  (other-window 1)
+  (my-find-zi my-find-zi-arg)
+  (other-window 1))
+(defun my-find-zi-from-dict (arg)
+  "Run 'my-find-zi' on the character(s) from point to point + the
+magnitude of ARG. If ARG is positive, then traditional
+character(s) are sought; else, simplified character(s) are
+sought. This function assumes that the current buffer is the
+Chinese dictionary. This function is the same as
+'my-find-zi-from-text' but without the 2 calls to
+'other-window'."
+  (interactive "p")
+  (setq my-find-zi-arg nil)
+  (if (< arg 0) (progn (setq arg (- arg) my-find-zi-arg t)))
+  (kill-ring-save (point) (+ arg (point)))
+  (my-find-zi arg))
 (defun my-mail nil
   "Set variables for using mail. Some variables are expected to be
 set before calling this function. Here they are:
@@ -222,10 +266,14 @@ This function is currently configured for gmail by default."
 ;; timer
 (global-set-key (kbd "M-o t") 'my-timer)
 (global-set-key (kbd "M-o i") 'my-timer-info)
-(global-set-key (kbd "M-o s") 'my-timer-stop)
+(global-set-key (kbd "M-o m") 'my-timer-stop)
+;; chinese dictionary search
+(global-set-key (kbd "M-o f") 'my-find-zi-from-text)
+(global-set-key (kbd "M-o d") 'my-find-zi-from-dict)
+(global-set-key (kbd "M-o s") 'my-find-zi)
 ;; pomo
 (global-set-key (kbd "M-o p") 'pomo)
-(global-set-key (kbd "M-o d") 'pomo-start-default)
+(global-set-key (kbd "M-o b") 'pomo-start-default)
 (global-set-key (kbd "M-i") 'pomo-info)
 (global-set-key (kbd "M-o x") 'pomo-stop)
 (global-set-key (kbd "M-o n") 'pomo-skip) ;; n for next pomodoro timer
