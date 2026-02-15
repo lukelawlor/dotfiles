@@ -1,6 +1,15 @@
+# security
 set sandbox strict
+# map key
+map n navigate next
+map p navigate previous
 # theme
 set font "monospace normal 20"
+# solarized
+#set default-fg "#586e75"
+#set default-bg "#fdf6e3"
+#set statusbar-fg "#fdf6e3"
+#set statusbar-bg "#268bd2"
 # dark
 set default-fg "#b0b0b0"
 set default-bg "#000000"
@@ -11,8 +20,3 @@ set statusbar-bg "#000000"
 #set default-bg "#000000"
 #set statusbar-fg "#402000"
 #set statusbar-bg "#000000"
-# solarized
-#set default-fg "#586e75"
-#set default-bg "#fdf6e3"
-#set statusbar-fg "#fdf6e3"
-#set statusbar-bg "#268bd2"

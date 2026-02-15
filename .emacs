@@ -167,7 +167,7 @@ Chinese dictionary. This function is the same as
   (setq my-find-zi-arg nil)
   (if (< arg 0) (progn (setq arg (- arg) my-find-zi-arg t)))
   (kill-ring-save (point) (+ arg (point)))
-  (my-find-zi arg))
+  (my-find-zi my-find-zi-arg))
 (defun my-mail nil
   "Set variables for using mail. Some variables are expected to be
 set before calling this function. Here they are:
