@@ -37,6 +37,7 @@
  ;; my variables
  my-home-directory "~/"
  my-init-file "~/.config/emacs/init.el"
+ my-timer-object nil
  ;;; my done text, see function 'my-done'
  my-dt "хорошо"
  )
@@ -66,6 +67,18 @@
   (move-beginning-of-line nil)
   (insert (concat "(" my-dt ") "))
   (move-beginning-of-line nil))
+(defun my-dired-copy-cwd nil
+  "Copy the current working directory in dired"
+  (interactive)
+  (setq my-point (point))
+  (beginning-of-buffer)
+  (forward-char 2)
+  (set-mark (point))
+  (end-of-line)
+  (search-backward ":")
+  (kill-ring-save (mark) (point))
+  (goto-char my-point)
+  (message "placeholder"))
 (defun ding-much (number seconds)
   "Call 'ding' NUMBER times with SECONDS seconds between each ding"
   (ding)
@@ -263,6 +276,7 @@ This function is currently configured for gmail by default."
 (global-set-key (kbd "M-o") 'my-ext-map)
 ;; basic functions
 (global-set-key (kbd "M-/") 'my-done)
+(global-set-key (kbd "M-,") 'my-dired-copy-cwd)
 ;; timer
 (global-set-key (kbd "M-o t") 'my-timer)
 (global-set-key (kbd "M-o i") 'my-timer-info)
@@ -334,6 +348,7 @@ This function is currently configured for gmail by default."
 ;;; pomo.el --- pomodoro timer
 ;; This is part of Luke Lawlor's GNU Emacs configuration, hosted at
 ;; <https://codeberg.org/lukelawlor/dotfiles>.
+(setq pomo-timer-running nil)
 (defun pomo-start (work break lbreak)
   "Run a pomodoro timer with WORK seconds for work time, BREAK
 seconds for break time & LBREAK seconds for long break time"

@@ -1,6 +1,7 @@
 ;;; pomo.el --- pomodoro timer
 ;; This is part of Luke Lawlor's GNU Emacs configuration, hosted at
 ;; <https://codeberg.org/lukelawlor/dotfiles>.
+(setq pomo-timer-running nil)
 (defun pomo-start (work break lbreak)
   "Run a pomodoro timer with WORK seconds for work time, BREAK
 seconds for break time & LBREAK seconds for long break time"
