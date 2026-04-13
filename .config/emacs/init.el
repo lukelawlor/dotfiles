@@ -39,6 +39,9 @@
  my-timer-object nil
  ;;; my done text, see function 'my-done'
  my-dt "хорошо"
+ ;;; the line number at which the English-Russian section of the
+ ;;; Russian dictionary starts
+ my-lineno-en-to-ru 1 ;; placeholder
  )
 (set-terminal-coding-system 'utf-8)
 (put 'downcase-region 'disabled nil)
@@ -180,6 +183,68 @@ Chinese dictionary. This function is the same as
   (if (< arg 0) (progn (setq arg (- arg) my-find-zi-arg t)))
   (kill-ring-save (point) (+ arg (point)))
   (my-find-zi my-find-zi-arg))
+(defun my-copy-word-at-point nil
+  "Copy the word starting at point"
+  (interactive)
+  (set-mark (point))
+  (forward-word 1)
+  (kill-ring-save (mark) (point))
+  (backward-word 1))
+(defun my-find-word-ru (word)
+  "Find a Russian word in a dictionary, specifically freedict
+concatenated such that the Russian-English section comes before
+the English-Russian section with some other formatting changes.
+
+To generate this dictionary, use my bash script at
+'../../bin/compile_ru_en_dict.bash'.
+
+This function assumes that only 2 windows are open: one with
+Russian text (the current window) & one with the Russian
+dictionary."
+  (other-window 1)
+  (beginning-of-buffer)
+  (condition-case nil
+      (progn
+        (search-forward-regexp (concat "^" word " <"))
+        ;;(recenter-top-bottom 0)
+        ;;(recenter-top-bottom)
+        (recenter-top-bottom 2)
+        (setq my-word-line (line-number-at-pos))
+        (message (concat "Нашёл \"" word "!\"")))
+    (error nil
+           (goto-line my-lineno-en-to-ru)
+           ;; must ignore case, so 'case-fold-search' must be t, which
+           ;; it is by default
+           (condition-case nil
+               (progn
+                 (search-forward word)
+                 (recenter-top-bottom)
+                 (setq my-word-line (line-number-at-pos))
+                 (message (concat "Нашёл \"" word
+                                  "\" на английской часте.")))
+             (error nil
+                    (goto-line my-word-line)
+                    (message (concat "Извините! Не мог найти \""
+                                     word ".\""))))))
+  (other-window 1))
+(defun my-find-word-ru-copy nil
+  "Find the Russian word which starts at point. In other words, run
+'my-find-word-ru' on the word copied from point."
+  (interactive)
+  (my-copy-word-at-point)
+  (my-find-word-ru (downcase (current-kill 0 t))))
+(defun my-find-word-ru-edit nil
+  "Find the Russian word which starts at point, but allow the user
+to edit it (to change inflection, etc.) before searching. In
+other words, run 'my-find-word-ru' on the edited word copied from
+point."
+  (interactive)
+  (my-copy-word-at-point)
+  (my-find-word-ru
+   (read-string
+    "Искать: "
+    (downcase (current-kill 0 t))
+    nil nil t)))
 (defun my-mail nil
   "Set variables for using mail. Some variables are expected to be
 set before calling this function. Here they are:
