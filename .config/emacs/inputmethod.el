@@ -80,7 +80,7 @@ New letters: ḃċḋḟġṁṗṡṫ áéíóúıȷ
  ("'" "э") ("\"" "Э") ("z" "я") ("Z" "Я") ("x" "ч") ("X" "Ч")
  ("c" "с") ("C" "С") ("v" "м") ("V" "М") ("b" "и") ("B" "И")
  ("n" "т") ("N" "Т") ("m" "ь") ("M" "Ь") ("," "б") ("<" "Б")
- ("." "ю") (">" "Ю") ("/" ".") ("?" "."))
+ ("." "ю") (">" "Ю") ("/" ".") ("?" ","))
 ;; This Russian input method has some slight personal modifications:
 ;; \ -> ^ (so I can use that symbol in regular expressions without
 ;;         switching input methods)
@@ -101,5 +101,58 @@ New letters: ḃċḋḟġṁṗṡṫ áéíóúıȷ
  ("'" "э") ("\"" "Э") ("z" "я") ("Z" "Я") ("x" "ч") ("X" "Ч")
  ("c" "с") ("C" "С") ("v" "м") ("V" "М") ("b" "и") ("B" "И")
  ("n" "т") ("N" "Т") ("m" "ь") ("M" "Ь") ("," "б") ("<" "Б")
- ("." "ю") (">" "Ю") ("/" ".") ("?" "."))
+ ("." "ю") (">" "Ю") ("/" ".") ("?" ","))
+(defun my-define-new-hanzi nil
+  "Add new hanzi to 'chinese-py-punct-b5'. This function should be
+called at least once after 'chinese-py-punct-b5' is loaded."
+  (interactive)
+  (quail-select-package "chinese-py-punct-b5")
+;;; Useful
+  (quail-defrule "wei4" "爲" nil t)
+  (quail-defrule "wei2" "爲" nil t)
+  (quail-defrule "li3" "裏" nil t)
+  (quail-defrule "zhong4" "衆" nil t)
+  (quail-defrule "gu1" "軲" nil t)
+  (quail-defrule "tuan1" "圕" nil t)
+  (quail-defrule "luan2" "孿" nil t)
+  (quail-defrule "zao4" "竈" nil t)
+  (quail-defrule "gang4" "戇" nil t)
+  (quail-defrule "o3" "嚄" nil t)
+  (quail-defrule "yuan2" "円" nil t)
+  (quail-defrule "na1" "㑚" nil t)
+  (quail-defrule "ni2" "伲" nil t)
+  (quail-defrule "da5" "墶" nil t)
+  (quail-defrule "be1" "撥" nil t)
+  (quail-defrule "fa5" "𠲎" nil t)
+;;; Fun
+  (quail-defrule "pou3" "咅" nil t)
+  (quail-defrule "chuang1" "窓𡆧" nil t)
+  (quail-defrule "gu3" "罟" nil t)
+  (quail-defrule "ku1" "圐" nil t)
+  (quail-defrule "lu:e4" "圙" nil t)
+  (quail-defrule "xi3" "憙" nil t)
+  (quail-defrule "chu1" "岀" nil t)
+  (quail-defrule "zei2" "戝" nil t)
+  (quail-defrule "er2" "𠒇" nil t)
+  (quail-defrule "hei1" "𪐗" nil t)
+  (quail-defrule "biang2" "𰻞" nil t)
+;;; Rare
+  (quail-defrule "bu1" "庯" nil t)
+  (quail-defrule "xi4" "衋" nil t)
+  (quail-defrule "bian1" "邉" nil t)
+  (quail-defrule "guo2" "圀囶囻" nil t)
+  (quail-defrule "da4" "眔" nil t)
+  (quail-defrule "qia1" "𡤫" nil t)
+  (quail-defrule "meng2" "𦰋" nil t)
+  (quail-defrule "mo4" "𥄕" nil t)
+;;; Chu Nom
+;;; These are characters that were once used to write Vietnamese. My
+;;; pinyin for them is made up.
+  (quail-defrule "chu3" "𡦂𡨸" nil t)
+  (quail-defrule "nin2" "𠊛" nil t)
+  (quail-defrule "zhong1" "𥪝" nil t)
+  (quail-defrule "yuan4" "𠊚" nil t)
+  (quail-defrule "han4" "𪝳" nil t)
+  (quail-defrule "hua4" "𩅹" nil t)
+  (quail-defrule "qin1" "𪀄" nil t))
 ;;; inputmethod.el ends here
