@@ -339,6 +339,9 @@ This function is currently configured for gmail by default."
 ;; custom prefix commands
 (define-prefix-command 'my-ext-map)
 (global-set-key (kbd "M-o") 'my-ext-map)
+;;; for ad hoc keys, typically assigned per session
+(define-prefix-command 'my-nonce-map)
+(global-set-key (kbd "M-[") 'my-nonce-map)
 ;; basic functions
 (global-set-key (kbd "M-/") 'my-done)
 (global-set-key (kbd "M-,") 'my-dired-copy-cwd)
