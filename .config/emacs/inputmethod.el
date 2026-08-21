@@ -145,7 +145,10 @@ called at least once after 'chinese-py-punct-b5' is loaded."
   (quail-defrule "qia1" "𡤫" nil t)
   (quail-defrule "meng2" "𦰋" nil t)
   (quail-defrule "mo4" "𥄕" nil t)
-;;; Chu Nom
+;;; Kokuji こくじ 國字
+;;; Characters invented in Japan & probably only used in Japanese
+  (quail-defrule "mo3" "麿" nil t) ;; まろ
+;;; Chu Nom 𡦂喃
 ;;; These are characters that were once used to write Vietnamese. My
 ;;; pinyin for them is made up.
   (quail-defrule "chu3" "𡦂𡨸" nil t)
